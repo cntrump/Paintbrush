@@ -366,7 +366,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>27A9CDF90E29378500D5FCAA</string>
+										<string>27A9CE180E29392700D5FCAA</string>
 										<key>history</key>
 										<array>
 											<string>279B46EE0DB4340800535FF7</string>
@@ -429,7 +429,7 @@
 											<string>27A9CDE50E2837F200D5FCAA</string>
 											<string>27A9CDE60E2837F200D5FCAA</string>
 											<string>27A9CDE70E2837F200D5FCAA</string>
-											<string>27A9CDED0E2837F200D5FCAA</string>
+											<string>27A9CDF90E29378500D5FCAA</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -636,11 +636,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>27A9CDFA0E29378500D5FCAA</string>
+				<string>27A9CE190E29392700D5FCAA</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>27A9CDFB0E29378500D5FCAA</string>
+				<string>27A9CE1A0E29392700D5FCAA</string>
 				<string>27D866840D83997F003C6B75</string>
-				<string>27A9CDFC0E29378500D5FCAA</string>
+				<string>27A9CE1B0E29392700D5FCAA</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -807,7 +807,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>237582213.03519899</real>
+	<real>237582631.38544199</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -822,7 +822,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>/Users/Mike/Documents/Programming/Xcode/Paintbrush2/Paintbrush2.xcodeproj</string>
+		<string>/Users/Mike/Documents/Programming/Xcode/Paintbrush2/Paintbrush2/Paintbrush2.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 107 1280 671 0 0 1280 778 </string>
