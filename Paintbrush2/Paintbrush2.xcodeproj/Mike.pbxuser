@@ -11,8 +11,8 @@
 	2704064A0BFE3F3600C308C8 /* ToDo.rtf */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {960, 1388}}";
-			sepNavSelRange = "{1846, 0}";
-			sepNavVisRect = "{{0, 615}, {960, 613}}";
+			sepNavSelRange = "{2514, 58}";
+			sepNavVisRect = "{{0, 1011}, {960, 377}}";
 			sepNavWindowFrame = "{{38, 323}, {457, 429}}";
 		};
 	};
@@ -3779,6 +3779,26 @@
 		vrLen = 1499;
 		vrLoc = 1058;
 	};
+	27A9D0930E32B05800D5FCAA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2704064A0BFE3F3600C308C8 /* ToDo.rtf */;
+		name = "ToDo.rtf: 81";
+		rLen = 58;
+		rLoc = 2514;
+		rType = 0;
+		vrLen = 836;
+		vrLoc = 1987;
+	};
+	27A9D0D30E32B08300D5FCAA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2704064A0BFE3F3600C308C8 /* ToDo.rtf */;
+		name = "ToDo.rtf: 81";
+		rLen = 58;
+		rLoc = 2514;
+		rType = 0;
+		vrLen = 836;
+		vrLoc = 1987;
+	};
 	27AFFDF10D68C06800368E2B /* SWAppController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {946, 2288}}";
@@ -4089,7 +4109,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					20,
-					758,
+					744,
 					20,
 					48,
 					43,
@@ -4459,6 +4479,8 @@
 			27A9D0830E313FA600D5FCAA /* PBXTextBookmark */ = 27A9D0830E313FA600D5FCAA /* PBXTextBookmark */;
 			27A9D0840E31F7E400D5FCAA /* PBXTextBookmark */ = 27A9D0840E31F7E400D5FCAA /* PBXTextBookmark */;
 			27A9D0870E31F7ED00D5FCAA /* PBXTextBookmark */ = 27A9D0870E31F7ED00D5FCAA /* PBXTextBookmark */;
+			27A9D0930E32B05800D5FCAA /* PBXTextBookmark */ = 27A9D0930E32B05800D5FCAA /* PBXTextBookmark */;
+			27A9D0D30E32B08300D5FCAA /* PBXTextBookmark */ = 27A9D0D30E32B08300D5FCAA /* PBXTextBookmark */;
 			27C2244D0DB52F2200E1F5DD = 27C2244D0DB52F2200E1F5DD /* PBXTextBookmark */;
 			27C224530DB52F2200E1F5DD = 27C224530DB52F2200E1F5DD /* PBXTextBookmark */;
 			27CFB3D00DCF794800C24F73 = 27CFB3D00DCF794800C24F73 /* PBXTextBookmark */;
