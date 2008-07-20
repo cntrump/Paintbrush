@@ -2154,11 +2154,51 @@
 		vrLen = 502;
 		vrLoc = 0;
 	};
+	27A9D10F0E32E44D00D5FCAA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27A9D0F80E32B93E00D5FCAA /* SUBasicUpdateDriver.h */;
+		name = "SUBasicUpdateDriver.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 502;
+		vrLoc = 0;
+	};
+	27A9D1100E32E44D00D5FCAA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27AFFDF10D68C06800368E2B /* SWAppController.m */;
+		name = "SWAppController.m: 45";
+		rLen = 0;
+		rLoc = 1612;
+		rType = 0;
+		vrLen = 597;
+		vrLoc = 2678;
+	};
+	27A9D1110E32E44D00D5FCAA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27A9D0F80E32B93E00D5FCAA /* SUBasicUpdateDriver.h */;
+		name = "SUBasicUpdateDriver.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 502;
+		vrLoc = 0;
+	};
+	27A9D1120E32E44D00D5FCAA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27AFFDF10D68C06800368E2B /* SWAppController.m */;
+		name = "SWAppController.m: 45";
+		rLen = 0;
+		rLoc = 1612;
+		rType = 0;
+		vrLen = 597;
+		vrLoc = 2678;
+	};
 	27AFFDF10D68C06800368E2B /* SWAppController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {946, 2288}}";
 			sepNavSelRange = "{1612, 0}";
-			sepNavVisRange = "{2678, 951}";
+			sepNavVisRange = "{2678, 597}";
 		};
 	};
 	27B686C30BA1395B0028A526 /* SWFillTool.h */ = {
@@ -2667,6 +2707,10 @@
 			27A9D0F50E32B93E00D5FCAA = 27A9D0F50E32B93E00D5FCAA /* PBXTextBookmark */;
 			27A9D0F70E32B93E00D5FCAA = 27A9D0F70E32B93E00D5FCAA /* PBXTextBookmark */;
 			27A9D1050E32E42100D5FCAA /* PBXTextBookmark */ = 27A9D1050E32E42100D5FCAA /* PBXTextBookmark */;
+			27A9D10F0E32E44D00D5FCAA /* PBXTextBookmark */ = 27A9D10F0E32E44D00D5FCAA /* PBXTextBookmark */;
+			27A9D1100E32E44D00D5FCAA /* PBXTextBookmark */ = 27A9D1100E32E44D00D5FCAA /* PBXTextBookmark */;
+			27A9D1110E32E44D00D5FCAA /* PBXTextBookmark */ = 27A9D1110E32E44D00D5FCAA /* PBXTextBookmark */;
+			27A9D1120E32E44D00D5FCAA /* PBXTextBookmark */ = 27A9D1120E32E44D00D5FCAA /* PBXTextBookmark */;
 			27C2244D0DB52F2200E1F5DD = 27C2244D0DB52F2200E1F5DD /* PBXTextBookmark */;
 			27C224530DB52F2200E1F5DD = 27C224530DB52F2200E1F5DD /* PBXTextBookmark */;
 			27CFB3D00DCF794800C24F73 = 27CFB3D00DCF794800C24F73 /* PBXTextBookmark */;
