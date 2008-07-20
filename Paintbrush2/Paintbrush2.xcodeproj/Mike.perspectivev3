@@ -259,6 +259,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -300,19 +302,29 @@
 								<string>2A37F4AAFDCFA73011CA2CEA</string>
 								<string>27A60E100B879A6A0091A1B0</string>
 								<string>273FABAA0BFBA18D00E507C5</string>
-								<string>274194B00C1DA5C100605CDC</string>
 								<string>2A37F4B8FDCFA73011CA2CEA</string>
+								<string>2738BF750BB5AE84003A8B2E</string>
+								<string>272A86C40D74F9F500630D0B</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>45</integer>
-									<integer>33</integer>
+									<integer>27</integer>
+									<integer>24</integer>
+									<integer>23</integer>
+									<integer>21</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>28</integer>
+									<integer>24</integer>
+									<integer>23</integer>
+									<integer>21</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {251, 616}}</string>
+							<string>{{0, 361}, {251, 616}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -342,8 +354,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -361,7 +371,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>27E08C280E33EE04002F49E6</string>
+										<string>27E08C460E33F918002F49E6</string>
 										<key>history</key>
 										<array>
 											<string>279B46F30DB4340800535FF7</string>
@@ -430,7 +440,7 @@
 											<string>27E08BF90E33EBF3002F49E6</string>
 											<string>27E08C070E33EC60002F49E6</string>
 											<string>27E08C250E33EE04002F49E6</string>
-											<string>27E08C260E33EE04002F49E6</string>
+											<string>27E08C450E33F917002F49E6</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -824,7 +834,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>238284292.96251601</real>
+	<real>238287128.36429</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
