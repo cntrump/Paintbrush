@@ -259,8 +259,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -314,15 +312,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>86</integer>
-									<integer>72</integer>
-									<integer>71</integer>
+									<integer>112</integer>
 									<integer>69</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {250, 616}}</string>
+							<string>{{0, 1450}, {250, 616}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -352,12 +348,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>27D866840D83997F003C6B75</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>airbrush.png</string>
+								<string>SWToolboxController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -365,11 +363,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>27D866850D83997F003C6B75</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>airbrush.png</string>
+										<string>SWToolboxController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>27DE431F0E9AF0B4005CC764</string>
+										<string>27A99A250E9AFBA700C9781C</string>
 										<key>history</key>
 										<array>
 											<string>27D758860DC78A9F0023E1B2</string>
@@ -425,7 +423,6 @@
 											<string>27F539A60E96B9D4001FA420</string>
 											<string>27F53A010E96D533001FA420</string>
 											<string>27F53A1F0E96D6A5001FA420</string>
-											<string>27F53A210E96D6A5001FA420</string>
 											<string>27F53A230E96D6A5001FA420</string>
 											<string>27F53A240E96D6A5001FA420</string>
 											<string>27F53A250E96D6A5001FA420</string>
@@ -438,7 +435,6 @@
 											<string>27F53A3A0E96D6A5001FA420</string>
 											<string>27F53A9D0E96D8D2001FA420</string>
 											<string>27F53AE80E99AF4F001FA420</string>
-											<string>27F53AFD0E99D99E001FA420</string>
 											<string>27F53AFE0E99D99E001FA420</string>
 											<string>27F53B160E99DC59001FA420</string>
 											<string>27F53B170E99DC59001FA420</string>
@@ -473,7 +469,9 @@
 											<string>27A45C6C0E9AEF1800AC15F0</string>
 											<string>27A45C6D0E9AEF1800AC15F0</string>
 											<string>27A45C6E0E9AEF1800AC15F0</string>
-											<string>27A45C780E9AEF2700AC15F0</string>
+											<string>27A99A100E9AF9A900C9781C</string>
+											<string>27A99A180E9AFA2800C9781C</string>
+											<string>27A99A220E9AFBA500C9781C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -577,6 +575,8 @@
 											<string>27A45C190E9A85F400AC15F0</string>
 											<string>27A45C380E9AA9E300AC15F0</string>
 											<string>27A45C570E9AB08D00AC15F0</string>
+											<string>27A99A120E9AF9A900C9781C</string>
+											<string>27A99A1A0E9AFA2800C9781C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -720,11 +720,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>27DE43200E9AF0B4005CC764</string>
+				<string>27A999E50E9AF30E00C9781C</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>27DE43210E9AF0B4005CC764</string>
+				<string>27A999E60E9AF30E00C9781C</string>
 				<string>27D866840D83997F003C6B75</string>
-				<string>27DE43220E9AF0B4005CC764</string>
+				<string>27A999E70E9AF30E00C9781C</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -869,13 +869,13 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>27A45BE20E9A813400AC15F0</string>
+				<string>27A999E80E9AF30E00C9781C</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>27A45BE30E9A813400AC15F0</string>
-				<string>27A45BE40E9A813400AC15F0</string>
-				<string>27A45BE50E9A813400AC15F0</string>
-				<string>27A45BE60E9A813400AC15F0</string>
+				<string>27A999E90E9AF30E00C9781C</string>
+				<string>27A999EA0E9AF30E00C9781C</string>
+				<string>27A999EB0E9AF30E00C9781C</string>
+				<string>27A999EC0E9AF30E00C9781C</string>
 				<string>27D866840D83997F003C6B75</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -891,7 +891,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>245035188.24103299</real>
+	<real>245037991.709108</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
