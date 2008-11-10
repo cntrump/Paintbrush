@@ -452,6 +452,13 @@
 			sepNavWindowFrame = "{{34, 64}, {986, 714}}";
 		};
 	};
+	2742CCEC0DA58A44004BF119 /* airbrush-cursor-2.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = "airbrush-cursor-2.png";
+		path = "/Users/Mike/Documents/Programming/Xcode/Paintbrush/Paintbrush2/airbrush-cursor-2.png";
+		sourceTree = "<absolute>";
+	};
 	27431F1E0EC23C1300324C76 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 270F02710BD0218F005B92A3 /* SWTextToolWindowController.h */;
@@ -2142,6 +2149,13 @@
 			sepNavVisRange = "{929, 1198}";
 			sepNavWindowFrame = "{{322, 92}, {795, 686}}";
 		};
+	};
+	27F3C6C80D864D1C006AB05A /* zoom-cursor-2.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = "zoom-cursor-2.png";
+		path = "/Users/Mike/Documents/Programming/Xcode/Paintbrush/Paintbrush2/zoom-cursor-2.png";
+		sourceTree = "<absolute>";
 	};
 	27F5364C0E8C2A67001FA420 /* SWMatrix.h */ = {
 		uiCtxt = {
