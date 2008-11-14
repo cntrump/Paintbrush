@@ -1868,9 +1868,9 @@
 	};
 	27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {947, 1568}}";
-			sepNavSelRange = "{2347, 0}";
-			sepNavVisRange = "{1822, 643}";
+			sepNavIntBoundsRect = "{{0, 0}, {947, 1552}}";
+			sepNavSelRange = "{1979, 0}";
+			sepNavVisRange = "{1769, 564}";
 		};
 	};
 	27BE1F380ECB73A500B0A0F1 /* PBXTextBookmark */ = {
@@ -1928,7 +1928,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 61";
 		rLen = 0;
-		rLoc = 2459;
+		rLoc = 2619;
 		rType = 0;
 		vrLen = 498;
 		vrLoc = 1074;
@@ -3871,7 +3871,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 61";
 		rLen = 0;
-		rLoc = 2459;
+		rLoc = 2619;
 		rType = 0;
 		vrLen = 598;
 		vrLoc = 974;
@@ -3901,7 +3901,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 36";
 		rLen = 0;
-		rLoc = 1434;
+		rLoc = 1468;
 		rType = 0;
 		vrLen = 752;
 		vrLoc = 714;
@@ -3911,7 +3911,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 36";
 		rLen = 0;
-		rLoc = 1434;
+		rLoc = 1468;
 		rType = 0;
 		vrLen = 706;
 		vrLoc = 796;
@@ -3931,7 +3931,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 36";
 		rLen = 0;
-		rLoc = 1434;
+		rLoc = 1468;
 		rType = 0;
 		vrLen = 155;
 		vrLoc = 929;
@@ -3941,7 +3941,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 36";
 		rLen = 0;
-		rLoc = 1434;
+		rLoc = 1468;
 		rType = 0;
 		vrLen = 714;
 		vrLoc = 792;
@@ -3961,7 +3961,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 36";
 		rLen = 0;
-		rLoc = 1434;
+		rLoc = 1468;
 		rType = 0;
 		vrLen = 714;
 		vrLoc = 792;
@@ -3991,7 +3991,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 36";
 		rLen = 0;
-		rLoc = 1434;
+		rLoc = 1468;
 		rType = 0;
 		vrLen = 187;
 		vrLoc = 976;
@@ -4041,7 +4041,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 37";
 		rLen = 0;
-		rLoc = 1242;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 1283;
@@ -4061,7 +4061,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 36";
 		rLen = 0;
-		rLoc = 1434;
+		rLoc = 1468;
 		rType = 0;
 		vrLen = 939;
 		vrLoc = 295;
@@ -4091,7 +4091,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 37";
 		rLen = 0;
-		rLoc = 1242;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 634;
 		vrLoc = 1285;
@@ -4111,7 +4111,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 37";
 		rLen = 0;
-		rLoc = 1242;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 1283;
@@ -4131,7 +4131,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 75";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 704;
 		vrLoc = 1683;
@@ -4141,7 +4141,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 75";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 681;
 		vrLoc = 1721;
@@ -4161,7 +4161,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 75";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 232;
 		vrLoc = 1891;
@@ -4171,7 +4171,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 78";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 802;
 		vrLoc = 1683;
@@ -4181,7 +4181,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 78";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 1727;
@@ -4191,7 +4191,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 78";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 298;
 		vrLoc = 1891;
@@ -4221,7 +4221,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 78";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 809;
 		vrLoc = 1726;
@@ -4231,7 +4231,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 78";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 813;
 		vrLoc = 1726;
@@ -4261,7 +4261,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 78";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 809;
 		vrLoc = 1726;
@@ -4291,7 +4291,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 78";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 2117;
 		rType = 0;
 		vrLen = 796;
 		vrLoc = 1726;
@@ -4301,7 +4301,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 78";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 2117;
 		rType = 0;
 		vrLen = 814;
 		vrLoc = 1727;
@@ -4311,7 +4311,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 78";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 2117;
 		rType = 0;
 		vrLen = 269;
 		vrLoc = 1993;
@@ -4321,7 +4321,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 82";
 		rLen = 0;
-		rLoc = 2162;
+		rLoc = 2322;
 		rType = 0;
 		vrLen = 856;
 		vrLoc = 1726;
@@ -4331,7 +4331,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 82";
 		rLen = 0;
-		rLoc = 2162;
+		rLoc = 2322;
 		rType = 0;
 		vrLen = 883;
 		vrLoc = 1770;
@@ -4341,7 +4341,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 82";
 		rLen = 0;
-		rLoc = 2162;
+		rLoc = 2322;
 		rType = 0;
 		vrLen = 326;
 		vrLoc = 1993;
@@ -4381,7 +4381,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 81";
 		rLen = 30;
-		rLoc = 1995;
+		rLoc = 2155;
 		rType = 0;
 		vrLen = 545;
 		vrLoc = 1771;
@@ -4391,7 +4391,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 80";
 		rLen = 0;
-		rLoc = 1995;
+		rLoc = 2155;
 		rType = 0;
 		vrLen = 900;
 		vrLoc = 1768;
@@ -4431,7 +4431,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 81";
 		rLen = 30;
-		rLoc = 1995;
+		rLoc = 2155;
 		rType = 0;
 		vrLen = 546;
 		vrLoc = 1770;
@@ -4461,7 +4461,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 81";
 		rLen = 30;
-		rLoc = 1995;
+		rLoc = 2155;
 		rType = 0;
 		vrLen = 546;
 		vrLoc = 1770;
@@ -4608,7 +4608,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 94";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 534;
 		vrLoc = 2076;
@@ -4618,7 +4618,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 94";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 462;
 		vrLoc = 2340;
@@ -4638,7 +4638,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 94";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 207;
 		vrLoc = 2402;
@@ -4648,7 +4648,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 94";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 644;
 		vrLoc = 2258;
@@ -4678,7 +4678,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 94";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 644;
 		vrLoc = 2258;
@@ -4688,7 +4688,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 94";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 644;
 		vrLoc = 2258;
@@ -4708,7 +4708,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 94";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2424;
 		rType = 0;
 		vrLen = 644;
 		vrLoc = 2258;
@@ -4728,7 +4728,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 93";
 		rLen = 0;
-		rLoc = 2263;
+		rLoc = 2423;
 		rType = 0;
 		vrLen = 515;
 		vrLoc = 2258;
@@ -4738,7 +4738,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 93";
 		rLen = 0;
-		rLoc = 2263;
+		rLoc = 2423;
 		rType = 0;
 		vrLen = 553;
 		vrLoc = 2220;
@@ -4748,7 +4748,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 93";
 		rLen = 0;
-		rLoc = 2263;
+		rLoc = 2423;
 		rType = 0;
 		vrLen = 179;
 		vrLoc = 2474;
@@ -4758,7 +4758,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 93";
 		rLen = 0;
-		rLoc = 2263;
+		rLoc = 2423;
 		rType = 0;
 		vrLen = 146;
 		vrLoc = 2474;
@@ -4768,7 +4768,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 93";
 		rLen = 0;
-		rLoc = 2263;
+		rLoc = 2423;
 		rType = 0;
 		vrLen = 553;
 		vrLoc = 2220;
@@ -4788,7 +4788,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 93";
 		rLen = 0;
-		rLoc = 2263;
+		rLoc = 2423;
 		rType = 0;
 		vrLen = 553;
 		vrLoc = 2220;
@@ -4808,7 +4808,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 93";
 		rLen = 0;
-		rLoc = 2263;
+		rLoc = 2423;
 		rType = 0;
 		vrLen = 156;
 		vrLoc = 2464;
@@ -4925,7 +4925,7 @@
 		comments = "warning: 'SWColorSelector' may not respond to '-updateWells'";
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		rLen = 1;
-		rLoc = 78;
+		rLoc = 85;
 		rType = 1;
 	};
 	27FFFF9A0ECD524C0036CFE6 /* PBXTextBookmark */ = {
@@ -4943,7 +4943,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 101";
 		rLen = 40;
-		rLoc = 2348;
+		rLoc = 2508;
 		rType = 0;
 		vrLen = 542;
 		vrLoc = 2597;
@@ -4963,7 +4963,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 98";
 		rLen = 0;
-		rLoc = 2261;
+		rLoc = 2421;
 		rType = 0;
 		vrLen = 466;
 		vrLoc = 2597;
@@ -4973,7 +4973,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 98";
 		rLen = 0;
-		rLoc = 2261;
+		rLoc = 2421;
 		rType = 0;
 		vrLen = 506;
 		vrLoc = 2384;
@@ -4993,7 +4993,7 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 98";
 		rLen = 0;
-		rLoc = 2261;
+		rLoc = 2421;
 		rType = 0;
 		vrLen = 177;
 		vrLoc = 2597;
@@ -5043,10 +5043,80 @@
 		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
 		name = "SWColorSelector.m: 82";
 		rLen = 0;
-		rLoc = 2347;
+		rLoc = 2507;
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 1822;
+	};
+	27FFFFAA0ECDC45A0036CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
+		name = "SWColorSelector.m: 82";
+		rLen = 0;
+		rLoc = 2507;
+		rType = 0;
+		vrLen = 638;
+		vrLoc = 1822;
+	};
+	27FFFFAB0ECDC45B0036CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
+		name = "SWColorSelector.m: 82";
+		rLen = 0;
+		rLoc = 2507;
+		rType = 0;
+		vrLen = 606;
+		vrLoc = 1859;
+	};
+	27FFFFAC0ECDC47B0036CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
+		name = "SWColorSelector.m: 82";
+		rLen = 0;
+		rLoc = 2507;
+		rType = 0;
+		vrLen = 222;
+		vrLoc = 2237;
+	};
+	27FFFFAE0ECDC4B80036CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
+		name = "SWColorSelector.m: 68";
+		rLen = 0;
+		rLoc = 1979;
+		rType = 0;
+		vrLen = 590;
+		vrLoc = 1671;
+	};
+	27FFFFAF0ECDC4B80036CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
+		name = "SWColorSelector.m: 68";
+		rLen = 0;
+		rLoc = 1979;
+		rType = 0;
+		vrLen = 564;
+		vrLoc = 1769;
+	};
+	27FFFFB00ECDC4EA0036CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
+		name = "SWColorSelector.m: 68";
+		rLen = 0;
+		rLoc = 1979;
+		rType = 0;
+		vrLen = 281;
+		vrLoc = 1980;
+	};
+	27FFFFB10ECDC4FC0036CFE6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */;
+		name = "SWColorSelector.m: 68";
+		rLen = 0;
+		rLoc = 1979;
+		rType = 0;
+		vrLen = 564;
+		vrLoc = 1769;
 	};
 	2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
@@ -5670,6 +5740,13 @@
 			27FFFFA60ECD53470036CFE6 /* PBXTextBookmark */ = 27FFFFA60ECD53470036CFE6 /* PBXTextBookmark */;
 			27FFFFA70ECD53470036CFE6 /* PBXTextBookmark */ = 27FFFFA70ECD53470036CFE6 /* PBXTextBookmark */;
 			27FFFFA80ECD53470036CFE6 /* PBXTextBookmark */ = 27FFFFA80ECD53470036CFE6 /* PBXTextBookmark */;
+			27FFFFAA0ECDC45A0036CFE6 /* PBXTextBookmark */ = 27FFFFAA0ECDC45A0036CFE6 /* PBXTextBookmark */;
+			27FFFFAB0ECDC45B0036CFE6 /* PBXTextBookmark */ = 27FFFFAB0ECDC45B0036CFE6 /* PBXTextBookmark */;
+			27FFFFAC0ECDC47B0036CFE6 /* PBXTextBookmark */ = 27FFFFAC0ECDC47B0036CFE6 /* PBXTextBookmark */;
+			27FFFFAE0ECDC4B80036CFE6 /* PBXTextBookmark */ = 27FFFFAE0ECDC4B80036CFE6 /* PBXTextBookmark */;
+			27FFFFAF0ECDC4B80036CFE6 /* PBXTextBookmark */ = 27FFFFAF0ECDC4B80036CFE6 /* PBXTextBookmark */;
+			27FFFFB00ECDC4EA0036CFE6 /* PBXTextBookmark */ = 27FFFFB00ECDC4EA0036CFE6 /* PBXTextBookmark */;
+			27FFFFB10ECDC4FC0036CFE6 /* PBXTextBookmark */ = 27FFFFB10ECDC4FC0036CFE6 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 27A60DFF0B879A260091A1B0 /* Source Control */;
 		userBuildSettings = {
