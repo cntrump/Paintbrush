@@ -256,8 +256,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -296,15 +294,11 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
-								<string>2A37F4AAFDCFA73011CA2CEA</string>
-								<string>2A37F4B8FDCFA73011CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>10</integer>
-									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -356,7 +350,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>27A36FFA0F2291380051A892</string>
+										<string>27C145CF0F2816FC00769752</string>
 										<key>history</key>
 										<array>
 											<string>27D758860DC78A9F0023E1B2</string>
@@ -484,7 +478,7 @@
 											<string>27A4E2200F1FF8D400A1F367</string>
 											<string>27A4E2980F1FFF3C00A1F367</string>
 											<string>27A4E2A30F2045F000A1F367</string>
-											<string>27A36FF90F2291380051A892</string>
+											<string>27A370160F2540110051A892</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -756,11 +750,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>27A36FFB0F2291380051A892</string>
+				<string>27C145D00F2816FC00769752</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>27A36FFC0F2291380051A892</string>
+				<string>27C145D10F2816FC00769752</string>
 				<string>27D866840D83997F003C6B75</string>
-				<string>27A36FFD0F2291380051A892</string>
+				<string>27C145D20F2816FC00769752</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -930,7 +924,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>253923640.18380499</real>
+	<real>254285564.138502</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
