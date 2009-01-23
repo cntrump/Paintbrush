@@ -243,6 +243,50 @@
 		vrLen = 869;
 		vrLoc = 825;
 	};
+	2738997E0F2A54FE0062831A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D15AC360486D014006FF6A4 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/Mike/Documents/Programming/Xcode/Paintbrush/2.1/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2738997F0F2A54FF0062831A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D15AC360486D014006FF6A4 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/Mike/Documents/Programming/Xcode/Paintbrush/2.1/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	273899880F2A55060062831A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D15AC360486D014006FF6A4 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/Mike/Documents/Programming/Xcode/Paintbrush/2.1/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2738998B0F2A55600062831A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D15AC360486D014006FF6A4 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/Mike/Documents/Programming/Xcode/Paintbrush/2.1/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
 	273C382F0E21C99E00C77EE1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 27A60E140B879A6A0091A1B0 /* SWEllipseTool.h */;
@@ -2727,7 +2771,7 @@
 		state = 0;
 	};
 	2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Release;
+		activeBuildConfigurationName = Debug;
 		activeExecutable = 27A60DF40B879A080091A1B0 /* Paintbrush */;
 		activeTarget = 8D15AC270486D014006FF6A4 /* Paintbrush */;
 		addToTargets = (
@@ -2903,8 +2947,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 254285540;
-			PBXWorkspaceStateSaveDate = 254285540;
+			PBXPerProjectTemplateStateSaveDate = 254432439;
+			PBXWorkspaceStateSaveDate = 254432439;
 		};
 		perUserProjectItems = {
 			27056BAA0ED3D9DF00598E7F = 27056BAA0ED3D9DF00598E7F /* PBXTextBookmark */;
@@ -2921,6 +2965,10 @@
 			272F36AA0DB5120700EE9FA2 = 272F36AA0DB5120700EE9FA2 /* PBXTextBookmark */;
 			272F36EA0DB5206A00EE9FA2 = 272F36EA0DB5206A00EE9FA2 /* PBXTextBookmark */;
 			27371DEB0E268AA7007B2B10 = 27371DEB0E268AA7007B2B10 /* PBXTextBookmark */;
+			2738997E0F2A54FE0062831A /* PlistBookmark */ = 2738997E0F2A54FE0062831A /* PlistBookmark */;
+			2738997F0F2A54FF0062831A /* PlistBookmark */ = 2738997F0F2A54FF0062831A /* PlistBookmark */;
+			273899880F2A55060062831A /* PlistBookmark */ = 273899880F2A55060062831A /* PlistBookmark */;
+			2738998B0F2A55600062831A /* PlistBookmark */ = 2738998B0F2A55600062831A /* PlistBookmark */;
 			273C382F0E21C99E00C77EE1 = 273C382F0E21C99E00C77EE1 /* PBXTextBookmark */;
 			273C38390E21C99E00C77EE1 = 273C38390E21C99E00C77EE1 /* PBXTextBookmark */;
 			273C8BB60DB1F59B00DAB1E8 = 273C8BB60DB1F59B00DAB1E8 /* PBXTextBookmark */;
@@ -3110,7 +3158,7 @@
 			27BE1F400ECB73A500B0A0F1 = 27BE1F400ECB73A500B0A0F1 /* PBXTextBookmark */;
 			27BE1F410ECB73A500B0A0F1 = 27BE1F410ECB73A500B0A0F1 /* PBXTextBookmark */;
 			27BE1FD70ECB873100B0A0F1 = 27BE1FD70ECB873100B0A0F1 /* PBXTextBookmark */;
-			27C145CF0F2816FC00769752 /* PlistBookmark */ = 27C145CF0F2816FC00769752 /* PlistBookmark */;
+			27C145CF0F2816FC00769752 = 27C145CF0F2816FC00769752 /* PlistBookmark */;
 			27C21C280F09458D00FCB126 = 27C21C280F09458D00FCB126 /* PBXTextBookmark */;
 			27C21C2B0F09458D00FCB126 = 27C21C2B0F09458D00FCB126 /* PBXTextBookmark */;
 			27C21C2C0F09458D00FCB126 = 27C21C2C0F09458D00FCB126 /* PBXTextBookmark */;
