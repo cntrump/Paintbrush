@@ -1,0 +1,29 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                gridColorWellAction = id; 
+                gridSpacingSliderAction = id; 
+                showWindow = id; 
+                showsGridCheckboxAction = id; 
+            }; 
+            CLASS = GridPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                gridColorWell = id; 
+                gridSpacingSlider = id; 
+                gridView = id; 
+                showsGridCheckbox = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = GridView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {controller = id; }; 
+            SUPERCLASS = NSView; 
+        }
+    ); 
+    IBVersion = 1; 
+}

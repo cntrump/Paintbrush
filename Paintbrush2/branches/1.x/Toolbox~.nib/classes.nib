@@ -1,0 +1,48 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {setLineWidth = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {setDrawColor = id; }; 
+            CLASS = MyDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {paintView = PaintView; }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = NSSegmentedControl; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {
+            ACTIONS = {setColor = id; }; 
+            CLASS = PaintView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSView; 
+        }, 
+        {
+            ACTIONS = {
+                changeBackgroundColor = id; 
+                changeFill = id; 
+                changeForegroundColor = id; 
+                changeLineWidth = id; 
+                changeTool = id; 
+                flipColors = id; 
+                hideWindow = id; 
+                showWindow = id; 
+                switchToScissors = id; 
+            }; 
+            CLASS = ToolboxController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                backgroundColorWell = NSColorWell; 
+                fillMatrix = NSMatrix; 
+                foregroundColorWell = NSColorWell; 
+                lineSlider = NSSlider; 
+                toolMatrix = NSMatrix; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

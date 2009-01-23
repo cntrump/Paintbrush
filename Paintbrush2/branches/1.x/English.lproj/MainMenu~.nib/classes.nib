@@ -1,0 +1,58 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                contact = id; 
+                donate = id; 
+                forums = id; 
+                quit = id; 
+                showPreferencePanel = id; 
+                showToolboxPanel = id; 
+            }; 
+            CLASS = AppController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                actualSize = id; 
+                changeImageSize = id; 
+                changeToolUsingKeyboard = id; 
+                flipHorizontal = id; 
+                flipVertical = id; 
+                fullScreen = id; 
+                keyboardChangeTool = id; 
+                myAction = id; 
+                showGridPanel = id; 
+                zoomIn = id; 
+                zoomOut = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {changeBackgroundColor = id; changeForegroundColor = id; changeTool = id; }; 
+            CLASS = PaletteController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                backgroundColorWell = NSColorWell; 
+                downButton = NSButton; 
+                foregroundColorWell = NSColorWell; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = PreferenceController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            ACTIONS = {checkForUpdates = id; }; 
+            CLASS = SUUpdater; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

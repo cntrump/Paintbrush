@@ -1,0 +1,33 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                endCustomSheet = id; 
+                raiseCustomSheet = id; 
+                setBackColor = id; 
+                setFrontColor = id; 
+            }; 
+            CLASS = MyDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                heightField = NSTextField; 
+                openingSheet = NSWindow; 
+                paintView = PaintView; 
+                scrollView = ScalingScrollView; 
+                widthField = NSTextField; 
+                window = NSWindow; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = PaintView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {scalePopUpAction = id; }; 
+            CLASS = ScalingScrollView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSScrollView; 
+        }, 
+        {CLASS = ScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }
+    ); 
+    IBVersion = 1; 
+}
