@@ -306,15 +306,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>16</integer>
-									<integer>4</integer>
-									<integer>3</integer>
+									<integer>30</integer>
+									<integer>24</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {259, 716}}</string>
+							<string>{{0, 313}, {259, 716}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -347,7 +346,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>27D866840D83997F003C6B75</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SWTextTool.m</string>
+								<string>SWColorSelector.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -355,11 +354,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>27D866850D83997F003C6B75</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SWTextTool.m</string>
+										<string>SWColorSelector.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2712BCC80F9E630500E94BD3</string>
+										<string>27BBDCF30FB22F4A00A6F8BA</string>
 										<key>history</key>
 										<array>
 											<string>27D758860DC78A9F0023E1B2</string>
@@ -396,8 +395,6 @@
 											<string>27056D190ED4D55B00598E7F</string>
 											<string>2740C91B0ED5F75100DA6A98</string>
 											<string>27C6697D0EFD8B1900EA9B1A</string>
-											<string>27C6697E0EFD8B1900EA9B1A</string>
-											<string>27F123BA0F02D90800CACB40</string>
 											<string>2721E3970F0897C500E19BAB</string>
 											<string>27C21C280F09458D00FCB126</string>
 											<string>27B30A730F0B108700AF880F</string>
@@ -478,12 +475,14 @@
 											<string>27A4E2A30F2045F000A1F367</string>
 											<string>27763B7A0F9BBC28005FF12A</string>
 											<string>27763B7B0F9BBC28005FF12A</string>
-											<string>27763B7C0F9BBC28005FF12A</string>
 											<string>2712BCA20F9E60CE00E94BD3</string>
 											<string>2712BCA90F9E610800E94BD3</string>
 											<string>2712BCAE0F9E616C00E94BD3</string>
 											<string>2712BCBB0F9E628100E94BD3</string>
-											<string>2712BCC50F9E62DB00E94BD3</string>
+											<string>2712BCCD0F9E635A00E94BD3</string>
+											<string>27BBDCBF0FB2289800A6F8BA</string>
+											<string>27BBDCEF0FB22F4A00A6F8BA</string>
+											<string>27BBDCF00FB22F4A00A6F8BA</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -609,10 +608,9 @@
 											<string>27A4E24E0F1FF8D400A1F367</string>
 											<string>27A4E24F0F1FF8D400A1F367</string>
 											<string>27A4E2A50F2045F000A1F367</string>
-											<string>2712BCA40F9E60CE00E94BD3</string>
-											<string>2712BCAB0F9E610800E94BD3</string>
-											<string>2712BCB00F9E616C00E94BD3</string>
-											<string>2712BCBD0F9E628100E94BD3</string>
+											<string>27BBDCC10FB2289800A6F8BA</string>
+											<string>27BBDCE30FB22EDF00A6F8BA</string>
+											<string>27BBDCF10FB22F4A00A6F8BA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -752,11 +750,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2712BC910F9E5E0500E94BD3</string>
+				<string>27BBDCC40FB2289900A6F8BA</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>2712BC920F9E5E0500E94BD3</string>
+				<string>27BBDCC50FB2289900A6F8BA</string>
 				<string>27D866840D83997F003C6B75</string>
-				<string>2712BC930F9E5E0500E94BD3</string>
+				<string>27BBDCC60FB2289900A6F8BA</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -912,13 +910,13 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2712BC9B0F9E606A00E94BD3</string>
+				<string>27BBDCC70FB2289900A6F8BA</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>2712BC9C0F9E606A00E94BD3</string>
-				<string>2712BC9D0F9E606A00E94BD3</string>
-				<string>2712BC9E0F9E606A00E94BD3</string>
-				<string>2712BC9F0F9E606A00E94BD3</string>
+				<string>27BBDCC80FB2289900A6F8BA</string>
+				<string>27BBDCC90FB2289900A6F8BA</string>
+				<string>27BBDCCA0FB2289900A6F8BA</string>
+				<string>27BBDCCB0FB2289900A6F8BA</string>
 				<string>27D866840D83997F003C6B75</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -934,7 +932,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>262038277.79282901</real>
+	<real>263335754.92315701</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -949,6 +947,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>27BBDCDD0FB22E9400A6F8BA</string>
+		<string>27BBDCDE0FB22E9400A6F8BA</string>
 		<string>/Users/Mike/Documents/Programming/Xcode/Paintbrush/2.0/Paintbrush2.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
