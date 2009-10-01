@@ -287,7 +287,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2748EC961074621400F7A836</string>
+						<string>2748ECC01074641A00F7A836</string>
 						<key>history</key>
 						<array>
 							<string>27D0DD8B1072D753002BAB17</string>
@@ -327,7 +327,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2748EC971074621400F7A836</string>
+						<string>2748ECC11074641A00F7A836</string>
 						<key>history</key>
 						<array>
 							<string>27D0DD8C1072D753002BAB17</string>
@@ -367,7 +367,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2748EC981074621400F7A836</string>
+						<string>2748ECC21074641A00F7A836</string>
 						<key>history</key>
 						<array>
 							<string>27D0DD8D1072D753002BAB17</string>
@@ -407,7 +407,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2748EC991074621400F7A836</string>
+						<string>2748ECC31074641A00F7A836</string>
 						<key>history</key>
 						<array>
 							<string>27D0DD8E1072D753002BAB17</string>
@@ -510,18 +510,18 @@
 								<string>2A37F4B8FDCFA73011CA2CEA</string>
 								<string>27BE1F450ECB741900B0A0F1</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>E2644B35053B69B200211256</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>60</integer>
-									<integer>56</integer>
-									<integer>1</integer>
+									<integer>88</integer>
+									<integer>77</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {288, 569}}</string>
+							<string>{{0, 1284}, {288, 569}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -558,7 +558,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SWCenteringClipView.m</string>
+								<string>Changes.rtf</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -566,21 +566,23 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SWCenteringClipView.m</string>
+										<string>Changes.rtf</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2748EC931074621400F7A836</string>
+										<string>2748ECBF1074641A00F7A836</string>
 										<key>history</key>
 										<array>
 											<string>276CA332104F449A007B22F6</string>
 											<string>276CA358104F469D007B22F6</string>
 											<string>276CA359104F469D007B22F6</string>
-											<string>27B7A7CC105024BE00B5165C</string>
 											<string>27D0DD3F10718B64002BAB17</string>
 											<string>27D0DD4010718B64002BAB17</string>
 											<string>27D0DD7A1072D74B002BAB17</string>
-											<string>27D0DD8A1072D753002BAB17</string>
+											<string>2748ECBB1074641A00F7A836</string>
+											<string>2748ECBC1074641A00F7A836</string>
+											<string>2748ECBD1074641A00F7A836</string>
+											<string>2748ECBE1074641A00F7A836</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -759,7 +761,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>276062740.46624303</real>
+	<real>276063258.518179</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -774,12 +776,16 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2748ECC51074641A00F7A836</string>
+		<string>2748ECC61074641A00F7A836</string>
+		<string>2748ECC71074641A00F7A836</string>
 		<string>276CA319104F255C007B22F6</string>
 		<string>27D0DD0F10718496002BAB17</string>
 		<string>27D0DD4210718B64002BAB17</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>27D0DD4610718B64002BAB17</string>
 		<string>27D0DD6B1071C7DC002BAB17</string>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/Mike/Documents/Programming/Xcode/Paintbrush/2.1/Paintbrush2.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -1144,7 +1150,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>27D0DD0910718483002BAB17</string>
+				<string>2748ECC41074641A00F7A836</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
