@@ -119,9 +119,9 @@
 	};
 	273BE3C11011389E00AA0B05 /* SWResizeWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {759, 2044}}";
-			sepNavSelRange = "{2265, 0}";
-			sepNavVisRange = "{1552, 1162}";
+			sepNavIntBoundsRect = "{{0, 0}, {642, 2100}}";
+			sepNavSelRange = "{1592, 0}";
+			sepNavVisRange = "{1420, 390}";
 			sepNavWindowFrame = "{{38, 81}, {818, 771}}";
 		};
 	};
@@ -552,18 +552,18 @@
 	};
 	27A487280C57AEE00047DF3C /* SWSizeWindowController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {759, 643}}";
+			sepNavIntBoundsRect = "{{0, 0}, {509, 630}}";
 			sepNavSelRange = "{917, 0}";
-			sepNavVisRange = "{0, 1271}";
+			sepNavVisRange = "{656, 407}";
 			sepNavVisRect = "{{0, 53}, {995, 449}}";
 			sepNavWindowFrame = "{{15, 102}, {818, 771}}";
 		};
 	};
 	27A487290C57AEE00047DF3C /* SWSizeWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {929, 2170}}";
+			sepNavIntBoundsRect = "{{0, 0}, {698, 2016}}";
 			sepNavSelRange = "{957, 183}";
-			sepNavVisRange = "{791, 1476}";
+			sepNavVisRange = "{792, 350}";
 			sepNavVisRect = "{{0, 0}, {995, 449}}";
 			sepNavWindowFrame = "{{38, 95}, {988, 757}}";
 		};
