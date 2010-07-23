@@ -2,7 +2,7 @@
 {
 	089C1660FE840EACC02AAC07 /* English */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {642, 88}}";
+			sepNavIntBoundsRect = "{{0, 0}, {642, 84}}";
 			sepNavSelRange = "{96, 0}";
 			sepNavVisRange = "{0, 113}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
@@ -18,17 +18,17 @@
 	};
 	2706B80F10ED6FE400080D4A /* PaintViewDrawingTest.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {565, 527}}";
-			sepNavSelRange = "{182, 13}";
-			sepNavVisRange = "{0, 258}";
-			sepNavWindowFrame = "{{70, 218}, {624, 655}}";
+			sepNavIntBoundsRect = "{{0, 0}, {781, 586}}";
+			sepNavSelRange = "{600, 0}";
+			sepNavVisRange = "{0, 1679}";
+			sepNavWindowFrame = "{{132, 64}, {840, 714}}";
 		};
 	};
 	2706B81010ED6FE400080D4A /* PaintViewDrawingTest.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {691, 562}}";
-			sepNavSelRange = "{325, 0}";
-			sepNavVisRange = "{0, 331}";
+			sepNavIntBoundsRect = "{{0, 0}, {781, 586}}";
+			sepNavSelRange = "{1578, 0}";
+			sepNavVisRange = "{0, 1752}";
 			sepNavWindowFrame = "{{452, 114}, {750, 690}}";
 		};
 	};
@@ -37,17 +37,17 @@
 	};
 	2706B94B10ED77A600080D4A /* DebugLog.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1326, 750}}";
+			sepNavIntBoundsRect = "{{0, 0}, {663, 294}}";
 			sepNavSelRange = "{361, 0}";
-			sepNavVisRange = "{0, 361}";
+			sepNavVisRange = "{234, 127}";
 			sepNavWindowFrame = "{{55, 0}, {1385, 878}}";
 		};
 	};
 	2706B94C10ED77A600080D4A /* DebugLog.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {670, 518}}";
+			sepNavIntBoundsRect = "{{0, 0}, {908, 562}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 264}";
+			sepNavVisRange = "{0, 910}";
 			sepNavWindowFrame = "{{185, 78}, {750, 690}}";
 		};
 	};
@@ -56,7 +56,7 @@
 		fRef = 27A487290C57AEE00047DF3C /* SWSizeWindowController.m */;
 		name = "SWSizeWindowController.m: 61";
 		rLen = 2;
-		rLoc = 2098;
+		rLoc = 2945;
 		rType = 0;
 		vrLen = 626;
 		vrLoc = 1794;
@@ -72,9 +72,9 @@
 	};
 	270F02720BD0218F005B92A3 /* SWTextToolWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {781, 1120}}";
-			sepNavSelRange = "{910, 0}";
-			sepNavVisRange = "{0, 1196}";
+			sepNavIntBoundsRect = "{{0, 0}, {781, 1246}}";
+			sepNavSelRange = "{1578, 0}";
+			sepNavVisRange = "{0, 1856}";
 			sepNavVisRect = "{{0, 390}, {995, 449}}";
 			sepNavWindowFrame = "{{132, 64}, {840, 714}}";
 		};
@@ -84,7 +84,7 @@
 		fRef = 27CD322E11F6361700AB5996 /* SWPrintPanelAccessoryViewController.h */;
 		name = "SWPrintPanelAccessoryViewController.h: 19";
 		rLen = 0;
-		rLoc = 731;
+		rLoc = 1578;
 		rType = 0;
 		vrLen = 294;
 		vrLoc = 45;
@@ -104,7 +104,7 @@
 		fRef = 27A60E1F0B879A6A0091A1B0 /* SWAppController.h */;
 		name = "SWAppController.h: 22";
 		rLen = 0;
-		rLoc = 757;
+		rLoc = 1604;
 		rType = 0;
 		vrLen = 87;
 		vrLoc = 731;
@@ -153,7 +153,7 @@
 		fRef = 275C82DB0BAF98DC00F836FA /* SWPreferenceController.h */;
 		name = "SWPreferenceController.h: 31";
 		rLen = 0;
-		rLoc = 1016;
+		rLoc = 1863;
 		rType = 0;
 		vrLen = 141;
 		vrLoc = 887;
@@ -163,7 +163,7 @@
 		fRef = 273E0B390E32F99D00D11815 /* SWImageTools.m */;
 		name = "SWImageTools.m: 3";
 		rLen = 0;
-		rLoc = 41;
+		rLoc = 24;
 		rType = 0;
 		vrLen = 1701;
 		vrLoc = 0;
@@ -173,7 +173,7 @@
 		fRef = 27AFFDF10D68C06800368E2B /* SWAppController.m */;
 		name = "SWAppController.m: 61";
 		rLen = 0;
-		rLoc = 2303;
+		rLoc = 3150;
 		rType = 0;
 		vrLen = 1283;
 		vrLoc = 1706;
@@ -183,7 +183,7 @@
 		fRef = 2723FB5D1162830F005BCB1B /* SWImageDataSource.h */;
 		name = "SWImageDataSource.h: 45";
 		rLen = 0;
-		rLoc = 1373;
+		rLoc = 2220;
 		rType = 0;
 		vrLen = 1490;
 		vrLoc = 0;
@@ -203,7 +203,7 @@
 		fRef = 27A60E210B879A6A0091A1B0 /* SWPaintView.h */;
 		name = "SWPaintView.h: 40";
 		rLen = 0;
-		rLoc = 1160;
+		rLoc = 2007;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 758;
@@ -213,7 +213,7 @@
 		fRef = 27A60E220B879A6A0091A1B0 /* SWPaintView.m */;
 		name = "SWPaintView.m: 484";
 		rLen = 0;
-		rLoc = 15472;
+		rLoc = 16319;
 		rType = 0;
 		vrLen = 923;
 		vrLoc = 14760;
@@ -223,7 +223,7 @@
 		fRef = 2774CC750C0A1D5100FE7F0F /* SWCurveTool.m */;
 		name = "SWCurveTool.m: 155";
 		rLen = 0;
-		rLoc = 4313;
+		rLoc = 5160;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 3639;
@@ -233,7 +233,7 @@
 		fRef = 271EEB0B0BBC34A800319865 /* SWSelectionTool.h */;
 		name = "SWSelectionTool.h: 52";
 		rLen = 0;
-		rLoc = 1622;
+		rLoc = 2469;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 583;
@@ -243,7 +243,7 @@
 		fRef = 271EEB0C0BBC34A800319865 /* SWSelectionTool.m */;
 		name = "SWSelectionTool.m: 355";
 		rLen = 0;
-		rLoc = 10528;
+		rLoc = 11375;
 		rType = 0;
 		vrLen = 1535;
 		vrLoc = 9613;
@@ -253,7 +253,7 @@
 		fRef = 27A60E260B879A6A0091A1B0 /* SWDocument.m */;
 		name = "SWDocument.m: 490";
 		rLen = 0;
-		rLoc = 15257;
+		rLoc = 16104;
 		rType = 0;
 		vrLen = 1970;
 		vrLoc = 15033;
@@ -263,7 +263,7 @@
 		fRef = 27CD322F11F6361700AB5996 /* SWPrintPanelAccessoryViewController.m */;
 		name = "SWPrintPanelAccessoryViewController.m: 37";
 		rLen = 0;
-		rLoc = 1180;
+		rLoc = 2027;
 		rType = 0;
 		vrLen = 1642;
 		vrLoc = 45;
@@ -273,7 +273,7 @@
 		fRef = 27CD322E11F6361700AB5996 /* SWPrintPanelAccessoryViewController.h */;
 		name = "SWPrintPanelAccessoryViewController.h: 19";
 		rLen = 0;
-		rLoc = 731;
+		rLoc = 1578;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 0;
@@ -288,18 +288,18 @@
 	};
 	271EEB0B0BBC34A800319865 /* SWSelectionTool.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {856, 798}}";
-			sepNavSelRange = "{1622, 0}";
-			sepNavVisRange = "{583, 1095}";
+			sepNavIntBoundsRect = "{{0, 0}, {856, 952}}";
+			sepNavSelRange = "{2469, 0}";
+			sepNavVisRange = "{367, 1781}";
 			sepNavVisRect = "{{0, 173}, {995, 449}}";
 			sepNavWindowFrame = "{{55, 64}, {915, 714}}";
 		};
 	};
 	271EEB0C0BBC34A800319865 /* SWSelectionTool.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {995, 5978}}";
-			sepNavSelRange = "{10528, 0}";
-			sepNavVisRange = "{9613, 1534}";
+			sepNavIntBoundsRect = "{{0, 0}, {995, 6342}}";
+			sepNavSelRange = "{11375, 0}";
+			sepNavVisRange = "{9753, 1623}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
 			sepNavWindowFrame = "{{158, 35}, {1054, 825}}";
 		};
@@ -324,17 +324,17 @@
 	};
 	2723FB5D1162830F005BCB1B /* SWImageDataSource.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {939, 798}}";
-			sepNavSelRange = "{1373, 0}";
-			sepNavVisRange = "{0, 1490}";
+			sepNavIntBoundsRect = "{{0, 0}, {939, 924}}";
+			sepNavSelRange = "{2220, 0}";
+			sepNavVisRange = "{0, 2034}";
 			sepNavWindowFrame = "{{116, 35}, {998, 796}}";
 		};
 	};
 	2723FB5E1162830F005BCB1B /* SWImageDataSource.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {855, 3108}}";
-			sepNavSelRange = "{41, 0}";
-			sepNavVisRange = "{0, 733}";
+			sepNavIntBoundsRect = "{{0, 0}, {642, 3080}}";
+			sepNavSelRange = "{5323, 0}";
+			sepNavVisRange = "{4480, 204}";
 			sepNavWindowFrame = "{{333, 74}, {1006, 775}}";
 		};
 	};
@@ -343,7 +343,7 @@
 		fRef = 27B686C40BA1395B0028A526 /* SWFillTool.m */;
 		name = "SWFillTool.m: 112";
 		rLen = 0;
-		rLoc = 3351;
+		rLoc = 4198;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 3126;
@@ -380,7 +380,7 @@
 		fRef = 2735134A0D8F83BB00F24379 /* SWAirbrushTool.m */;
 		name = "SWAirbrushTool.m: 65";
 		rLen = 83;
-		rLoc = 2003;
+		rLoc = 2850;
 		rType = 0;
 		vrLen = 319;
 		vrLoc = 2003;
@@ -390,7 +390,7 @@
 		fRef = 2744468E0C0E515C00D84CE1 /* SWBombTool.m */;
 		name = "SWBombTool.m: 96";
 		rLen = 12;
-		rLoc = 2878;
+		rLoc = 3725;
 		rType = 0;
 		vrLen = 280;
 		vrLoc = 2706;
@@ -400,7 +400,7 @@
 		fRef = 2723FB5E1162830F005BCB1B /* SWImageDataSource.m */;
 		name = "SWImageDataSource.m: 190";
 		rLen = 0;
-		rLoc = 5323;
+		rLoc = 6170;
 		rType = 0;
 		vrLen = 485;
 		vrLoc = 4540;
@@ -410,7 +410,7 @@
 		fRef = 27A60E260B879A6A0091A1B0 /* SWDocument.m */;
 		name = "SWDocument.m: 528";
 		rLen = 13;
-		rLoc = 16819;
+		rLoc = 17666;
 		rType = 0;
 		vrLen = 377;
 		vrLoc = 16365;
@@ -440,12 +440,12 @@
 		fRef = 273E0B390E32F99D00D11815 /* SWImageTools.m */;
 		name = "SWImageTools.m: 263";
 		rLen = 15;
-		rLoc = 8506;
+		rLoc = 9353;
 		rType = 0;
 		vrLen = 432;
 		vrLoc = 8323;
 	};
-	273105FF11F3D12400D0DF26 /* SWImageTools.m:302 */ = {
+	273105FF11F3D12400D0DF26 /* SWImageTools.m:311 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -457,13 +457,13 @@
 		functionName = "+stripImage:ofColor:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 302;
+		lineNumber = 311;
 		location = Paintbrush;
 		modificationTime = 301454744.713824;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
-	2731061411F3D14900D0DF26 /* SWImageTools.m:302 */ = {
+	2731061411F3D14900D0DF26 /* SWImageTools.m:311 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -475,7 +475,7 @@
 		functionName = "+stripImage:ofColor:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 302;
+		lineNumber = 311;
 		location = Paintbrush;
 		modificationTime = 301454744.815019;
 		originalNumberOfMultipleMatches = 1;
@@ -532,9 +532,9 @@
 	};
 	273E0B390E32F99D00D11815 /* SWImageTools.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {981, 5012}}";
-			sepNavSelRange = "{41, 0}";
-			sepNavVisRange = "{0, 1701}";
+			sepNavIntBoundsRect = "{{0, 0}, {981, 5110}}";
+			sepNavSelRange = "{1578, 0}";
+			sepNavVisRange = "{0, 2286}";
 			sepNavWindowFrame = "{{372, 56}, {1040, 822}}";
 		};
 	};
@@ -587,7 +587,7 @@
 		fRef = 275C82DB0BAF98DC00F836FA /* SWPreferenceController.h */;
 		name = "SWPreferenceController.h: 31";
 		rLen = 0;
-		rLoc = 1016;
+		rLoc = 1863;
 		rType = 0;
 		vrLen = 100;
 		vrLoc = 928;
@@ -597,7 +597,7 @@
 		fRef = 27CD322E11F6361700AB5996 /* SWPrintPanelAccessoryViewController.h */;
 		name = "SWPrintPanelAccessoryViewController.h: 19";
 		rLen = 0;
-		rLoc = 731;
+		rLoc = 1578;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 0;
@@ -607,7 +607,7 @@
 		fRef = 27CD322F11F6361700AB5996 /* SWPrintPanelAccessoryViewController.m */;
 		name = "SWPrintPanelAccessoryViewController.m: 37";
 		rLen = 0;
-		rLoc = 1180;
+		rLoc = 2027;
 		rType = 0;
 		vrLen = 1626;
 		vrLoc = 45;
@@ -617,7 +617,7 @@
 		fRef = 27A60E260B879A6A0091A1B0 /* SWDocument.m */;
 		name = "SWDocument.m: 490";
 		rLen = 0;
-		rLoc = 15257;
+		rLoc = 16104;
 		rType = 0;
 		vrLen = 1968;
 		vrLoc = 15033;
@@ -627,7 +627,7 @@
 		fRef = 271EEB0C0BBC34A800319865 /* SWSelectionTool.m */;
 		name = "SWSelectionTool.m: 355";
 		rLen = 0;
-		rLoc = 10528;
+		rLoc = 11375;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 9613;
@@ -637,7 +637,7 @@
 		fRef = 271EEB0B0BBC34A800319865 /* SWSelectionTool.h */;
 		name = "SWSelectionTool.h: 52";
 		rLen = 0;
-		rLoc = 1622;
+		rLoc = 2469;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 583;
@@ -647,7 +647,7 @@
 		fRef = 2774CC750C0A1D5100FE7F0F /* SWCurveTool.m */;
 		name = "SWCurveTool.m: 155";
 		rLen = 0;
-		rLoc = 4313;
+		rLoc = 5160;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 3639;
@@ -657,7 +657,7 @@
 		fRef = 27A60E220B879A6A0091A1B0 /* SWPaintView.m */;
 		name = "SWPaintView.m: 484";
 		rLen = 0;
-		rLoc = 15472;
+		rLoc = 16319;
 		rType = 0;
 		vrLen = 923;
 		vrLoc = 14760;
@@ -667,7 +667,7 @@
 		fRef = 27A60E210B879A6A0091A1B0 /* SWPaintView.h */;
 		name = "SWPaintView.h: 40";
 		rLen = 0;
-		rLoc = 1160;
+		rLoc = 2007;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 758;
@@ -687,7 +687,7 @@
 		fRef = 2723FB5D1162830F005BCB1B /* SWImageDataSource.h */;
 		name = "SWImageDataSource.h: 45";
 		rLen = 0;
-		rLoc = 1373;
+		rLoc = 2220;
 		rType = 0;
 		vrLen = 1490;
 		vrLoc = 0;
@@ -697,7 +697,7 @@
 		fRef = 27AFFDF10D68C06800368E2B /* SWAppController.m */;
 		name = "SWAppController.m: 61";
 		rLen = 0;
-		rLoc = 2303;
+		rLoc = 3150;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 1703;
@@ -707,7 +707,7 @@
 		fRef = 273E0B390E32F99D00D11815 /* SWImageTools.m */;
 		name = "SWImageTools.m: 3";
 		rLen = 0;
-		rLoc = 41;
+		rLoc = 24;
 		rType = 0;
 		vrLen = 1701;
 		vrLoc = 0;
@@ -717,7 +717,7 @@
 		fRef = 275C82DB0BAF98DC00F836FA /* SWPreferenceController.h */;
 		name = "SWPreferenceController.h: 31";
 		rLen = 0;
-		rLoc = 1016;
+		rLoc = 1863;
 		rType = 0;
 		vrLen = 100;
 		vrLoc = 928;
@@ -731,14 +731,14 @@
 		);
 		name = /Users/Mike/Documents/Programming/Xcode/Paintbrush/2.1/Info.plist;
 		rLen = 0;
-		rLoc = 9223372036854775807;
+		rLoc = 9223372036854775808;
 	};
 	274BDCD011F92AE7006A4F83 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 27A60E230B879A6A0091A1B0 /* SWToolboxController.h */;
 		name = "SWToolboxController.h: 37";
 		rLen = 0;
-		rLoc = 1024;
+		rLoc = 1871;
 		rType = 0;
 		vrLen = 153;
 		vrLoc = 966;
@@ -752,7 +752,7 @@
 		fRef = 27A60E240B879A6A0091A1B0 /* SWToolboxController.m */;
 		name = "SWToolboxController.m: 144";
 		rLen = 0;
-		rLoc = 3869;
+		rLoc = 4716;
 		rType = 0;
 		vrLen = 191;
 		vrLoc = 3804;
@@ -762,7 +762,7 @@
 		fRef = 273E0B390E32F99D00D11815 /* SWImageTools.m */;
 		name = "SWImageTools.m: 3";
 		rLen = 0;
-		rLoc = 41;
+		rLoc = 24;
 		rType = 0;
 		vrLen = 1701;
 		vrLoc = 0;
@@ -772,7 +772,7 @@
 		fRef = 271EEB0B0BBC34A800319865 /* SWSelectionTool.h */;
 		name = "SWSelectionTool.h: 52";
 		rLen = 0;
-		rLoc = 1622;
+		rLoc = 2469;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 583;
@@ -782,7 +782,7 @@
 		fRef = 27CD322E11F6361700AB5996 /* SWPrintPanelAccessoryViewController.h */;
 		name = "SWPrintPanelAccessoryViewController.h: 19";
 		rLen = 0;
-		rLoc = 731;
+		rLoc = 1578;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 0;
@@ -792,7 +792,7 @@
 		fRef = 27CD322F11F6361700AB5996 /* SWPrintPanelAccessoryViewController.m */;
 		name = "SWPrintPanelAccessoryViewController.m: 37";
 		rLen = 0;
-		rLoc = 1180;
+		rLoc = 2027;
 		rType = 0;
 		vrLen = 1626;
 		vrLoc = 45;
@@ -802,7 +802,7 @@
 		fRef = 27A60E260B879A6A0091A1B0 /* SWDocument.m */;
 		name = "SWDocument.m: 490";
 		rLen = 0;
-		rLoc = 15257;
+		rLoc = 16104;
 		rType = 0;
 		vrLen = 1968;
 		vrLoc = 15033;
@@ -812,7 +812,7 @@
 		fRef = 271EEB0C0BBC34A800319865 /* SWSelectionTool.m */;
 		name = "SWSelectionTool.m: 355";
 		rLen = 0;
-		rLoc = 10528;
+		rLoc = 11375;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 9613;
@@ -822,7 +822,7 @@
 		fRef = 2774CC750C0A1D5100FE7F0F /* SWCurveTool.m */;
 		name = "SWCurveTool.m: 155";
 		rLen = 0;
-		rLoc = 4313;
+		rLoc = 5160;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 3639;
@@ -832,7 +832,7 @@
 		fRef = 27A60E220B879A6A0091A1B0 /* SWPaintView.m */;
 		name = "SWPaintView.m: 484";
 		rLen = 0;
-		rLoc = 15472;
+		rLoc = 16319;
 		rType = 0;
 		vrLen = 923;
 		vrLoc = 14760;
@@ -842,7 +842,7 @@
 		fRef = 27A60E210B879A6A0091A1B0 /* SWPaintView.h */;
 		name = "SWPaintView.h: 40";
 		rLen = 0;
-		rLoc = 1160;
+		rLoc = 2007;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 758;
@@ -862,9 +862,222 @@
 		fRef = 2723FB5D1162830F005BCB1B /* SWImageDataSource.h */;
 		name = "SWImageDataSource.h: 45";
 		rLen = 0;
-		rLoc = 1373;
+		rLoc = 2220;
 		rType = 0;
 		vrLen = 1490;
+		vrLoc = 0;
+	};
+	274BDD0511F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27A60E240B879A6A0091A1B0 /* SWToolboxController.m */;
+		name = "SWToolboxController.m: 144";
+		rLen = 0;
+		rLoc = 4716;
+		rType = 0;
+		vrLen = 191;
+		vrLoc = 3804;
+	};
+	274BDD0611F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 274BDD0711F92CAB006A4F83 /* Diff BASE vs. Local — SWToolboxController.m */;
+		name = "Diff BASE vs. Local — SWToolboxController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 386;
+		vrLoc = 0;
+	};
+	274BDD0711F92CAB006A4F83 /* Diff BASE vs. Local — SWToolboxController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		path = "Diff BASE vs. Local — SWToolboxController.m";
+		sourceTree = "<group>";
+	};
+	274BDD0811F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27CD322E11F6361700AB5996 /* SWPrintPanelAccessoryViewController.h */;
+		name = "SWPrintPanelAccessoryViewController.h: 19";
+		rLen = 0;
+		rLoc = 1578;
+		rType = 0;
+		vrLen = 258;
+		vrLoc = 81;
+	};
+	274BDD0911F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 274BDD0A11F92CAB006A4F83 /* Diff BASE vs. Local — SWAppController.m */;
+		name = "Diff BASE vs. Local — SWAppController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 201;
+		vrLoc = 780;
+	};
+	274BDD0A11F92CAB006A4F83 /* Diff BASE vs. Local — SWAppController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		path = "Diff BASE vs. Local — SWAppController.m";
+		sourceTree = "<group>";
+	};
+	274BDD0B11F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2723FB5E1162830F005BCB1B /* SWImageDataSource.m */;
+		name = "SWImageDataSource.m: 202";
+		rLen = 0;
+		rLoc = 6170;
+		rType = 0;
+		vrLen = 204;
+		vrLoc = 4480;
+	};
+	274BDD0C11F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 089C1660FE840EACC02AAC07 /* English */;
+		name = "InfoPlist.strings: 5";
+		rLen = 0;
+		rLoc = 96;
+		rType = 0;
+		vrLen = 113;
+		vrLoc = 0;
+	};
+	274BDD0D11F92CAB006A4F83 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D15AC360486D014006FF6A4 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/Mike/Documents/Programming/Xcode/Paintbrush/2.1/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	274BDD0E11F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27A60E1F0B879A6A0091A1B0 /* SWAppController.h */;
+		name = "SWAppController.h: 22";
+		rLen = 0;
+		rLoc = 1604;
+		rType = 0;
+		vrLen = 86;
+		vrLoc = 731;
+	};
+	274BDD0F11F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27AFFDF10D68C06800368E2B /* SWAppController.m */;
+		name = "SWAppController.m: 16";
+		rLen = 0;
+		rLoc = 24;
+		rType = 0;
+		vrLen = 140;
+		vrLoc = 656;
+	};
+	274BDD1011F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 273E0B390E32F99D00D11815 /* SWImageTools.m */;
+		name = "SWImageTools.m: 263";
+		rLen = 15;
+		rLoc = 9353;
+		rType = 0;
+		vrLen = 255;
+		vrLoc = 8323;
+	};
+	274BDD1111F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 271EEB0C0BBC34A800319865 /* SWSelectionTool.m */;
+		name = "SWSelectionTool.m: 320";
+		rLen = 9;
+		rLoc = 10106;
+		rType = 0;
+		vrLen = 123;
+		vrLoc = 9054;
+	};
+	274BDD1211F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 270F02720BD0218F005B92A3 /* SWTextToolWindowController.m */;
+		name = "SWTextToolWindowController.m: 37";
+		rLen = 0;
+		rLoc = 1757;
+		rType = 0;
+		vrLen = 533;
+		vrLoc = 601;
+	};
+	274BDD1311F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 27A1CD2C10A64F02005D2D84 /* SWSavePanelAccessoryViewController.h */;
+		name = "SWSavePanelAccessoryViewController.h: 29";
+		rLen = 0;
+		rLoc = 1579;
+		rType = 0;
+		vrLen = 309;
+		vrLoc = 4;
+	};
+	274BDD1411F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2706B80F10ED6FE400080D4A /* PaintViewDrawingTest.h */;
+		name = "PaintViewDrawingTest.h: 30";
+		rLen = 13;
+		rLoc = 1603;
+		rType = 0;
+		vrLen = 300;
+		vrLoc = 67;
+	};
+	274BDD1511F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2706B94B10ED77A600080D4A /* DebugLog.h */;
+		name = "DebugLog.h: 21";
+		rLen = 0;
+		rLoc = 361;
+		rType = 0;
+		vrLen = 127;
+		vrLoc = 234;
+	};
+	274BDD1611F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32DBCF750370BD2300C91783 /* Paintbrush_Prefix.pch */;
+		name = "Paintbrush_Prefix.pch: 17";
+		rLen = 8;
+		rLoc = 913;
+		rType = 0;
+		vrLen = 220;
+		vrLoc = 0;
+	};
+	274BDD1711F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 220;
+		vrLoc = 0;
+	};
+	274BDD1811F92CAB006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 155;
+		vrLoc = 0;
+	};
+	274BDD2411F92CCC006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 220;
+		vrLoc = 0;
+	};
+	274BDD2511F92CCC006A4F83 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 220;
 		vrLoc = 0;
 	};
 	274CD51511BB3324007CD011 /* PBXTextBookmark */ = {
@@ -882,7 +1095,7 @@
 		fRef = 27A60E1B0B879A6A0091A1B0 /* SWBrushTool.m */;
 		name = "SWBrushTool.m: 58";
 		rLen = 0;
-		rLoc = 1643;
+		rLoc = 2490;
 		rType = 0;
 		vrLen = 481;
 		vrLoc = 1384;
@@ -892,7 +1105,7 @@
 		fRef = 27A60E1D0B879A6A0091A1B0 /* SWRectangleTool.m */;
 		name = "SWRectangleTool.m: 65";
 		rLen = 0;
-		rLoc = 2002;
+		rLoc = 2849;
 		rType = 0;
 		vrLen = 495;
 		vrLoc = 1730;
@@ -935,7 +1148,7 @@
 		fRef = 27A2E3AC0F31051500BD41AC /* SWToolbox.m */;
 		name = "SWToolbox.m: 58";
 		rLen = 0;
-		rLoc = 1380;
+		rLoc = 2813;
 		rType = 0;
 		vrLen = 461;
 		vrLoc = 1470;
@@ -950,9 +1163,9 @@
 	};
 	2774CC750C0A1D5100FE7F0F /* SWCurveTool.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {815, 2562}}";
-			sepNavSelRange = "{4313, 0}";
-			sepNavVisRange = "{3639, 874}";
+			sepNavIntBoundsRect = "{{0, 0}, {815, 2884}}";
+			sepNavSelRange = "{5160, 0}";
+			sepNavVisRange = "{3775, 984}";
 			sepNavVisRect = "{{0, 1748}, {995, 449}}";
 			sepNavWindowFrame = "{{57, 55}, {874, 718}}";
 		};
@@ -992,7 +1205,7 @@
 		fRef = 2774CC750C0A1D5100FE7F0F /* SWCurveTool.m */;
 		name = "SWCurveTool.m: 161";
 		rLen = 12;
-		rLoc = 4241;
+		rLoc = 5088;
 		rType = 0;
 		vrLen = 269;
 		vrLoc = 4250;
@@ -1002,7 +1215,7 @@
 		fRef = 270F02710BD0218F005B92A3 /* SWTextToolWindowController.h */;
 		name = "SWTextToolWindowController.h: 30";
 		rLen = 0;
-		rLoc = 938;
+		rLoc = 1785;
 		rType = 0;
 		vrLen = 569;
 		vrLoc = 404;
@@ -1012,7 +1225,7 @@
 		fRef = 2723FB5D1162830F005BCB1B /* SWImageDataSource.h */;
 		name = "SWImageDataSource.h: 28";
 		rLen = 69;
-		rLoc = 1187;
+		rLoc = 2034;
 		rType = 0;
 		vrLen = 502;
 		vrLoc = 361;
@@ -1104,33 +1317,33 @@
 	};
 	27A1CD2C10A64F02005D2D84 /* SWSavePanelAccessoryViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {642, 602}}";
-			sepNavSelRange = "{121, 0}";
-			sepNavVisRange = "{0, 172}";
+			sepNavIntBoundsRect = "{{0, 0}, {656, 1274}}";
+			sepNavSelRange = "{1579, 0}";
+			sepNavVisRange = "{4, 309}";
 			sepNavWindowFrame = "{{72, 18}, {945, 855}}";
 		};
 	};
 	27A1CD2D10A64F02005D2D84 /* SWSavePanelAccessoryViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {886, 1218}}";
-			sepNavSelRange = "{397, 0}";
-			sepNavVisRange = "{44, 1176}";
+			sepNavIntBoundsRect = "{{0, 0}, {781, 1568}}";
+			sepNavSelRange = "{1622, 0}";
+			sepNavVisRange = "{44, 1848}";
 			sepNavWindowFrame = "{{243, 23}, {945, 855}}";
 		};
 	};
 	27A2E3AB0F31051500BD41AC /* SWToolbox.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {893, 589}}";
-			sepNavSelRange = "{233, 0}";
-			sepNavVisRange = "{0, 600}";
+			sepNavIntBoundsRect = "{{0, 0}, {781, 742}}";
+			sepNavSelRange = "{1578, 0}";
+			sepNavVisRange = "{0, 1831}";
 			sepNavWindowFrame = "{{84, 93}, {952, 717}}";
 		};
 	};
 	27A2E3AC0F31051500BD41AC /* SWToolbox.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {715, 1708}}";
-			sepNavSelRange = "{270, 0}";
-			sepNavVisRange = "{0, 324}";
+			sepNavIntBoundsRect = "{{0, 0}, {781, 1960}}";
+			sepNavSelRange = "{1578, 0}";
+			sepNavVisRange = "{0, 1823}";
 			sepNavWindowFrame = "{{161, 41}, {1034, 744}}";
 		};
 	};
@@ -1351,9 +1564,9 @@
 	};
 	27A60E1D0B879A6A0091A1B0 /* SWRectangleTool.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {761, 1638}}";
-			sepNavSelRange = "{2002, 0}";
-			sepNavVisRange = "{1730, 495}";
+			sepNavIntBoundsRect = "{{0, 0}, {656, 1736}}";
+			sepNavSelRange = "{2849, 0}";
+			sepNavVisRange = "{1943, 220}";
 			sepNavVisRect = "{{0, 848}, {995, 449}}";
 			sepNavWindowFrame = "{{346, 3}, {1072, 875}}";
 		};
@@ -1371,25 +1584,25 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {642, 672}}";
 			sepNavSelRange = "{757, 0}";
-			sepNavVisRange = "{731, 87}";
+			sepNavVisRange = "{731, 86}";
 			sepNavVisRect = "{{0, 173}, {995, 449}}";
 			sepNavWindowFrame = "{{15, 69}, {1221, 709}}";
 		};
 	};
 	27A60E210B879A6A0091A1B0 /* SWPaintView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {874, 1022}}";
-			sepNavSelRange = "{1160, 0}";
-			sepNavVisRange = "{758, 1200}";
+			sepNavIntBoundsRect = "{{0, 0}, {874, 1148}}";
+			sepNavSelRange = "{2007, 0}";
+			sepNavVisRange = "{556, 1674}";
 			sepNavVisRect = "{{0, 575}, {995, 449}}";
 			sepNavWindowFrame = "{{94, 37}, {933, 831}}";
 		};
 	};
 	27A60E220B879A6A0091A1B0 /* SWPaintView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {936, 7532}}";
-			sepNavSelRange = "{15472, 0}";
-			sepNavVisRange = "{14760, 923}";
+			sepNavIntBoundsRect = "{{0, 0}, {936, 7910}}";
+			sepNavSelRange = "{16319, 0}";
+			sepNavVisRange = "{15102, 1114}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
 			sepNavWindowFrame = "{{189, 65}, {995, 813}}";
 		};
@@ -1423,18 +1636,18 @@
 	};
 	27A60E260B879A6A0091A1B0 /* SWDocument.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {908, 10612}}";
-			sepNavSelRange = "{15257, 0}";
-			sepNavVisRange = "{15033, 1968}";
+			sepNavIntBoundsRect = "{{0, 0}, {908, 11032}}";
+			sepNavSelRange = "{16104, 0}";
+			sepNavVisRange = "{15049, 1629}";
 			sepNavVisRect = "{{0, 4385}, {995, 449}}";
 			sepNavWindowFrame = "{{240, 53}, {938, 812}}";
 		};
 	};
 	27AFFDF10D68C06800368E2B /* SWAppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {996, 2296}}";
+			sepNavIntBoundsRect = "{{0, 0}, {642, 2338}}";
 			sepNavSelRange = "{612, 0}";
-			sepNavVisRange = "{656, 1571}";
+			sepNavVisRange = "{656, 140}";
 			sepNavWindowFrame = "{{55, 159}, {1055, 714}}";
 		};
 	};
@@ -1461,7 +1674,7 @@
 		fRef = 271EEB1C0BBC352300319865 /* SWTextTool.m */;
 		name = "SWTextTool.m: 133";
 		rLen = 0;
-		rLoc = 3871;
+		rLoc = 4718;
 		rType = 0;
 		vrLen = 260;
 		vrLoc = 3614;
@@ -1496,24 +1709,24 @@
 		fRef = 27A60E250B879A6A0091A1B0 /* SWDocument.h */;
 		name = "SWDocument.h: 87";
 		rLen = 0;
-		rLoc = 2576;
+		rLoc = 3423;
 		rType = 0;
 		vrLen = 200;
 		vrLoc = 2423;
 	};
 	27CD322E11F6361700AB5996 /* SWPrintPanelAccessoryViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {739, 549}}";
-			sepNavSelRange = "{731, 0}";
-			sepNavVisRange = "{0, 1215}";
+			sepNavIntBoundsRect = "{{0, 0}, {739, 644}}";
+			sepNavSelRange = "{1578, 0}";
+			sepNavVisRange = "{0, 1918}";
 			sepNavWindowFrame = "{{333, 155}, {798, 677}}";
 		};
 	};
 	27CD322F11F6361700AB5996 /* SWPrintPanelAccessoryViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {877, 1106}}";
-			sepNavSelRange = "{1180, 0}";
-			sepNavVisRange = "{45, 1626}";
+			sepNavIntBoundsRect = "{{0, 0}, {877, 1232}}";
+			sepNavSelRange = "{2027, 0}";
+			sepNavVisRange = "{67, 2076}";
 			sepNavWindowFrame = "{{55, 64}, {936, 814}}";
 		};
 	};
@@ -1522,7 +1735,7 @@
 		fRef = 27A1CD2C10A64F02005D2D84 /* SWSavePanelAccessoryViewController.h */;
 		name = "SWSavePanelAccessoryViewController.h: 6";
 		rLen = 0;
-		rLoc = 121;
+		rLoc = 1;
 		rType = 0;
 		vrLen = 172;
 		vrLoc = 0;
@@ -1532,7 +1745,7 @@
 		fRef = 275C82DC0BAF98DC00F836FA /* SWPreferenceController.m */;
 		name = "SWPreferenceController.m: 31";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 1797;
 		rType = 0;
 		vrLen = 122;
 		vrLoc = 4091;
@@ -1542,7 +1755,7 @@
 		fRef = 273E0B390E32F99D00D11815 /* SWImageTools.m */;
 		name = "SWImageTools.m: 3";
 		rLen = 0;
-		rLoc = 41;
+		rLoc = 24;
 		rType = 0;
 		vrLen = 1701;
 		vrLoc = 0;
@@ -1552,7 +1765,7 @@
 		fRef = 2723FB5D1162830F005BCB1B /* SWImageDataSource.h */;
 		name = "SWImageDataSource.h: 45";
 		rLen = 0;
-		rLoc = 1373;
+		rLoc = 2220;
 		rType = 0;
 		vrLen = 1490;
 		vrLoc = 0;
@@ -1562,7 +1775,7 @@
 		fRef = 27A60E210B879A6A0091A1B0 /* SWPaintView.h */;
 		name = "SWPaintView.h: 40";
 		rLen = 0;
-		rLoc = 1160;
+		rLoc = 2007;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 758;
@@ -1572,7 +1785,7 @@
 		fRef = 27A60E220B879A6A0091A1B0 /* SWPaintView.m */;
 		name = "SWPaintView.m: 484";
 		rLen = 0;
-		rLoc = 15472;
+		rLoc = 16319;
 		rType = 0;
 		vrLen = 923;
 		vrLoc = 14760;
@@ -1582,7 +1795,7 @@
 		fRef = 2774CC750C0A1D5100FE7F0F /* SWCurveTool.m */;
 		name = "SWCurveTool.m: 155";
 		rLen = 0;
-		rLoc = 4313;
+		rLoc = 5160;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 3639;
@@ -1592,7 +1805,7 @@
 		fRef = 271EEB0B0BBC34A800319865 /* SWSelectionTool.h */;
 		name = "SWSelectionTool.h: 52";
 		rLen = 0;
-		rLoc = 1622;
+		rLoc = 2469;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 583;
@@ -1602,7 +1815,7 @@
 		fRef = 271EEB0C0BBC34A800319865 /* SWSelectionTool.m */;
 		name = "SWSelectionTool.m: 355";
 		rLen = 0;
-		rLoc = 10528;
+		rLoc = 11375;
 		rType = 0;
 		vrLen = 1516;
 		vrLoc = 9632;
@@ -1612,7 +1825,7 @@
 		fRef = 27A60E260B879A6A0091A1B0 /* SWDocument.m */;
 		name = "SWDocument.m: 490";
 		rLen = 0;
-		rLoc = 15257;
+		rLoc = 16104;
 		rType = 0;
 		vrLen = 1876;
 		vrLoc = 15125;
@@ -1622,7 +1835,7 @@
 		fRef = 27CD322F11F6361700AB5996 /* SWPrintPanelAccessoryViewController.m */;
 		name = "SWPrintPanelAccessoryViewController.m: 37";
 		rLen = 0;
-		rLoc = 1180;
+		rLoc = 2027;
 		rType = 0;
 		vrLen = 1586;
 		vrLoc = 85;
@@ -1632,7 +1845,7 @@
 		fRef = 27CD322E11F6361700AB5996 /* SWPrintPanelAccessoryViewController.h */;
 		name = "SWPrintPanelAccessoryViewController.h: 19";
 		rLen = 0;
-		rLoc = 731;
+		rLoc = 1578;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 0;
@@ -1660,7 +1873,7 @@
 		fRef = 27A60E220B879A6A0091A1B0 /* SWPaintView.m */;
 		name = "SWPaintView.m: 477";
 		rLen = 1;
-		rLoc = 15246;
+		rLoc = 16093;
 		rType = 0;
 		vrLen = 173;
 		vrLoc = 15337;
@@ -1670,7 +1883,7 @@
 		fRef = 271EEB0C0BBC34A800319865 /* SWSelectionTool.m */;
 		name = "SWSelectionTool.m: 315";
 		rLen = 9;
-		rLoc = 9259;
+		rLoc = 10106;
 		rType = 0;
 		vrLen = 193;
 		vrLoc = 8983;
@@ -1734,8 +1947,8 @@
 			8D15AC270486D014006FF6A4 /* Paintbrush */,
 		);
 		breakpoints = (
-			273105FF11F3D12400D0DF26 /* SWImageTools.m:302 */,
-			2731061411F3D14900D0DF26 /* SWImageTools.m:302 */,
+			273105FF11F3D12400D0DF26 /* SWImageTools.m:311 */,
+			2731061411F3D14900D0DF26 /* SWImageTools.m:311 */,
 		);
 		codeSenseManager = 27A60E000B879A260091A1B0 /* Code sense */;
 		executables = (
@@ -1928,8 +2141,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 301538254;
-			PBXWorkspaceStateSaveDate = 301538254;
+			PBXPerProjectTemplateStateSaveDate = 301542966;
+			PBXWorkspaceStateSaveDate = 301542966;
 		};
 		perUserProjectItems = {
 			270DCFB911D667CE00A80DC9 = 270DCFB911D667CE00A80DC9 /* PBXTextBookmark */;
@@ -1964,35 +2177,55 @@
 			273105A711F3C8F500D0DF26 = 273105A711F3C8F500D0DF26 /* PBXTextBookmark */;
 			273105D511F3CFB700D0DF26 = 273105D511F3CFB700D0DF26 /* PBXTextBookmark */;
 			273105D711F3CFB700D0DF26 = 273105D711F3CFB700D0DF26 /* PBXTextBookmark */;
-			274BDCAF11F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCAF11F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCB211F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCB211F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCB311F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCB311F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCB411F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCB411F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCB511F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCB511F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCB611F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCB611F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCB711F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCB711F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCB811F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCB811F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCB911F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCB911F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCBA11F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCBA11F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCBB11F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCBB11F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCBC11F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCBC11F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCBD11F91BD3006A4F83 /* PBXTextBookmark */ = 274BDCBD11F91BD3006A4F83 /* PBXTextBookmark */;
-			274BDCCE11F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCCE11F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCCF11F92AE7006A4F83 /* PlistBookmark */ = 274BDCCF11F92AE7006A4F83 /* PlistBookmark */;
-			274BDCD011F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCD011F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCD111F92AE7006A4F83 /* PBXBookmark */ = 274BDCD111F92AE7006A4F83 /* PBXBookmark */;
-			274BDCD211F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCD211F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCD311F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCD311F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCD411F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCD411F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCD511F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCD511F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCD611F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCD611F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCD711F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCD711F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCD811F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCD811F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCD911F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCD911F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCDA11F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCDA11F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCDB11F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCDB11F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCDC11F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCDC11F92AE7006A4F83 /* PBXTextBookmark */;
-			274BDCDD11F92AE7006A4F83 /* PBXTextBookmark */ = 274BDCDD11F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCAF11F91BD3006A4F83 = 274BDCAF11F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCB211F91BD3006A4F83 = 274BDCB211F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCB311F91BD3006A4F83 = 274BDCB311F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCB411F91BD3006A4F83 = 274BDCB411F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCB511F91BD3006A4F83 = 274BDCB511F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCB611F91BD3006A4F83 = 274BDCB611F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCB711F91BD3006A4F83 = 274BDCB711F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCB811F91BD3006A4F83 = 274BDCB811F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCB911F91BD3006A4F83 = 274BDCB911F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCBA11F91BD3006A4F83 = 274BDCBA11F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCBB11F91BD3006A4F83 = 274BDCBB11F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCBC11F91BD3006A4F83 = 274BDCBC11F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCBD11F91BD3006A4F83 = 274BDCBD11F91BD3006A4F83 /* PBXTextBookmark */;
+			274BDCCE11F92AE7006A4F83 = 274BDCCE11F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCCF11F92AE7006A4F83 = 274BDCCF11F92AE7006A4F83 /* PlistBookmark */;
+			274BDCD011F92AE7006A4F83 = 274BDCD011F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCD111F92AE7006A4F83 = 274BDCD111F92AE7006A4F83 /* PBXBookmark */;
+			274BDCD211F92AE7006A4F83 = 274BDCD211F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCD311F92AE7006A4F83 = 274BDCD311F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCD411F92AE7006A4F83 = 274BDCD411F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCD511F92AE7006A4F83 = 274BDCD511F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCD611F92AE7006A4F83 = 274BDCD611F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCD711F92AE7006A4F83 = 274BDCD711F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCD811F92AE7006A4F83 = 274BDCD811F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCD911F92AE7006A4F83 = 274BDCD911F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCDA11F92AE7006A4F83 = 274BDCDA11F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCDB11F92AE7006A4F83 = 274BDCDB11F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCDC11F92AE7006A4F83 = 274BDCDC11F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDCDD11F92AE7006A4F83 = 274BDCDD11F92AE7006A4F83 /* PBXTextBookmark */;
+			274BDD0511F92CAB006A4F83 = 274BDD0511F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD0611F92CAB006A4F83 = 274BDD0611F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD0811F92CAB006A4F83 = 274BDD0811F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD0911F92CAB006A4F83 = 274BDD0911F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD0B11F92CAB006A4F83 = 274BDD0B11F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD0C11F92CAB006A4F83 = 274BDD0C11F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD0D11F92CAB006A4F83 = 274BDD0D11F92CAB006A4F83 /* PlistBookmark */;
+			274BDD0E11F92CAB006A4F83 = 274BDD0E11F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD0F11F92CAB006A4F83 = 274BDD0F11F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD1011F92CAB006A4F83 = 274BDD1011F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD1111F92CAB006A4F83 = 274BDD1111F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD1211F92CAB006A4F83 = 274BDD1211F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD1311F92CAB006A4F83 = 274BDD1311F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD1411F92CAB006A4F83 = 274BDD1411F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD1511F92CAB006A4F83 = 274BDD1511F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD1611F92CAB006A4F83 = 274BDD1611F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD1711F92CAB006A4F83 = 274BDD1711F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD1811F92CAB006A4F83 = 274BDD1811F92CAB006A4F83 /* PBXTextBookmark */;
+			274BDD2411F92CCC006A4F83 = 274BDD2411F92CCC006A4F83 /* PBXTextBookmark */;
+			274BDD2511F92CCC006A4F83 = 274BDD2511F92CCC006A4F83 /* PBXTextBookmark */;
 			274CD51511BB3324007CD011 = 274CD51511BB3324007CD011 /* PBXTextBookmark */;
 			274CD5B211BB3B2C007CD011 = 274CD5B211BB3B2C007CD011 /* PBXTextBookmark */;
 			274CD65211BB3DED007CD011 = 274CD65211BB3DED007CD011 /* PBXTextBookmark */;
@@ -2030,18 +2263,18 @@
 	};
 	2A37F4B0FDCFA73011CA2CEA /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {691, 539}}";
+			sepNavIntBoundsRect = "{{0, 0}, {656, 532}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 853}";
+			sepNavVisRange = "{0, 220}";
 			sepNavVisRect = "{{0, 0}, {995, 449}}";
 			sepNavWindowFrame = "{{139, 120}, {750, 690}}";
 		};
 	};
 	32DBCF750370BD2300C91783 /* Paintbrush_Prefix.pch */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {861, 420}}";
+			sepNavIntBoundsRect = "{{0, 0}, {656, 560}}";
 			sepNavSelRange = "{913, 8}";
-			sepNavVisRange = "{0, 932}";
+			sepNavVisRange = "{0, 220}";
 			sepNavVisRect = "{{0, 0}, {995, 449}}";
 			sepNavWindowFrame = "{{117, 86}, {1017, 745}}";
 		};
