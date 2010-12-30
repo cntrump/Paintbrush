@@ -28,16 +28,17 @@
 
 
 #import <Cocoa/Cocoa.h>
+#import "SWEditor.h"
 
 
 @interface SWImageDataSource : NSObject 
 {
-	NSBitmapImageRep * mainImage;	// The main storage image
-	NSBitmapImageRep * bufferImage;	// The buffer drawn to for temporary actions
+	NSBitmapImageRep *mainImage;	// The main storage image
+	NSBitmapImageRep *bufferImage;	// The buffer drawn to for temporary actions
 	
-	NSArray * imageArray;	// Array of images used for drawing (the images above)
+	NSSize size;					// Cached size
 	
-	NSSize size;			// Cached size
+	NSMutableArray *editors;		// Stack of SWEditors
 }
 
 // Initializers
@@ -54,12 +55,17 @@
 - (void)restoreMainImageFromData:(NSData *)tiffData;
 - (void)restoreBufferImageFromData:(NSData *)tiffData; // For pasting
 
+// Editors
+- (NSArray *)editors;
+- (void)pushEditor:(id <SWEditor>)editor;
+- (void)removeEditor:(id <SWEditor>)editor;
+
 // For drawing
-- (NSArray *)imageArray;
+- (void)renderToContext:(CGContextRef)context withFrame:(NSRect)frame isFocused:(BOOL)isFocused;
 
 // Accessing information about the image source
 @property (readonly) NSSize size;
-@property (readonly) NSBitmapImageRep * mainImage;
-@property (readonly) NSBitmapImageRep * bufferImage;
+@property (readonly) NSBitmapImageRep *mainImage;
+@property (readonly) NSBitmapImageRep *bufferImage;
 
 @end

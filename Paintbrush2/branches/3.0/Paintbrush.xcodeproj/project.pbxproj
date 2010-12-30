@@ -83,6 +83,10 @@
 		27BE1DA50EC8FB1200B0A0F1 /* airbrush-cursor-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 27BE1DA40EC8FB1200B0A0F1 /* airbrush-cursor-2.png */; };
 		27BE1DA70EC8FB1B00B0A0F1 /* zoom-cursor-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 27BE1DA60EC8FB1B00B0A0F1 /* zoom-cursor-2.png */; };
 		27BE1F350ECB738000B0A0F1 /* SWColorSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */; };
+		27C1A5E712C94BBC0035EEB2 /* SWSketchEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C1A5E612C94BBC0035EEB2 /* SWSketchEditor.m */; };
+		27C1A5EC12C94BC60035EEB2 /* SWShapeEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C1A5EB12C94BC60035EEB2 /* SWShapeEditor.m */; };
+		27C1A5F112C94BCF0035EEB2 /* SWSelectionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C1A5F012C94BCF0035EEB2 /* SWSelectionEditor.m */; };
+		27C1A62F12CA9BE00035EEB2 /* SWTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C1A62E12CA9BE00035EEB2 /* SWTextEditor.m */; };
 		27CBED9A0EB13E9B00541F98 /* bomb3.png in Resources */ = {isa = PBXBuildFile; fileRef = 27CBED990EB13E9B00541F98 /* bomb3.png */; };
 		27CD323011F6361700AB5996 /* SWPrintPanelAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CD322F11F6361700AB5996 /* SWPrintPanelAccessoryViewController.m */; };
 		27CE381912C51536003F75D1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CE380712C51536003F75D1 /* MainMenu.xib */; };
@@ -249,6 +253,15 @@
 		27BE1DA60EC8FB1B00B0A0F1 /* zoom-cursor-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zoom-cursor-2.png"; path = "Resources/zoom-cursor-2.png"; sourceTree = "<group>"; };
 		27BE1F330ECB738000B0A0F1 /* SWColorSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWColorSelector.h; path = Source/SWColorSelector.h; sourceTree = "<group>"; };
 		27BE1F340ECB738000B0A0F1 /* SWColorSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWColorSelector.m; path = Source/SWColorSelector.m; sourceTree = "<group>"; };
+		27C1A5DC12C949220035EEB2 /* SWEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWEditor.h; sourceTree = "<group>"; };
+		27C1A5E512C94BBC0035EEB2 /* SWSketchEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSketchEditor.h; sourceTree = "<group>"; };
+		27C1A5E612C94BBC0035EEB2 /* SWSketchEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSketchEditor.m; sourceTree = "<group>"; };
+		27C1A5EA12C94BC60035EEB2 /* SWShapeEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWShapeEditor.h; sourceTree = "<group>"; };
+		27C1A5EB12C94BC60035EEB2 /* SWShapeEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWShapeEditor.m; sourceTree = "<group>"; };
+		27C1A5EF12C94BCF0035EEB2 /* SWSelectionEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSelectionEditor.h; sourceTree = "<group>"; };
+		27C1A5F012C94BCF0035EEB2 /* SWSelectionEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSelectionEditor.m; sourceTree = "<group>"; };
+		27C1A62D12CA9BE00035EEB2 /* SWTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTextEditor.h; sourceTree = "<group>"; };
+		27C1A62E12CA9BE00035EEB2 /* SWTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTextEditor.m; sourceTree = "<group>"; };
 		27CBED990EB13E9B00541F98 /* bomb3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bomb3.png; path = Resources/bomb3.png; sourceTree = "<group>"; };
 		27CD322E11F6361700AB5996 /* SWPrintPanelAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWPrintPanelAccessoryViewController.h; path = Source/SWPrintPanelAccessoryViewController.h; sourceTree = SOURCE_ROOT; };
 		27CD322F11F6361700AB5996 /* SWPrintPanelAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWPrintPanelAccessoryViewController.m; path = Source/SWPrintPanelAccessoryViewController.m; sourceTree = SOURCE_ROOT; };
@@ -347,6 +360,7 @@
 		2723FB5C11628261005BCB1B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				27C1A5CA12C9280D0035EEB2 /* Editors */,
 				27A60E110B879A6A0091A1B0 /* Tools */,
 				2723FB5D1162830F005BCB1B /* SWImageDataSource.h */,
 				2723FB5E1162830F005BCB1B /* SWImageDataSource.m */,
@@ -508,6 +522,22 @@
 				27CE381712C51536003F75D1 /* Toolbox.xib */,
 			);
 			name = NIBs;
+			sourceTree = "<group>";
+		};
+		27C1A5CA12C9280D0035EEB2 /* Editors */ = {
+			isa = PBXGroup;
+			children = (
+				27C1A5DC12C949220035EEB2 /* SWEditor.h */,
+				27C1A5EF12C94BCF0035EEB2 /* SWSelectionEditor.h */,
+				27C1A5F012C94BCF0035EEB2 /* SWSelectionEditor.m */,
+				27C1A5EA12C94BC60035EEB2 /* SWShapeEditor.h */,
+				27C1A5EB12C94BC60035EEB2 /* SWShapeEditor.m */,
+				27C1A5E512C94BBC0035EEB2 /* SWSketchEditor.h */,
+				27C1A5E612C94BBC0035EEB2 /* SWSketchEditor.m */,
+				27C1A62D12CA9BE00035EEB2 /* SWTextEditor.h */,
+				27C1A62E12CA9BE00035EEB2 /* SWTextEditor.m */,
+			);
+			name = Editors;
 			sourceTree = "<group>";
 		};
 		27D7CAE30BB4AA6E007ED52B /* MiscTools */ = {
@@ -858,6 +888,10 @@
 				2723FB5F1162830F005BCB1B /* SWImageDataSource.m in Sources */,
 				27CD323011F6361700AB5996 /* SWPrintPanelAccessoryViewController.m in Sources */,
 				277FCC84123DB70800249A3F /* PFMoveApplication.m in Sources */,
+				27C1A5E712C94BBC0035EEB2 /* SWSketchEditor.m in Sources */,
+				27C1A5EC12C94BC60035EEB2 /* SWShapeEditor.m in Sources */,
+				27C1A5F112C94BCF0035EEB2 /* SWSelectionEditor.m in Sources */,
+				27C1A62F12CA9BE00035EEB2 /* SWTextEditor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,6 +1067,7 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = Source/Paintbrush_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -1069,6 +1104,7 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREFIX_HEADER = Source/Paintbrush_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";

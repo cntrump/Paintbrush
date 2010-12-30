@@ -29,6 +29,7 @@
 
 #import "SWImageDataSource.h"
 #import "SWToolboxController.h"
+#import "SWEditor.h"
 
 
 @implementation SWImageDataSource
@@ -38,6 +39,7 @@
 // -----------------------------------------------------------------------------
 
 
+// Common initializer
 - (id)initWithSize:(NSSize)sizeIn
 {
 	self = [super init];
@@ -59,7 +61,10 @@
 		NSRect newRect = (NSRect) { NSZeroPoint, sizeIn };
 		NSRectFill(newRect);
 		
-		SWUnlockFocus(mainImage);		
+		SWUnlockFocus(mainImage);
+		
+		// Create the editors stack
+		editors = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -112,9 +117,9 @@
 - (void)dealloc
 {
 	// Clean up a bit after ourselves
-	[imageArray release];
 	[mainImage release];
 	[bufferImage release];
+	[editors release];
 	
 	[super dealloc];
 }
@@ -172,13 +177,66 @@
 @synthesize bufferImage;
 
 
-// Creates an array if none exists, and returns it
-- (NSArray *)imageArray
+// -----------------------------------------------------------------------------
+//  Accessors
+// -----------------------------------------------------------------------------
+
+- (NSArray *)editors
 {
-	if (!imageArray)
-		imageArray = [[NSArray alloc] initWithObjects:mainImage, bufferImage, nil];
+	return [NSArray arrayWithArray:editors];
+}
+
+
+- (void)pushEditor:(id <SWEditor>)editor
+{
+	NSAssert(![editors containsObject:editor], @"Can't an editor that's already on the stack!");
+	[editors insertObject:editor atIndex:0];
+}
+
+
+- (void)removeEditor:(id <SWEditor>)editor
+{
+	NSAssert([editors containsObject:editor], @"Can't remove an editor that isn't on the stack!");
+	[editors removeObject:editor];
+}
+
+
+// -----------------------------------------------------------------------------
+//  Drawing
+// -----------------------------------------------------------------------------
+
+- (void)renderToContext:(CGContextRef)context withFrame:(NSRect)frame isFocused:(BOOL)isFocused
+{
+	//CGContextBeginTransparencyLayer(cgContext, NULL);
+	[NSGraphicsContext saveGraphicsState];
+
+	if (!isFocused)
+		[NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:NO]];
+		
+	// If you don't do this, the image looks blurry when zoomed in
+	[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationNone];
 	
-	return imageArray;
+	// Draw the NSBitmapImageRep to the view
+	if (mainImage) 
+		CGContextDrawImage(context, NSRectToCGRect((NSRect){
+			NSZeroPoint, [mainImage size]
+		}), [mainImage CGImage]);
+	
+	// If there's an overlay image being used at the moment, draw it
+	if (bufferImage) 
+	{
+		NSRect rect = (NSRect){ NSZeroPoint, [bufferImage size] };
+		CGContextDrawImage(context, NSRectToCGRect(rect), [bufferImage CGImage]);
+	}
+	
+	// TODO: iterate through our editors and let each one render its stuff
+	for (id <SWEditor> editor in editors)
+	{
+		NSAssert([editor conformsToProtocol:@protocol(SWEditor)], @"We have an editor that isn't an editor...?");
+		[editor renderToContext:context withFrame:frame];
+	}
+	
+	[NSGraphicsContext restoreGraphicsState];
 }
 
 

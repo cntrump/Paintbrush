@@ -128,39 +128,20 @@
 - (void)drawRect:(NSRect)rect
 {
 	if (rect.size.width != 0 && rect.size.height != 0)
-	{
-		[NSGraphicsContext saveGraphicsState];
-
-		// If you don't do this, the image looks blurry when zoomed in
-		[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationNone];
-		CGContextRef cgContext = [[NSGraphicsContext currentContext] graphicsPort];
-		NSBitmapImageRep *mainImage = [dataSource mainImage];
-		NSBitmapImageRep *bufferImage = [dataSource bufferImage];
-		
-		//CGContextBeginTransparencyLayer(cgContext, NULL);
-		
-		// Draw the NSBitmapImageRep to the view
-		if (mainImage) 
-			CGContextDrawImage(cgContext, NSRectToCGRect([self bounds]), [mainImage CGImage]);
-		
-		// If there's an overlay image being used at the moment, draw it
-		if (bufferImage) 
-		{
-			NSRect rect = (NSRect){ NSZeroPoint, [bufferImage size] };
-			CGContextDrawImage(cgContext, NSRectToCGRect(rect), [bufferImage CGImage]);
-		}
-		
+	{		
 		//CGContextEndTransparencyLayer(cgContext);
+		CGContextRef cgContext = [[NSGraphicsContext currentContext] graphicsPort];
+		
+		[dataSource renderToContext:cgContext withFrame:rect isFocused:YES];
 		
 		// If the grid is turned on, draw that too (but only after everything else!
+		// TODO: Make the grid an editor?  Part of another editor?  Rendered by the scale view?
 		if (showsGrid && [(SWScalingScrollView *)[[self superview] superview] scaleFactor] > 2.0) 
 		{
 			[gridColor set];
 			[[NSGraphicsContext currentContext] setShouldAntialias:NO];
 			[[self gridInRect:[self frame]] stroke];
 		}
-		
-		[NSGraphicsContext restoreGraphicsState];
 	}
 }
 
@@ -345,9 +326,11 @@
 	if (toolbox && [toolbox currentTool]) 
 	{
 		NSCursor *cursor = [[toolbox currentTool] cursor];
-		if (cursor != [(NSClipView *)[self superview] documentCursor])
-			[(NSClipView *)[self superview] setDocumentCursor:cursor];
+		[(NSClipView *)[self superview] setDocumentCursor:cursor];
+		[cursor push];
 	}
+	else
+		[super cursorUpdate:event];
 }
 
 
