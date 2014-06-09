@@ -88,10 +88,12 @@ NSString * const kSWUndoKey = @"UndoLevels";
 	// this call will never return. Therefore you can suppress
 	// any first run UI by putting it after this call.
 	
-	// Oh, and don't do it for debug builds
+	// Oh, and don't do it for debug or app store builds
+#ifndef APPSTORE
 #ifndef DEBUG
 	PFMoveToApplicationsFolderIfNecessary();
 #endif // !DEBUG
+#endif // APPSTORE
 }
 
 
@@ -158,13 +160,6 @@ NSString * const kSWUndoKey = @"UndoLevels";
 	if (action == @selector(newFromClipboard:)) {
 		return ([SWImageTools readImageFromPasteboard:[NSPasteboard generalPasteboard]] != nil);
 	}
-#ifdef APPSTORE
-	if (action == @selector(donate:))
-	{
-		[menuItem setHidden:YES];
-		return NO;
-	}
-#endif
 	return YES;
 }
 
