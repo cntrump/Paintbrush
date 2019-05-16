@@ -1,29 +1,19 @@
 /**
- * Copyright 2007-2010 Soggy Waffles. All rights reserved.
+ * Paintbrush
+ * Copyright (C) 2007-2019  Michael Schreiber
  * 
- * Redistribution and use in source and binary forms, with or without modification, are
- * permitted provided that the following conditions are met:
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  * 
- *    1. Redistributions of source code must retain the above copyright notice, this list of
- *       conditions and the following disclaimer.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- *    2. Redistributions in binary form must reproduce the above copyright notice, this list
- *       of conditions and the following disclaimer in the documentation and/or other materials
- *       provided with the distribution.
- * 
- * THIS SOFTWARE IS PROVIDED BY SOGGY WAFFLES ``AS IS'' AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL SOGGY WAFFLES OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
- * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
- * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
- * The views and conclusions contained in the software and documentation are those of the
- * authors and should not be interpreted as representing official policies, either expressed
- * or implied, of Soggy Waffles.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
@@ -49,19 +39,19 @@
 		NSInteger x = (end.x-begin.x) / abs(end.x-begin.x);
 		NSInteger y = (end.y-begin.y) / abs(end.y-begin.y);
 		
-		// Theta is the angle formed by the mouse, in degrees (rad * 180/¹)
+		// Theta is the angle formed by the mouse, in degrees (rad * 180/ï¿½)
 		// atan()'s result is in radians
 		CGFloat theta = 180*atan((end.y-begin.y)/(end.x-begin.x)) / pi;
 		
-		// Deciding whether it should be horizontal, vertical, or at 45¼
+		// Deciding whether it should be horizontal, vertical, or at 45ï¿½
 		NSPoint newPoint = NSZeroPoint;
 		CGFloat size = fmin(abs(end.x-begin.x),abs(end.y-begin.y));
 		
 		if (abs(theta) <= 67.5 && abs(theta) >= 22.5) {
-			// ¹/4
+			// ï¿½/4
 			newPoint = NSMakePoint(size*x, size*y);
 		} else if (abs(theta) > 67.5) {
-			// ¹/2
+			// ï¿½/2
 			newPoint = NSMakePoint(0, (end.y-begin.y));
 		} else {
 			// 0
