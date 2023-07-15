@@ -69,8 +69,8 @@ typedef struct SWSegment {
 	NSMutableArray*	mStack;
 }
 
-- (id) initWithBitmapImageRep:(NSBitmapImageRep *)imageRep point:(NSPoint)point tolerance:(CGFloat)tolerance;
+- (instancetype) initWithBitmapImageRep:(NSBitmapImageRep *)imageRep point:(NSPoint)point tolerance:(CGFloat)tolerance NS_DESIGNATED_INITIALIZER;
 
-- (CGImageRef) mask;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGImageRef mask CF_RETURNS_NOT_RETAINED;
 
 @end

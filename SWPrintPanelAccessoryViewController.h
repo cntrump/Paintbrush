@@ -26,11 +26,10 @@
 - (IBAction)changeScaling:(id)sender;
 
 // Called in a few places: updates the print info with our desired scaling
-- (BOOL)scaling;
-- (void)setScaling:(BOOL)flag;
+@property (NS_NONATOMIC_IOSONLY) BOOL scaling;
 
 // Methods used for NSPrintPanelAccessorizing protocol
-- (NSArray *)localizedSummaryItems;
-- (NSSet *)keyPathsForValuesAffectingPreview;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *localizedSummaryItems;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSSet *keyPathsForValuesAffectingPreview;
 
 @end

@@ -24,7 +24,7 @@
 
 @implementation SWTextToolWindowController
 
-- (id)initWithDocument:(SWDocument *)doc
+- (instancetype)initWithDocument:(SWDocument *)doc
 {
 	self = [super initWithWindowNibName:@"TextEntry"];
 	document = doc;
@@ -33,7 +33,7 @@
 
 - (void)awakeFromNib
 {
-	[textView setFont:[NSFont fontWithName:@"Helvetica" size:16.0]];
+	textView.font = [NSFont fontWithName:@"Helvetica" size:16.0];
 	[textView selectAll:textView];
 }
 
@@ -41,11 +41,11 @@
 - (IBAction)enterText:(id)sender
 {
 	NSRange range;
-	range.length = [[textView string] length];
+	range.length = textView.string.length;
 	range.location = 0;
-	NSAttributedString *attrString = [[[NSAttributedString alloc] initWithAttributedString:
-									  [textView attributedSubstringFromRange:range]] autorelease];
-	NSDictionary *d = [NSDictionary dictionaryWithObject:attrString forKey:@"newText"];
+	NSAttributedString *attrString = [[NSAttributedString alloc] initWithAttributedString:
+									  [textView attributedSubstringFromRange:range]];
+	NSDictionary *d = @{@"newText": attrString};
 	NSNotification *n = [NSNotification notificationWithName:@"SWTextEntered"
 													  object:self
 													userInfo:d];
@@ -54,7 +54,7 @@
 	[[NSNotificationCenter defaultCenter] postNotification:n];
 	[textView selectAll:textView];
 	[self close];
-	[NSApp endSheet:[self window]];
+	[NSApp endSheet:self.window];
 }
 
 // A cancel click calls this method
@@ -62,15 +62,9 @@
 {
 	[textView selectAll:textView];
 	[self close];
-	[NSApp endSheet:[self window]];
+	[NSApp endSheet:self.window];
 	if (document)
-		[[document toolbox] tieUpLooseEndsForCurrentTool];
+		[document.toolbox tieUpLooseEndsForCurrentTool];
 }
-
-//- (void)dealloc
-//{
-//	[textView release];
-//	[super dealloc];
-//}
 
 @end

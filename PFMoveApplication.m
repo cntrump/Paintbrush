@@ -58,13 +58,13 @@ static BOOL CopyBundle(NSString *srcPath, NSString *dstPath);
 
 
 // Main worker function
-void PFMoveToApplicationsFolderIfNecessary()
+void PFMoveToApplicationsFolderIfNecessary(void)
 {
 	// Skip if user suppressed the alert before
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:AlertSuppressKey]) return;
 
 	// Path of the bundle
-	NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+	NSString *bundlePath = [NSBundle mainBundle].bundlePath;
 
 	// Skip if the application is already in some Applications folder
 	if (IsInApplicationsFolder(bundlePath)) return;
@@ -85,18 +85,18 @@ void PFMoveToApplicationsFolderIfNecessary()
 	// Since we are good to go, get the preferred installation directory.
 	BOOL installToUserApplications = NO;
 	NSString *applicationsDirectory = PreferredInstallLocation(&installToUserApplications);
-	NSString *bundleName = [bundlePath lastPathComponent];
+	NSString *bundleName = bundlePath.lastPathComponent;
 	NSString *destinationPath = [applicationsDirectory stringByAppendingPathComponent:bundleName];
 
 	// Check if we need admin password to write to the Applications directory
 	BOOL needAuthorization = ([fm isWritableFileAtPath:applicationsDirectory] == NO);
 
 	// Setup the alert
-	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	NSAlert *alert = [[NSAlert alloc] init];
 	{
 		NSString *informativeText = nil;
 
-		[alert setMessageText:(installToUserApplications ? kStrMoveApplicationQuestionTitleHome : kStrMoveApplicationQuestionTitle)];
+		alert.messageText = (installToUserApplications ? kStrMoveApplicationQuestionTitleHome : kStrMoveApplicationQuestionTitle);
 
 		informativeText = kStrMoveApplicationQuestionMessage;
 
@@ -110,14 +110,14 @@ void PFMoveToApplicationsFolderIfNecessary()
 			informativeText = [informativeText stringByAppendingString:kStrMoveApplicationQuestionInfoInDownloadsFolder];
 		}
 
-		[alert setInformativeText:informativeText];
+		alert.informativeText = informativeText;
 
 		// Add accept button
 		[alert addButtonWithTitle:kStrMoveApplicationButtonMove];
 
 		// Add deny button
 		NSButton *cancelButton = [alert addButtonWithTitle:kStrMoveApplicationButtonDoNotMove];
-		[cancelButton setKeyEquivalent:@"\e"];
+		cancelButton.keyEquivalent = @"\e";
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_4
 		if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
@@ -125,15 +125,15 @@ void PFMoveToApplicationsFolderIfNecessary()
 			[alert setShowsSuppressionButton:YES];
 
 			if (PFUseSmallAlertSuppressCheckbox) {
-				[[[alert suppressionButton] cell] setControlSize:NSSmallControlSize];
-				[[[alert suppressionButton] cell] setFont:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]]];
+                alert.suppressionButton.cell.controlSize = NSControlSizeSmall;
+				alert.suppressionButton.cell.font = [NSFont systemFontOfSize:[NSFont smallSystemFontSize]];
 			}
 		}
 #endif
 	}
 
 	// Activate app -- work-around for focus issues related to "scary file from internet" OS dialog.
-	if (![NSApp isActive]) {
+	if (!NSApp.active) {
 		[NSApp activateIgnoringOtherApps:YES];
 	}
 
@@ -160,16 +160,16 @@ void PFMoveToApplicationsFolderIfNecessary()
 			if ([fm fileExistsAtPath:destinationPath]) {
 				// But first, make sure that it's not running
 				NSString *script = [NSString stringWithFormat:@"ps ax -o comm | grep '%@/' | grep -v grep >/dev/null", destinationPath];
-				NSTask *task = [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", script, nil]];
+				NSTask *task = [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:@[@"-c", script]];
 				[task waitUntilExit];
 
 				// If the task terminated with status 0, it means that the final grep produced 1 or more lines of output.
 				// It means that the app is already running
-				if ([task terminationStatus] == 0) {
+				if (task.terminationStatus == 0) {
 					// Give the running app focus and terminate myself
 					NSLog(@"INFO -- Switching to an already running version");
-					[[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObject:destinationPath]] waitUntilExit];
-					[[NSApp delegate] quit:nil];
+					[[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[destinationPath]] waitUntilExit];
+					[(SWAppController *)NSApp.delegate quit:nil];
 				}
 				else {
 					if (!Trash([applicationsDirectory stringByAppendingPathComponent:bundleName]))
@@ -194,7 +194,7 @@ void PFMoveToApplicationsFolderIfNecessary()
 		// Relaunch.
 		// The shell script waits until the original app process terminates.
 		// This is done so that the relaunched app opens as the front-most app.
-		int pid = [[NSProcessInfo processInfo] processIdentifier];
+		int pid = [NSProcessInfo processInfo].processIdentifier;
 
 		// Command run just before running open /final/path
 		NSString *preOpenCmd = @"";
@@ -213,22 +213,22 @@ void PFMoveToApplicationsFolderIfNecessary()
 
 		NSString *script = [NSString stringWithFormat:@"(while [ `ps -p %d | wc -l` -gt 1 ]; do sleep 0.1; done; %@ open '%@') &", pid, preOpenCmd, destinationPath];
 
-		[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", script, nil]];
+		[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:@[@"-c", script]];
 
 		// Launched from within a DMG? -- unmount (if no files are open after 5 seconds,
 		// otherwise leave it mounted).
 		if (isLaunchedFromDMG) {
-			script = [NSString stringWithFormat:@"(sleep 5 && hdiutil detach '%@') &", [bundlePath stringByDeletingLastPathComponent]];
-			[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", script, nil]];
+			script = [NSString stringWithFormat:@"(sleep 5 && hdiutil detach '%@') &", bundlePath.stringByDeletingLastPathComponent];
+			[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:@[@"-c", script]];
 		}
 
-		[[NSApp delegate] quit:nil];
+		[(SWAppController *)NSApp.delegate quit:nil];
 	}
 	else {
 		if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
 			// Save the alert suppress preference if checked
 #if MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_4
-			if ([[alert suppressionButton] state] == NSOnState) {
+            if (alert.suppressionButton.state == NSControlStateValueOn) {
 				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:AlertSuppressKey];
 			}
 #endif
@@ -244,7 +244,7 @@ void PFMoveToApplicationsFolderIfNecessary()
 fail:
 	{
 		// Show failure message
-		alert = [[[NSAlert alloc] init] autorelease];
+		alert = [[NSAlert alloc] init];
 		[alert setMessageText:kStrMoveApplicationCouldNotMove];
 		[alert runModal];
 	}
@@ -279,7 +279,7 @@ static NSString *PreferredInstallLocation(BOOL *isUserDirectory)
 
 	// No user Applications directory. Return the machine local Applications directory
 	if (isUserDirectory) *isUserDirectory = NO;
-	return [NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSLocalDomainMask, YES) lastObject];
+	return NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSLocalDomainMask, YES).lastObject;
 }
 
 static BOOL IsInApplicationsFolder(NSString *path)
@@ -310,15 +310,15 @@ static BOOL IsInDownloadsFolder(NSString *path)
 	}
 #endif
 	// 10.4
-	return [[[path stringByDeletingLastPathComponent] lastPathComponent] isEqualToString:@"Downloads"];
+	return [path.stringByDeletingLastPathComponent.lastPathComponent isEqualToString:@"Downloads"];
 }
 
 static BOOL Trash(NSString *path)
 {
 	if ([[NSWorkspace sharedWorkspace] performFileOperation:NSWorkspaceRecycleOperation
-													 source:[path stringByDeletingLastPathComponent]
+													 source:path.stringByDeletingLastPathComponent
 												destination:@""
-													  files:[NSArray arrayWithObject:[path lastPathComponent]]
+													  files:@[path.lastPathComponent]
 														tag:NULL]) {
 		return YES;
 	}
@@ -337,8 +337,8 @@ static BOOL AuthorizedInstall(NSString *srcPath, NSString *dstPath, BOOL *cancel
 	if (![dstPath hasSuffix:@".app"]) return NO;
 
 	// Do some more checks
-	if ([[dstPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) return NO;
-	if ([[srcPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) return NO;
+	if ([dstPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) return NO;
+	if ([srcPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) return NO;
 
 	int pid, status;
 	AuthorizationRef myAuthorizationRef;
@@ -360,7 +360,7 @@ static BOOL AuthorizedInstall(NSString *srcPath, NSString *dstPath, BOOL *cancel
 
 	// Delete the destination
 	{
-		char *args[] = {"-rf", (char *)[dstPath fileSystemRepresentation], NULL};
+		char *args[] = {"-rf", (char *)dstPath.fileSystemRepresentation, NULL};
 		err = AuthorizationExecuteWithPrivileges(myAuthorizationRef, "/bin/rm", kAuthorizationFlagDefaults, args, NULL);
 		if (err != errAuthorizationSuccess) goto fail;
 
@@ -371,7 +371,7 @@ static BOOL AuthorizedInstall(NSString *srcPath, NSString *dstPath, BOOL *cancel
 
 	// Copy
 	{
-		char *args[] = {"-pR", (char *)[srcPath fileSystemRepresentation], (char *)[dstPath fileSystemRepresentation], NULL};
+		char *args[] = {"-pR", (char *)srcPath.fileSystemRepresentation, (char *)dstPath.fileSystemRepresentation, NULL};
 		err = AuthorizationExecuteWithPrivileges(myAuthorizationRef, "/bin/cp", kAuthorizationFlagDefaults, args, NULL);
 		if (err != errAuthorizationSuccess) goto fail;
 

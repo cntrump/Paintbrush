@@ -23,7 +23,7 @@
 
 @implementation SWPreferenceController
 
-- (id)init
+- (instancetype)init
 {
 	if (self = [super initWithWindowNibName:@"Preferences"]) {
 	}
@@ -36,13 +36,13 @@
 	for (NSString *type in fileTypes)
 		[fileTypeButton addItemWithTitle:type];
 	
-	NSToolbar *toolbar = [[self window] toolbar];
-	[toolbar setSelectedItemIdentifier:[[[toolbar items] objectAtIndex:0] itemIdentifier]];
+	NSToolbar *toolbar = self.window.toolbar;
+	toolbar.selectedItemIdentifier = toolbar.items[0].itemIdentifier;
 	
 	// Set the initial preference view
-	[[self window] setContentSize:[generalPrefsView frame].size];
-	[[[self window] contentView] addSubview:generalPrefsView];
-	[[self window] setTitle:NSLocalizedString(@"General", @"Preferences window: general prefs")];
+	[self.window setContentSize:generalPrefsView.frame.size];
+	[self.window.contentView addSubview:generalPrefsView];
+	[self.window setTitle:NSLocalizedString(@"General", @"Preferences window: general prefs")];
 	currentViewTag = 0;
 	//[[[self window] contentView] setWantsLayer:YES];
 }
@@ -50,8 +50,8 @@
 - (void)windowDidLoad
 {
 	// Load current defaults into the various fields
-	[undoStepper setIntValue:[[[NSUserDefaults standardUserDefaults] valueForKey:kSWUndoKey] integerValue]];
-	[undoTextField setIntValue:[[[NSUserDefaults standardUserDefaults] valueForKey:kSWUndoKey] integerValue]];
+	undoStepper.intValue = [[[NSUserDefaults standardUserDefaults] valueForKey:kSWUndoKey] integerValue];
+	undoTextField.intValue = [[[NSUserDefaults standardUserDefaults] valueForKey:kSWUndoKey] integerValue];
 	[fileTypeButton selectItemWithTitle:[[NSUserDefaults standardUserDefaults] valueForKey:@"FileType"]];
 }
 
@@ -64,15 +64,15 @@
 
 - (IBAction)changeUndoLimit:(id)sender {
 	if ([sender integerValue] == 0) {
-		[undoStepper setIntegerValue:0];
-		[undoTextField setIntegerValue:0];
+		undoStepper.integerValue = 0;
+		undoTextField.integerValue = 0;
 	} else if ([sender integerValue] < 0) {
 		NSBeep();
-		[undoStepper setIntegerValue:0];
-		[undoTextField setIntegerValue:0];
+		undoStepper.integerValue = 0;
+		undoTextField.integerValue = 0;
 	} else {
-		[undoStepper setIntegerValue:[sender integerValue]];
-		[undoTextField setIntegerValue:[sender integerValue]];
+		undoStepper.integerValue = [sender integerValue];
+		undoTextField.integerValue = [sender integerValue];
 	}
 	
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:[sender integerValue]]
@@ -80,13 +80,13 @@
 	
 	// Post a notification that the level has changed
 	[[NSNotificationCenter defaultCenter] postNotificationName:kSWUndoKey 
-														object:[NSNumber numberWithInteger:[sender integerValue]]];
+														object:@([sender integerValue])];
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification
 {
-	if ([aNotification object] == undoTextField) {
-		[self changeUndoLimit:[aNotification object]];
+	if (aNotification.object == undoTextField) {
+		[self changeUndoLimit:aNotification.object];
 	}
 }
 
@@ -114,11 +114,11 @@
 
 - (NSRect)newFrameForNewContentView:(NSView *)view
 {
-	NSRect newFrameRect = [[self window] frameRectForContentRect:[view frame]];
-	NSRect oldFrameRect = [[self window] frame];
+	NSRect newFrameRect = [self.window frameRectForContentRect:view.frame];
+	NSRect oldFrameRect = self.window.frame;
 	NSSize newSize = newFrameRect.size;
 	NSSize oldSize = oldFrameRect.size;
-	NSRect frame = [[self window] frame];
+	NSRect frame = self.window.frame;
 	frame.size = newSize;
 	frame.origin.y = frame.origin.y - (newSize.height - oldSize.height);
 	return frame;
@@ -130,7 +130,7 @@
 	NSView *view;
 	NSString *title;
 	[self viewForTag:tag view:&view title:&title];
-	[[self window] setTitle:title];
+	self.window.title = title;
 
 	NSView *previousView;
 	[self viewForTag:currentViewTag view:&previousView title:&title];
@@ -145,16 +145,16 @@
 	
 	// Without Core Animation
 	[previousView removeFromSuperview];
-	[[self window] setFrame:newFrame display:YES animate:YES];
-	[[[self window] contentView] addSubview:view];
+	[self.window setFrame:newFrame display:YES animate:YES];
+	[self.window.contentView addSubview:view];
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
 {
-	NSMutableArray *selectable = [[NSMutableArray alloc] initWithCapacity:[[toolbar items] count]];
-	for (NSToolbarItem *nsti in [toolbar items]) 
+	NSMutableArray *selectable = [[NSMutableArray alloc] initWithCapacity:toolbar.items.count];
+	for (NSToolbarItem *nsti in toolbar.items) 
 	{
-		[selectable addObject:[nsti itemIdentifier]];
+		[selectable addObject:nsti.itemIdentifier];
 	}
 	return selectable;
 }

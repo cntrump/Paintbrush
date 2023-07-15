@@ -27,8 +27,8 @@
 {
 	if (!path)
 	{
-		path = [[NSBezierPath bezierPath] retain];
-		[path setLineWidth:lineWidth];		
+		path = NSBezierPath.bezierPath;
+		path.lineWidth = lineWidth;		
 	}
 	//if (lineWidth <= 1) 
 	//{
@@ -60,7 +60,6 @@
 		[SWImageTools drawToImage:mainImage fromImage:bufferImage withComposition:YES];
 		[SWImageTools clearImage:bufferImage];
 
-		[path release];
 		path = nil;
 	} 
 	else 
@@ -73,8 +72,8 @@
 		[[NSGraphicsContext currentContext] setShouldAntialias:NO];
 		
 		[NSGraphicsContext saveGraphicsState];
-		[[NSGraphicsContext currentContext] setCompositingOperation:NSCompositeCopy];
-		if (flags & NSAlternateKeyMask)
+        [NSGraphicsContext currentContext].compositingOperation = NSCompositingOperationCopy;
+        if (flags & NSEventModifierFlagOption)
 			[frontColor setStroke];
 		else
 			[backColor setStroke];	

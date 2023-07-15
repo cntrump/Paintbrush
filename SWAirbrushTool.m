@@ -79,7 +79,7 @@
 	SWLockFocus(_bufferImage); 
 	
 	[[NSGraphicsContext currentContext] setShouldAntialias:NO];
-	if (flags & NSAlternateKeyMask) {
+    if (flags & NSEventModifierFlagOption) {
 		[backColor setStroke];	
 	} else {
 		[frontColor setStroke];

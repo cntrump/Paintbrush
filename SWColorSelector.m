@@ -23,23 +23,23 @@
 
 @implementation SWColorSelector
 
-- (id)initWithFrame:(NSRect)frame
+- (instancetype)initWithFrame:(NSRect)frame
 {
-	[super initWithFrame:frame];
-	
-	[self addTrackingArea:[[NSTrackingArea alloc] initWithRect:[self frame]
-													   options: NSTrackingActiveInActiveApp | NSTrackingInVisibleRect 
-						   | NSTrackingMouseMoved | NSTrackingMouseEnteredAndExited
-														 owner:self
-													  userInfo:nil]];
-	[[self window] setAcceptsMouseMovedEvents:YES];
-	//	[self seta
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(updateWells:) 
-												 name:@"SWColorSet" 
-											   object:nil];
-	
+    if (self = [super initWithFrame:frame]) {
+        [self addTrackingArea:[[NSTrackingArea alloc] initWithRect:self.frame
+                                                           options: NSTrackingActiveInActiveApp | NSTrackingInVisibleRect
+                               | NSTrackingMouseMoved | NSTrackingMouseEnteredAndExited
+                                                             owner:self
+                                                          userInfo:nil]];
+        [self.window setAcceptsMouseMovedEvents:YES];
+        //	[self seta
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateWells:)
+                                                     name:@"SWColorSet"
+                                                   object:nil];
+    }
+
 	return self;
 }
 
@@ -47,7 +47,6 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[super dealloc];
 }
 
 
@@ -74,7 +73,7 @@
 
 - (void)mouseMoved:(NSEvent *)event
 {
-	NSPoint p = [event locationInWindow];
+	NSPoint p = event.locationInWindow;
 	NSPoint downPoint = [self convertPoint:p fromView:nil];
 	if ([frontWell hitTest:downPoint])
 	{

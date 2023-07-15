@@ -28,7 +28,7 @@
 // -----------------------------------------------------------------------------
 
 
-- (id)initWithSize:(NSSize)sizeIn
+- (instancetype)initWithSize:(NSSize)sizeIn
 {
 	self = [super init];
 	if (self)
@@ -37,8 +37,11 @@
 		size = sizeIn;
 		
 		// Create the two images we'll be using
+        NSBitmapImageRep *mainImage = nil, *bufferImage = nil;
 		[SWImageTools initImageRep:&mainImage withSize:size];
 		[SWImageTools initImageRep:&bufferImage withSize:size];
+        self->mainImage = mainImage;
+        self->bufferImage = bufferImage;
 		
 		// New Image: gotta paint the background color
 		SWLockFocus(mainImage);
@@ -55,29 +58,29 @@
 }
 
 
-- (id)initWithURL:(NSURL *)url
+- (instancetype)initWithURL:(NSURL *)url
 {
-	// Temporary image to get dimensions
-	NSBitmapImageRep *tempImage = [NSBitmapImageRep imageRepWithContentsOfURL:url];
-	
-	if (!tempImage)	// failure case
-		return nil;
-	
-	// Run baseline initializer
-	[self initWithSize:NSMakeSize([tempImage pixelsWide], [tempImage pixelsHigh])];
-	
-	// Copy the image to the mainImage
-	[SWImageTools drawToImage:mainImage fromImage:tempImage withComposition:NO];
-	
-	// Flip it, since our views are all flipped
-	if (mainImage)
-		[SWImageTools flipImageVertical:mainImage];		
-	
+    // Temporary image to get dimensions
+    NSBitmapImageRep *tempImage = [NSBitmapImageRep imageRepWithContentsOfURL:url];
+
+    if (!tempImage)	// failure case
+        return nil;
+
+    // Run baseline initializer
+    if (self = [self initWithSize:NSMakeSize(tempImage.pixelsWide, tempImage.pixelsHigh)]) {
+        // Copy the image to the mainImage
+        [SWImageTools drawToImage:mainImage fromImage:tempImage withComposition:NO];
+
+        // Flip it, since our views are all flipped
+        if (mainImage)
+            [SWImageTools flipImageVertical:mainImage];
+    }
+
 	return self;
 }
 
 
-- (id)initWithPasteboard
+- (instancetype)initWithPasteboard
 {
 	NSBitmapImageRep *tempImage = [NSBitmapImageRep imageRepWithPasteboard:[NSPasteboard generalPasteboard]];
 	
@@ -86,29 +89,17 @@
 		return nil;
 	
 	// Run baseline initializer
-	[self initWithSize:NSMakeSize([tempImage pixelsWide], [tempImage pixelsHigh])];
+    if (self = [self initWithSize:NSMakeSize(tempImage.pixelsWide, tempImage.pixelsHigh)]) {
+        // Copy the image to the mainImage
+        [SWImageTools drawToImage:mainImage fromImage:tempImage withComposition:NO];
 
-	// Copy the image to the mainImage
-	[SWImageTools drawToImage:mainImage fromImage:tempImage withComposition:NO];
-	
-	// Flip it, since our views are all flipped
-	if (mainImage)
-		[SWImageTools flipImageVertical:mainImage];
-	
+        // Flip it, since our views are all flipped
+        if (mainImage)
+            [SWImageTools flipImageVertical:mainImage];
+    }
+
 	return self;
 }
-
-
-- (void)dealloc
-{
-	// Clean up a bit after ourselves
-	[imageArray release];
-	[mainImage release];
-	[bufferImage release];
-	
-	[super dealloc];
-}
-
 
 // -----------------------------------------------------------------------------
 //  Mutators
@@ -130,7 +121,7 @@
 	if (shouldScale) 
 	{
 		// Stretch the image to the correct size
-		[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationNone];
+		[NSGraphicsContext currentContext].imageInterpolation = NSImageInterpolationNone;
 		[mainImage drawInRect:newRect];
 	}
 	else 
@@ -143,8 +134,6 @@
 	SWUnlockFocus(newMainImage);
 	
 	// Release and set (no need to retain: we already own the new images)
-	[mainImage release];
-	[bufferImage release];
 	mainImage = newMainImage;
 	bufferImage = newBufferImage;
 	
@@ -179,7 +168,7 @@
 - (NSData *)copyMainImageData
 {
 	if (mainImage)
-		return [mainImage TIFFRepresentation];
+		return mainImage.TIFFRepresentation;
 	
 	// No image, no data
 	return nil;
@@ -193,7 +182,6 @@
 	
 	NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithData:tiffData];
 	[SWImageTools drawToImage:mainImage fromImage:imageRep withComposition:NO];
-	[imageRep release];
 }
 
 
@@ -205,21 +193,21 @@
 	NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithData:tiffData];
 	
 	// Unlike the main image, the buffer image can have its size change.  Do that here.
-	NSRect bufferImageRect = NSMakeRect(0, 0, [bufferImage pixelsWide], [bufferImage pixelsHigh]);
-	NSRect pastedImageRect = NSMakeRect(0, 0, [imageRep pixelsWide], [imageRep pixelsHigh]);
+	NSRect bufferImageRect = NSMakeRect(0, 0, bufferImage.pixelsWide, bufferImage.pixelsHigh);
+	NSRect pastedImageRect = NSMakeRect(0, 0, imageRep.pixelsWide, imageRep.pixelsHigh);
 	NSRect finalRect = NSUnionRect(bufferImageRect, pastedImageRect);
 	
 	if (!NSEqualRects(bufferImageRect, finalRect))
 	{
 		// Pasting something bigger than the previous image, so create a new one with the new size
-		[bufferImage release];
 		bufferImage = nil;
-		
+
+        NSBitmapImageRep *bufferImage = nil;
 		[SWImageTools initImageRep:&bufferImage withSize:finalRect.size];
+        self->bufferImage = bufferImage;
 	}
 	
 	[SWImageTools drawToImage:bufferImage fromImage:imageRep withComposition:NO];
-	[imageRep release];
 }
 
 

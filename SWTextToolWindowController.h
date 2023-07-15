@@ -26,7 +26,7 @@
 	SWDocument *document;
 }
 
-- (id)initWithDocument:(SWDocument *)doc;
+- (instancetype)initWithDocument:(SWDocument *)doc NS_DESIGNATED_INITIALIZER;
 - (IBAction)enterText:(id)sender;
 - (IBAction)cancel:(id)sender;
 

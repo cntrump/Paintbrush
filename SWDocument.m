@@ -41,7 +41,7 @@
 // TODO: Nasty hack
 static BOOL kSWDocumentWillShowSheet = YES;
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init]) 
 	{				
@@ -58,7 +58,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 		
 		// Set levels of undos based on user defaults
 		NSNumber *undo = [[NSUserDefaults standardUserDefaults] objectForKey:kSWUndoKey];
-		[[self undoManager] setLevelsOfUndo:[undo integerValue]];
+		self.undoManager.levelsOfUndo = undo.integerValue;
 		
 		// Create my window's particular tools
 		toolbox = [[SWToolbox alloc] initWithDocument:self];
@@ -72,15 +72,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 - (void)dealloc
 {	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[sizeController release];
-	[clipView release];
-	[currentFileType release];
-	[textController release];
 	[savePanelAccessoryViewController removeObserver:self forKeyPath:kSWCurrentFileType];
-	[savePanelAccessoryViewController release];
-	[toolbox release];
-	[dataSource release];
-	[super dealloc];
 }
 
 
@@ -103,18 +95,18 @@ static BOOL kSWDocumentWillShowSheet = YES;
 
 	toolboxController = [SWToolboxController sharedToolboxPanelController];
 	
-	clipView = [[SWCenteringClipView alloc] initWithFrame:[[scrollView contentView] frame]];
+	clipView = [[SWCenteringClipView alloc] initWithFrame:scrollView.contentView.frame];
 	//[clipView setBackgroundColor:[NSColor windowBackgroundColor]];
 	
 	// The Scroll View contains the clip view, which is the superclass of the paint view (whew!)
-	[scrollView setContentView:(NSClipView *)clipView];
-	[clipView setDocumentView:paintView];
+	scrollView.contentView = (NSClipView *)clipView;
+	clipView.documentView = paintView;
 	[scrollView setScaleFactor:1.0 adjustPopup:YES];
 	
 	// Get and set the background image of the clip view
 	NSImage *bgImage = [NSImage imageNamed:@"bgImage"];
 	if (bgImage)
-		[clipView setBgImagePattern:bgImage];
+		clipView.bgImagePattern = bgImage;
 		
 	// If the user opened an image
 	if (dataSource) 
@@ -124,7 +116,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 		// When we create a new document
 		if (kSWDocumentWillShowSheet) 
 		{
-			[[aController window] orderFront:self];
+			[aController.window orderFront:self];
 			[self raiseSizeSheet:aController];
 		}
 		else 
@@ -145,11 +137,11 @@ static BOOL kSWDocumentWillShowSheet = YES;
 									  toolbox:toolbox];
 	
 	// Use external method to determine the window bounds
-	NSRect viewRect = [paintView frame];
+	NSRect viewRect = paintView.frame;
 	NSRect tempRect = [paintView calculateWindowBounds:viewRect];
 	
 	// Apply the changes to the new document
-	[[paintView window] setFrame:tempRect display:YES animate:YES];
+	[paintView.window setFrame:tempRect display:YES animate:YES];
 }
 
 
@@ -158,7 +150,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     
 	NSString *folder = @"~/Library/Application Support/Paintbrush/Background Images/";
-	folder = [folder stringByExpandingTildeInPath];
+	folder = folder.stringByExpandingTildeInPath;
 	
 	if ([fileManager fileExistsAtPath: folder] == NO)
 	{
@@ -179,8 +171,8 @@ static BOOL kSWDocumentWillShowSheet = YES;
 // Called when a new document is made
 - (IBAction)raiseSizeSheet:(id)sender
 {
-    [NSApp beginSheet:[sizeController window]
-	   modalForWindow:[super windowForSheet]
+    [NSApp beginSheet:sizeController.window
+	   modalForWindow:super.windowForSheet
 		modalDelegate:self
 	   didEndSelector:@selector(sizeSheetDidEnd:returnCode:contextInfo:)
 		  contextInfo:NULL];
@@ -193,7 +185,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 			 returnCode:(NSInteger)returnCode
 			contextInfo:(void *)contextInfo
 {
-	if (returnCode == NSOKButton) 
+    if (returnCode == NSModalResponseOK) 
 	{
 		NSSize openingSize;
 		openingSize.width = [sizeController width];
@@ -208,10 +200,10 @@ static BOOL kSWDocumentWillShowSheet = YES;
 		// Initial creation
 		[self setUpPaintView];
 	} 
-	else if (returnCode == NSCancelButton)
+    else if (returnCode == NSModalResponseCancel)
 	{
 		// Close the document - they obviously don't want to play
-		[[super windowForSheet] close];
+		[super.windowForSheet close];
 	}
 }
 
@@ -224,11 +216,11 @@ static BOOL kSWDocumentWillShowSheet = YES;
 		[resizeController setScales:[sender tag]];
 	
 	// Get, and then set, the current document size
-	NSSize currSize = [dataSource size];
+	NSSize currSize = dataSource.size;
 	[resizeController setCurrentSize:currSize];
 	
-    [NSApp beginSheet:[resizeController window]
-	   modalForWindow:[super windowForSheet]
+    [NSApp beginSheet:resizeController.window
+	   modalForWindow:super.windowForSheet
 		modalDelegate:self
 	   didEndSelector:@selector(resizeSheetDidEnd:returnCode:contextInfo:)
 		  contextInfo:NULL];
@@ -241,14 +233,14 @@ static BOOL kSWDocumentWillShowSheet = YES;
 			   returnCode:(NSInteger)returnCode
 			  contextInfo:(void *)contextInfo
 {
-	if (returnCode == NSOKButton) 
+    if (returnCode == NSModalResponseOK) 
 	{
 		NSSize newSize;
 		newSize.width = [resizeController width];
 		newSize.height = [resizeController height];
 		
 		// Nothing to do if the size isn't changing!
-		if ([dataSource size].width != newSize.width || [dataSource size].height != newSize.height) 
+		if (dataSource.size.width != newSize.width || dataSource.size.height != newSize.height) 
 		{
 			// This is also important!
 			[toolbox tieUpLooseEndsForCurrentTool];
@@ -256,7 +248,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 			[self handleUndoWithImageData:nil frame:NSZeroRect];
 			
 			[dataSource resizeToSize:newSize scaleImage:[resizeController scales]];
-			[paintView setFrame:NSMakeRect(0.0, 0.0, newSize.width, newSize.height)]; // Forces a redraw
+			paintView.frame = NSMakeRect(0.0, 0.0, newSize.width, newSize.height); // Forces a redraw
 			
 			// We should also redraw the clip view
 			[clipView setNeedsDisplay:YES];
@@ -268,20 +260,20 @@ static BOOL kSWDocumentWillShowSheet = YES;
 // Keep the current document's undo manager up to date
 - (void)undoLevelChanged:(NSNotification *)n
 {
-	NSNumber *number = [n object];
-	[[self undoManager] setLevelsOfUndo:[number integerValue]];
+	NSNumber *number = n.object;
+	self.undoManager.levelsOfUndo = number.integerValue;
 }
 
 
 - (void)showTextSheet:(NSNotification *)n
 {
-	if ([[super windowForSheet] isKeyWindow]) {
+	if (super.windowForSheet.keyWindow) {
 		if (!textController)
 			textController = [[SWTextToolWindowController alloc] initWithDocument:self];
 		
 		// Orders the font manager to the front
-		[NSApp beginSheet:[textController window]
-		   modalForWindow:[super windowForSheet]
+		[NSApp beginSheet:textController.window
+		   modalForWindow:super.windowForSheet
 			modalDelegate:self
 		   didEndSelector:@selector(textSheetDidEnd:string:)
 			  contextInfo:NULL];
@@ -290,7 +282,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 		
 		// Assigns the current front color (according to the sharedColorPanel) 
 		// to the frontColor reference
-		[[NSColorPanel sharedColorPanel] setColor:[n object]];
+		[NSColorPanel sharedColorPanel].color = n.object;
 		
 	}
 }
@@ -329,7 +321,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 	
     if (status==YES && (saveOp==NSSaveOperation || saveOp==NSSaveAsOperation))
     {
-		NSURL* url = [self fileURL];
+		NSURL* url = self.fileURL;
 		
 		// reload the image (this could fail)
 		status = [self readFromURL:url ofType:type error:outError];
@@ -348,35 +340,33 @@ static BOOL kSWDocumentWillShowSheet = YES;
 // Saving data: returns the correctly-formatted image data
 - (NSData *)dataOfType:(NSString *)aType error:(NSError **)anError
 {
-	NSBitmapImageRep *bitmap = [dataSource mainImage];
+	NSBitmapImageRep *bitmap = dataSource.mainImage;
 //	NSBitmapImageRep *bitmap = [SWImageTools createMonochromeImage:[paintView mainImage]];
 
 	[SWImageTools flipImageVertical:bitmap];
 		
 	NSData *data = nil;
-	NSBitmapImageFileType fileType = NSPNGFileType;
+    NSBitmapImageFileType fileType = NSBitmapImageFileTypePNG;
 	
 	if ([aType isEqualToString:@"bmp"])
-		fileType = NSBMPFileType;
+        fileType = NSBitmapImageFileTypeBMP;
 	else if ([aType isEqualToString:@"png"])
-		fileType = NSPNGFileType;
+        fileType = NSBitmapImageFileTypePNG;
 	else if ([aType isEqualToString:@"jpg"])
-		fileType = NSJPEGFileType;
+        fileType = NSBitmapImageFileTypeJPEG;
 	else if ([aType isEqualToString:@"gif"])
-		fileType = NSGIFFileType;
+        fileType = NSBitmapImageFileTypeGIF;
 	else if ([aType isEqualToString:@"tif"])
-		fileType = NSTIFFFileType;
+        fileType = NSBitmapImageFileTypeTIFF;
 	else
 		DebugLog(@"Error: unknown filetype!");
 	
 	// We need to retrieve the data stored in the save panel, and pack them into a dictionary
-	NSTIFFCompression tiffCompression = (fileType == NSJPEGFileType ? NSTIFFCompressionJPEG : NSTIFFCompressionNone);
-	CGFloat compressionFactor = [savePanelAccessoryViewController imageQuality];
+    NSTIFFCompression tiffCompression = (fileType == NSBitmapImageFileTypeJPEG ? NSTIFFCompressionJPEG : NSTIFFCompressionNone);
+	CGFloat compressionFactor = savePanelAccessoryViewController.imageQuality;
 	//BOOL alpha = [savePanelAccessoryViewController isAlphaEnabled];
-	NSDictionary *propDict = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSNumber numberWithInteger:tiffCompression], NSImageCompressionMethod,
-							  [NSNumber numberWithFloat:compressionFactor], NSImageCompressionFactor, 
-							  nil];
+	NSDictionary *propDict = @{NSImageCompressionMethod: @(tiffCompression),
+							  NSImageCompressionFactor: [NSNumber numberWithFloat:compressionFactor]};
 	
 	// Convert the image into the data that we need to return
 	data = [bitmap representationUsingType:fileType 
@@ -406,9 +396,8 @@ static BOOL kSWDocumentWillShowSheet = YES;
 	// 'Pbsh' has been registered with Apple as our personal four-letter integer
 	// NOTE: This attribute is actively ignored as of 10.6.  If we ever require that OS, go
 	// ahead and remove this.
-    [fileAttributes setObject:[NSNumber numberWithUnsignedInt:'Pbsh']
-					   forKey:NSFileHFSCreatorCode];
-    return [fileAttributes autorelease];
+    fileAttributes[NSFileHFSCreatorCode] = [NSNumber numberWithUnsignedInt:'Pbsh'];
+    return fileAttributes;
 }
 
 
@@ -426,18 +415,17 @@ static BOOL kSWDocumentWillShowSheet = YES;
 
 	// Update the filetype based on the user defaults (after converting from human readable form)
 	NSString *savedValue = [[NSUserDefaults standardUserDefaults] valueForKey:@"FileType"];
-	[currentFileType release];
-	currentFileType = [[SWImageTools convertFileType:savedValue] retain];
+	currentFileType = [SWImageTools convertFileType:savedValue];
 	
 	// Make sure that it's loaded its view
 	[savePanelAccessoryViewController loadView];
 	NSView *accessoryView = [savePanelAccessoryViewController viewForFileType:savedValue];
 	if (accessoryView) {
-		[savePanel setAccessoryView:accessoryView];
+		savePanel.accessoryView = accessoryView;
 	}
 	
 	// Make sure the correct file extension is being used
-	[savePanel setAllowedFileTypes:[NSArray arrayWithObject:currentFileType]];
+	savePanel.allowedFileTypes = @[currentFileType];
 	
 	return YES;
 }
@@ -459,10 +447,9 @@ static BOOL kSWDocumentWillShowSheet = YES;
 	NSString *newFileType = [change valueForKey:NSKeyValueChangeNewKey];
 	if (newFileType) 
 	{
-		[currentFileType release];
-		currentFileType = [newFileType retain];
-		NSSavePanel *savePanel = (NSSavePanel *)[[savePanelAccessoryViewController view] window];
-		[savePanel setAllowedFileTypes:[NSArray arrayWithObject:currentFileType]];
+		currentFileType = newFileType;
+		NSSavePanel *savePanel = (NSSavePanel *)savePanelAccessoryViewController.view.window;
+		savePanel.allowedFileTypes = @[currentFileType];
 	}
 }
 
@@ -490,12 +477,12 @@ static BOOL kSWDocumentWillShowSheet = YES;
 - (void)printDocument:(id)sender
 {
     NSPrintOperation *op = [NSPrintOperation printOperationWithView:paintView
-														  printInfo:[self printInfo]];
+														  printInfo:self.printInfo];
 	
-	SWPrintPanelAccessoryViewController *ppavc = [[[SWPrintPanelAccessoryViewController alloc]
-												   initWithNibName:@"PrintPanelAccessoryView" bundle:nil] autorelease];
-	[[op printPanel] addAccessoryController:ppavc];
-    [op runOperationModalForWindow:[super windowForSheet]
+	SWPrintPanelAccessoryViewController *ppavc = [[SWPrintPanelAccessoryViewController alloc]
+												   initWithNibName:@"PrintPanelAccessoryView" bundle:nil];
+	[op.printPanel addAccessoryController:ppavc];
+    [op runOperationModalForWindow:super.windowForSheet
 						  delegate:self
 					didRunSelector:NULL
 					   contextInfo:NULL];
@@ -511,20 +498,20 @@ static BOOL kSWDocumentWillShowSheet = YES;
 // Undo canvas resizing
 - (void)handleUndoWithImageData:(NSData *)mainImageData frame:(NSRect)frame
 {
-	NSUndoManager *undo = [self undoManager];
+	NSUndoManager *undo = self.undoManager;
 	NSRect currentFrame = NSZeroRect;
-	currentFrame.size = [dataSource size];
+	currentFrame.size = dataSource.size;
 	NSData *mainImageDataCurrent = [dataSource copyMainImageData];
 	[[undo prepareWithInvocationTarget:self] handleUndoWithImageData:mainImageDataCurrent frame:currentFrame];
 	
 	// Without resize, set the string to drawing
-	if (NSEqualSizes(frame.size, NSZeroSize) || NSEqualSizes(frame.size, [dataSource size]))
+	if (NSEqualSizes(frame.size, NSZeroSize) || NSEqualSizes(frame.size, dataSource.size))
 		[undo setActionName:NSLocalizedString(@"Drawing", @"The standard undo command string for drawings")];
 	else
 	{
 		// It doesn't matter here if we scale or not, since we'll be replacing the image in a moment
 		[dataSource resizeToSize:frame.size scaleImage:NO];
-		[paintView setFrame:frame];
+		paintView.frame = frame;
 		[clipView setNeedsDisplay:YES];
 		[undo setActionName:NSLocalizedString(@"Resize", @"The undo command string image resizings")];
 	}
@@ -539,7 +526,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 	[dataSource restoreMainImageFromData:mainImageData];
 	
 	// Only clear the overlay during an undo -- NEVER during the initial setup
-	if ([undo isUndoing])
+	if (undo.undoing)
 		[paintView clearOverlay];
 	
 	// But force a redraw either way
@@ -553,17 +540,17 @@ static BOOL kSWDocumentWillShowSheet = YES;
 {
 	NSAssert([[toolbox currentTool] isKindOfClass:[SWSelectionTool class]], 
 			 @"How are we copying without a SWSelectionTool as the active tool?");
-	if ([[toolbox currentTool] isKindOfClass:[SWSelectionTool class]])
+	if ([toolbox.currentTool isKindOfClass:[SWSelectionTool class]])
 	{
-		SWSelectionTool *currentTool = (SWSelectionTool *)[toolbox currentTool];
+		SWSelectionTool *currentTool = (SWSelectionTool *)toolbox.currentTool;
 		
 		NSBitmapImageRep *selectedImage = [currentTool selectedImage];		
 		
 		// Make sure we flip the image before we put it in the pasteboard
 		[SWImageTools flipImageVertical:selectedImage];
 		
-		[pb declareTypes:[NSArray arrayWithObject:NSTIFFPboardType] owner:self];
-		[pb setData:[selectedImage TIFFRepresentation] forType:NSTIFFPboardType];
+        [pb declareTypes:@[NSPasteboardTypeTIFF] owner:self];
+        [pb setData:selectedImage.TIFFRepresentation forType:NSPasteboardTypeTIFF];
 		
 		// Now flip it again
 		[SWImageTools flipImageVertical:selectedImage];
@@ -599,7 +586,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 		[paintView cursorUpdate:nil];
 		NSBitmapImageRep *temp = [[NSBitmapImageRep alloc] initWithData:data];
 
-		NSPoint origin = [[paintView superview] bounds].origin;
+		NSPoint origin = paintView.superview.bounds.origin;
 		if (origin.x < 0) origin.x = 0;
 		if (origin.y < 0) origin.y = 0;
 
@@ -607,17 +594,16 @@ static BOOL kSWDocumentWillShowSheet = YES;
 		rect.origin = origin;
 
 		// Use ceiling because pixels can be fractions, but the tool assumes integer values								 
-		rect.size = NSMakeSize(ceil([temp size].width), ceil([temp size].height));
+		rect.size = NSMakeSize(ceil(temp.size.width), ceil(temp.size.height));
 		
 		[dataSource restoreBufferImageFromData:data];
 		
 		// As always, flip the image to be viewed in our flipped view
-		[SWImageTools flipImageVertical:[dataSource bufferImage]];
+		[SWImageTools flipImageVertical:dataSource.bufferImage];
 
-		[(SWSelectionTool *)[toolbox currentTool] setClippingRect:rect
-														 forImage:[dataSource bufferImage]
-													withMainImage:[dataSource mainImage]];
-		[temp release];
+		[(SWSelectionTool *)toolbox.currentTool setClippingRect:rect
+														 forImage:dataSource.bufferImage
+													withMainImage:dataSource.mainImage];
 		[paintView setNeedsDisplay:YES];
 	}
 }
@@ -628,10 +614,10 @@ static BOOL kSWDocumentWillShowSheet = YES;
 {
 	[toolboxController switchToScissors:nil];
 	
-	[[toolbox currentTool] setSavedPoint:NSZeroPoint];
-	[[toolbox currentTool] performDrawAtPoint:NSMakePoint([paintView bounds].size.width, [paintView bounds].size.height)
-								withMainImage:[dataSource mainImage] 
-								  bufferImage:[dataSource bufferImage] 
+	[toolbox.currentTool setSavedPoint:NSZeroPoint];
+	[toolbox.currentTool performDrawAtPoint:NSMakePoint(paintView.bounds.size.width, paintView.bounds.size.height)
+								withMainImage:dataSource.mainImage 
+								  bufferImage:dataSource.bufferImage 
 								   mouseEvent:MOUSE_UP];
 	
 	[paintView cursorUpdate:nil];
@@ -682,22 +668,22 @@ static BOOL kSWDocumentWillShowSheet = YES;
 //- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem
 {
-	SEL action = [anItem action];
+	SEL action = anItem.action;
 	if ((action == @selector(copy:)) || 
 		(action == @selector(cut:)) || 
 		(action == @selector(crop:))) 
 	{
-		return ([[[toolbox currentTool] class] isEqualTo:[SWSelectionTool class]] && 
-				[(SWSelectionTool *)[toolbox currentTool] isSelected]);
+		return ([[toolbox.currentTool class] isEqualTo:[SWSelectionTool class]] && 
+				[(SWSelectionTool *)toolbox.currentTool isSelected]);
 	} 
 	else if (action == @selector(paste:)) 
 	{
-		NSArray *array = [[NSPasteboard generalPasteboard] types];
+		NSArray *array = [NSPasteboard generalPasteboard].types;
 		BOOL paste = NO;
 		id object;
 		for (object in array) 
 		{
-			if ([object isEqualToString:NSTIFFPboardType] || [object isEqualToString:NSPICTPboardType])
+            if ([object isEqualToString:NSPasteboardTypeTIFF] || [object isEqualToString:NSPICTPboardType])
 				paste = YES;
 		}
 		return paste;
@@ -731,10 +717,10 @@ static BOOL kSWDocumentWillShowSheet = YES;
 
 - (IBAction)flipHorizontal:(id)sender
 {
-	if ([[super windowForSheet] isKeyWindow])
+	if (super.windowForSheet.keyWindow)
 	{
 		[self handleUndoWithImageData:nil frame:NSZeroRect];
-		NSBitmapImageRep *image = [dataSource mainImage];
+		NSBitmapImageRep *image = dataSource.mainImage;
 		[SWImageTools flipImageHorizontal:image];
 		[paintView setNeedsDisplay:YES];
 	}
@@ -743,10 +729,10 @@ static BOOL kSWDocumentWillShowSheet = YES;
 
 - (IBAction)flipVertical:(id)sender
 {
-	if ([[super windowForSheet] isKeyWindow]) 
+	if (super.windowForSheet.keyWindow) 
 	{
 		[self handleUndoWithImageData:nil frame:NSZeroRect];
-		NSBitmapImageRep *image = [dataSource mainImage];
+		NSBitmapImageRep *image = dataSource.mainImage;
 		[SWImageTools flipImageVertical:image];
 		[paintView setNeedsDisplay:YES];
 	}
@@ -758,11 +744,11 @@ static BOOL kSWDocumentWillShowSheet = YES;
 - (IBAction)crop:(id)sender
 {
 	// First we need to make a temporary copy of what's selected by the selection tool
-	if ([[toolbox currentTool] isKindOfClass:[SWSelectionTool class]])
+	if ([toolbox.currentTool isKindOfClass:[SWSelectionTool class]])
 	{
-		NSRect rect = [(SWSelectionTool *)[toolbox currentTool] clippingRect];
+		NSRect rect = [(SWSelectionTool *)toolbox.currentTool clippingRect];
 		
-		NSBitmapImageRep *croppedImage = [[(SWSelectionTool *)[toolbox currentTool] selectedImage] retain];
+		NSBitmapImageRep *croppedImage = [(SWSelectionTool *)toolbox.currentTool selectedImage];
 		
 		// This is also important!
 		[toolbox tieUpLooseEndsForCurrentTool];
@@ -773,13 +759,11 @@ static BOOL kSWDocumentWillShowSheet = YES;
 		[dataSource resizeToSize:rect.size scaleImage:NO];
 		
 		// Set the image
-		[dataSource restoreMainImageFromData:[croppedImage TIFFRepresentation]];
+		[dataSource restoreMainImageFromData:croppedImage.TIFFRepresentation];
 		
 		// Redraw the Paint view and the clip view
-		[paintView setFrame:NSMakeRect(0.0, 0.0, rect.size.width, rect.size.height)];
+		paintView.frame = NSMakeRect(0.0, 0.0, rect.size.width, rect.size.height);
 		[clipView setNeedsDisplay:YES];
-		
-		[croppedImage release];
 	}
 }
 
@@ -788,7 +772,7 @@ static BOOL kSWDocumentWillShowSheet = YES;
 - (IBAction)invertColors:(id)sender
 {
 	[self handleUndoWithImageData:nil frame:NSZeroRect];
-	[SWImageTools invertImage:[dataSource mainImage]];
+	[SWImageTools invertImage:dataSource.mainImage];
 	[paintView setNeedsDisplay:YES];
 }
 

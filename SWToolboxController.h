@@ -19,11 +19,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef enum {
+typedef NS_ENUM(unsigned int, SWFillStyle) {
 	STROKE_ONLY,
 	FILL_ONLY,
 	FILL_AND_STROKE
-} SWFillStyle;
+};
 
 @class SWColorSelector;
 @class SWMatrix;
@@ -33,7 +33,6 @@ typedef enum {
 @interface SWToolboxController : NSWindowController {	
 	NSColor *foregroundColor;
 	NSColor *backgroundColor;
-	NSString *currentTool;
 	NSInteger lineWidth;
 	SWFillStyle fillStyle;
 	BOOL selectionTransparency;

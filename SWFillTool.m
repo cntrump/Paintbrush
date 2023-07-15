@@ -47,13 +47,13 @@
 	{
 
 		// Get the width and height of the image
-		w = [mainImage size].width;
-		h = [mainImage size].height;
+		w = mainImage.size.width;
+		h = mainImage.size.height;
 		
 		_mainImage = mainImage;
 		
 		// Which color are we using?
-		fillColor = [(flags & NSAlternateKeyMask) ? backColor : frontColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+        fillColor = [(flags & NSEventModifierFlagOption) ? backColor : frontColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
 		
 		// Check to make sure if we should even bother trying to fill - 
 		// if it's the same color, there's nothing to do
@@ -72,10 +72,8 @@
 			// And then release it!
 			CGImageRelease(mask);
 			
-			[super addRedrawRectFromPoint:NSZeroPoint toPoint:NSMakePoint([_mainImage pixelsWide], [_mainImage pixelsHigh])];
+			[super addRedrawRectFromPoint:NSZeroPoint toPoint:NSMakePoint(_mainImage.pixelsWide, _mainImage.pixelsHigh)];
 		}
-		
-		[imageRep release];
 	}
 	return nil;
 }
@@ -104,7 +102,7 @@
 	//	the task to a helper class that can build up temporary state.
 	SWSelectionBuilder *builder = [[SWSelectionBuilder alloc] initWithBitmapImageRep:_mainImage point:point tolerance:tolerance];
 	CGImageRef ref = [builder mask];
-	[builder release];
+
 	return ref;
 }
 
@@ -113,14 +111,14 @@
 	// We want to render the image into our bitmap image rep, so create a
 	//	NSGraphicsContext from it.
 	NSGraphicsContext *imageContext = [NSGraphicsContext graphicsContextWithBitmapImageRep:_mainImage];
-	CGContextRef cgContext = [imageContext graphicsPort];
+    CGContextRef cgContext = imageContext.CGContext;
 	
 	// "Focus" our image rep so the NSBitmapImageRep will use it to draw into
 	[NSGraphicsContext saveGraphicsState];
 	[NSGraphicsContext setCurrentContext:imageContext];
 	
 	// For filling with transparent colors
-	[[NSGraphicsContext currentContext] setCompositingOperation:NSCompositeCopy];		
+    [NSGraphicsContext currentContext].compositingOperation = NSCompositingOperationCopy;		
 
 	// Clip out everything that we don't want to fill with the new color
 	CGContextClipToMask(cgContext, CGRectMake(0, 0, w, h), mask);

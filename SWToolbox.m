@@ -27,7 +27,7 @@
 
 @synthesize currentTool;
 
-- (id)initWithDocument:(SWDocument *)doc
+- (instancetype)initWithDocument:(SWDocument *)doc
 {
 	self = [super init];
 	
@@ -38,8 +38,8 @@
 	for (Class c in [SWToolbox toolClassList]) 
 	{
 		SWTool *tool = [[c alloc] initWithController:sharedController];
-		[tool setDocument:doc];
-		[toolList setObject:tool forKey:[tool description]];
+		tool.document = doc;
+		toolList[tool.description] = tool;
 	}
 	
 	[sharedController addObserver:self 
@@ -58,12 +58,6 @@
 - (void)dealloc
 {
 	[sharedController removeObserver:self forKeyPath:@"currentTool"];
-	for (id key in toolList) {
-		[[toolList objectForKey:key] release];
-	}
-	[toolList release];
-	[currentTool release];
-	[super dealloc];
 }
 
 
@@ -71,14 +65,12 @@
 - (void)setCurrentTool:(SWTool *)tool
 {
 	[currentTool tieUpLooseEnds];
-	[tool retain];
-	[currentTool release];
 	currentTool = tool;
     
     
     SWToolboxController *controller = [SWToolboxController sharedToolboxPanelController];
-    SWDocument *document = [controller activeDocument];
-    SWPaintView *view = [document paintView];
+    SWDocument *document = controller.activeDocument;
+    SWPaintView *view = document.paintView;
     [view cursorUpdate:nil];
     
 }
@@ -90,12 +82,12 @@
 						change:(NSDictionary *)change 
 					   context:(void *)context
 {
-	id thing = [change objectForKey:NSKeyValueChangeNewKey];
+	id thing = change[NSKeyValueChangeNewKey];
 	
 	if ([keyPath isEqualToString:@"currentTool"]) {
 		SWTool *tool = [self toolForLabel:thing];
 		if (tool) {
-			[self setCurrentTool:tool];
+			self.currentTool = tool;
 		}
 	}
 }
@@ -104,16 +96,16 @@
 // Which tool comes from which label?
 - (SWTool *)toolForLabel:(NSString *)label
 {
-	return [toolList objectForKey:[NSString stringWithString:label]];
+	return toolList[[NSString stringWithString:label]];
 }
 
 
 + (NSArray *)toolClassList
 {
-	return [NSArray arrayWithObjects:[SWBrushTool class], [SWEraserTool class], [SWSelectionTool class], 
+	return @[[SWBrushTool class], [SWEraserTool class], [SWSelectionTool class], 
 			[SWAirbrushTool class], [SWFillTool class], [SWBombTool class], [SWLineTool class], 
 			[SWCurveTool class], [SWRectangleTool class], [SWEllipseTool class], [SWRoundedRectangleTool class], 
-			[SWTextTool class], [SWEyeDropperTool class], [SWZoomTool class], nil];
+			[SWTextTool class], [SWEyeDropperTool class], [SWZoomTool class]];
 }
 
 

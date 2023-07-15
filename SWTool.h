@@ -22,13 +22,12 @@
 @class SWToolboxController;
 @class SWDocument;
 
-typedef enum 
-{
+typedef NS_ENUM(unsigned int, SWMouseEvent) {
 	MOUSE_DOWN, 
 	MOUSE_DRAGGED,
 	MOUSE_UP,
 	MOUSE_MOVED
-} SWMouseEvent;
+};
 
 @interface SWTool : NSObject
 {
@@ -54,7 +53,7 @@ typedef enum
 	SWDocument *document;
 }
 
-- (id)initWithController:(SWToolboxController *)controller;
+- (instancetype)initWithController:(SWToolboxController *)controller NS_DESIGNATED_INITIALIZER;
 //- (id)copyWithZone:(NSZone *)zone;
 
 // Some setters
@@ -64,9 +63,8 @@ typedef enum
 - (void)setShouldFill:(BOOL)fill stroke:(BOOL)stroke;
 
 
-- (NSPoint)savedPoint;
-- (NSColor *)drawingColor;
-- (void)setSavedPoint:(NSPoint)aPoint;
+@property (NS_NONATOMIC_IOSONLY) NSPoint savedPoint;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSColor *drawingColor;
 - (void)tieUpLooseEnds;
 - (void)mouseHasMoved:(NSPoint)aPoint;
 - (BOOL)isEqualToTool:(SWTool *)aTool;
@@ -75,12 +73,12 @@ typedef enum
 // Used for faster drawing: don't redraw the entire screen, just this portion
 - (NSRect)addRedrawRectFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2;
 - (NSRect)addRectToRedrawRect:(NSRect)newRect;
-- (NSRect)invalidRect;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSRect invalidRect;
 - (void)resetRedrawRect;
-- (BOOL)shouldShowContextualMenu;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL shouldShowContextualMenu;
 //- (BOOL)shouldShowFillOptions;
 //- (BOOL)shouldShowTransparencyOptions;
-- (NSBezierPath *)path;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSBezierPath *path;
 
 @property (readonly) BOOL shouldShowFillOptions;
 @property (readonly) BOOL shouldShowTransparencyOptions;
@@ -97,6 +95,6 @@ typedef enum
 					   withMainImage:(NSBitmapImageRep *)mainImage 
 						 bufferImage:(NSBitmapImageRep *)bufferImage 
 						  mouseEvent:(SWMouseEvent)event;
-- (NSCursor *)cursor;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) NSCursor *cursor;
 
 @end

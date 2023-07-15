@@ -29,6 +29,6 @@
 - (void)scalePopUpAction:(id)sender;
 - (void)setScaleFactor:(CGFloat)factor adjustPopup:(BOOL)flag;
 - (void)setScaleFactor:(CGFloat)factor atPoint:(NSPoint)point adjustPopup:(BOOL)flag;
-- (CGFloat)scaleFactor;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat scaleFactor;
 
 @end

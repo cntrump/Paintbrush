@@ -22,19 +22,20 @@
 
 @implementation SWMatrix
 
-- (id)initWithCoder:(NSCoder *)coder
+- (instancetype)initWithCoder:(NSCoder *)coder
 {
-	[super initWithCoder:coder];
-	
-	[self addTrackingArea:[[[NSTrackingArea alloc] initWithRect:[self frame]
-													   options: NSTrackingMouseMoved | NSTrackingMouseEnteredAndExited | NSTrackingActiveInActiveApp | NSTrackingInVisibleRect
-														 owner:self
-													  userInfo:nil] autorelease]];
-	
-	[[self window] setAcceptsMouseMovedEvents:YES];
-	hoveredPoint = NSMakePoint(-1,-1);
-	hoveredCell = nil;
-	
+    if (self = [super initWithCoder:coder]) {
+
+        [self addTrackingArea:[[NSTrackingArea alloc] initWithRect:self.frame
+                                                           options: NSTrackingMouseMoved | NSTrackingMouseEnteredAndExited | NSTrackingActiveInActiveApp | NSTrackingInVisibleRect
+                                                             owner:self
+                                                          userInfo:nil]];
+
+        [self.window setAcceptsMouseMovedEvents:YES];
+        hoveredPoint = NSMakePoint(-1,-1);
+        hoveredCell = nil;
+    }
+    
 	return self;
 }
 
@@ -49,7 +50,7 @@
 // When the mouse moves, make sure the correct button is hovered
 - (void)mouseMoved:(NSEvent *)theEvent
 {
-	NSPoint p = [theEvent locationInWindow];
+	NSPoint p = theEvent.locationInWindow;
 	NSPoint converted = [self convertPoint:p fromView:nil];
 	
 	// Calculate which row and column this point equates to

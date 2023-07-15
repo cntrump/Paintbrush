@@ -44,7 +44,7 @@ NSString * const kSWCurrentFileType = @"currentFileType";
 		[fileTypeButton addItemWithTitle:type];
 	
 	// Initialize the values for the controls in the subviews
-	[self setImageQuality:0.8];
+	self.imageQuality = 0.8;
 	[self setIsAlphaEnabled:YES];
 }
 
@@ -57,7 +57,7 @@ NSString * const kSWCurrentFileType = @"currentFileType";
 	// We have a few views that we could use, depending on the file type
 	[self updateViewForFileType:fileType];
 	
-	return [self view];
+	return self.view;
 }
 
 
@@ -65,7 +65,7 @@ NSString * const kSWCurrentFileType = @"currentFileType";
 - (void)updateViewForFileType:(NSString *)fileType
 {
 	// First empty out the container view
-	for (NSView *subview in [containerView subviews])
+	for (NSView *subview in containerView.subviews)
 		[subview removeFromSuperview];
 	
 	// Now we can add the correct subview
@@ -87,7 +87,7 @@ NSString * const kSWCurrentFileType = @"currentFileType";
 	NSString *finalString = [SWImageTools convertFileType:buttonSelection];
 	
 	// Use the explicit mutator, to trigger KVO
-	[self setCurrentFileType:finalString];
+	self.currentFileType = finalString;
 	
 	// Update the container view for the new filetype
 	[self updateViewForFileType:buttonSelection];

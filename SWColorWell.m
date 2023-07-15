@@ -25,13 +25,13 @@
 @synthesize isHovered;
 
 
-- (id)initWithCoder:(NSCoder *)coder
+- (instancetype)initWithCoder:(NSCoder *)coder
 {
-	[super initWithCoder:coder];
-	
-	hovImage = [NSImage imageNamed:@"hoveredwell.png"];
-	pressedImage = [NSImage imageNamed:@"pressedwell.png"];
-	
+    if (self = [super initWithCoder:coder]) {
+        hovImage = [NSImage imageNamed:@"hoveredwell.png"];
+        pressedImage = [NSImage imageNamed:@"pressedwell.png"];
+    }
+
 	return self;
 }
 
@@ -59,28 +59,28 @@
 		rect = NSInsetRect(rect, 4.0, 4.0);
 	
 	// An SWColorWell can be hovered, selected, or neither
-	if ([self isActive]) 
+	if (self.active) 
 	{
 		[pressedImage drawAtPoint:NSZeroPoint 
 						 fromRect:NSZeroRect 
-						operation:NSCompositeSourceOver 
+                        operation:NSCompositingOperationSourceOver 
 						 fraction:1.0];	
 	} 
 	else if (isHovered) 
 	{
 		[hovImage drawAtPoint:NSZeroPoint 
 					 fromRect:NSZeroRect 
-					operation:NSCompositeSourceOver 
+                    operation:NSCompositingOperationSourceOver 
 					 fraction:1.0];
 	}
 	
 	rect.origin.x += 0.5;
 	rect.origin.y += 0.5;
 	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:4 yRadius:4];
-	[path setLineWidth:1.0];
+	path.lineWidth = 1.0;
 	
 	// Draw the fill now
-	[[self color] setFill];		
+	[self.color setFill];		
 	[path fill];
 	
 	[[NSColor grayColor] setStroke];
@@ -92,21 +92,21 @@
 - (void)setColor:(NSColor *)color
 {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
-	[super setColor:color];
+	super.color = color;
 }
 
 - (void)mouseDown:(NSEvent *)event
 {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
 	[super mouseDown:event];
-	[[self superview] mouseDown:event];
+	[self.superview mouseDown:event];
 }
 
 - (void)mouseUp:(NSEvent *)event
 {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
 	[super mouseUp:event];
-	[[self superview] mouseUp:event];
+	[self.superview mouseUp:event];
 }
 
 - (BOOL)isOpaque

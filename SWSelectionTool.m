@@ -23,9 +23,10 @@
 
 @implementation SWSelectionTool
 
+@synthesize selectedImage;
 @synthesize oldOrigin;
 
-- (id)initWithController:(SWToolboxController *)controller;
+- (instancetype)initWithController:(SWToolboxController *)controller;
 {
 	if (self = [super initWithController:controller]) {
 		[controller addObserver:self
@@ -49,7 +50,7 @@
 {
 	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	
-	id thing = [change objectForKey:NSKeyValueChangeNewKey];
+	id thing = change[NSKeyValueChangeNewKey];
 	
 	if ([keyPath isEqualToString:@"selectionTransparency"]) 
 	{
@@ -61,9 +62,9 @@
 - (NSBezierPath *)pathFromPoint:(NSPoint)begin toPoint:(NSPoint)end
 {
 	path = [NSBezierPath bezierPath];
-	[path setLineWidth:1.0];
+	path.lineWidth = 1.0;
 	[path setLineDash:dottedLineArray count:2 phase:dottedLineOffset];
-	[path setLineCapStyle:NSSquareLineCapStyle];	
+	path.lineCapStyle = NSSquareLineCapStyle;	
 	
 	// The 0.5s help because the width is 1, and that does weird stuff
 	[path appendBezierPathWithRect:
@@ -149,10 +150,10 @@
 			point.x = 0.0;
 		if (point.y < 0)
 			point.y = 0.0;
-		if (point.x > [mainImage size].width)
-			point.x = [mainImage size].width;
-		if (point.y > [mainImage size].height)
-			point.y = [mainImage size].height;
+		if (point.x > mainImage.size.width)
+			point.x = mainImage.size.width;
+		if (point.y > mainImage.size.height)
+			point.y = mainImage.size.height;
 				
 		// If this check fails, then they didn't draw a rectangle
 		if (!NSEqualPoints(point, savedPoint)) 
@@ -162,12 +163,12 @@
 			
 			// Create the clipping rect based on these two new points
 			clippingRect = NSMakeRect(fmin(savedPoint.x, point.x), fmin(savedPoint.y, point.y), 
-									  abs(point.x - savedPoint.x), abs(point.y - savedPoint.y));
+									  fabs(point.x - savedPoint.x), fabs(point.y - savedPoint.y));
 
 			if (event == MOUSE_UP) 
 			{
 				// Copy the rectangle's contents to the second image
-				originalImageCopy = [[NSBitmapImageRep alloc] initWithData:[mainImage TIFFRepresentation]];
+				originalImageCopy = [[NSBitmapImageRep alloc] initWithData:mainImage.TIFFRepresentation];
 				
 				[SWImageTools clearImage:bufferImage];
 				
@@ -178,9 +179,9 @@
 				
 				// Now if we should, remove the background of the image
 				if (shouldOmitBackground) 
-					selectedImage = [selImageWithTransparency retain];
+					selectedImage = selImageWithTransparency;
 				else
-					selectedImage = [selImageSansTransparency retain];
+					selectedImage = selImageSansTransparency;
 				
 				// Delete it from the main image
 				SWLockFocus(mainImage);
@@ -231,9 +232,6 @@
 
 - (void)deleteKey
 {
-	[selectedImage release];
-	[selImageWithTransparency release];
-	[selImageSansTransparency release];
 	selectedImage = nil;
 	selImageWithTransparency = nil;
 	selImageSansTransparency = nil;
@@ -245,14 +243,10 @@
 	// Switch the image that selectedImage points to, if it exists
 	if (shouldOmitBackground)
 	{
-		[selImageWithTransparency retain];
-		[selectedImage release];
 		selectedImage = selImageWithTransparency;
 	}
 	else
 	{
-		[selImageSansTransparency retain];
-		[selectedImage release];
 		selectedImage = selImageSansTransparency;
 	}
 	
@@ -275,7 +269,7 @@
 	NSBitmapImageRep *mainImageCopy = nil;
 	if (_mainImage)
 	{
-		[SWImageTools initImageRep:&mainImageCopy withSize:[_mainImage size]];
+		[SWImageTools initImageRep:&mainImageCopy withSize:_mainImage.size];
 		[SWImageTools drawToImage:mainImageCopy fromImage:_mainImage withComposition:NO];
 	}
 
@@ -290,7 +284,6 @@
 			[document handleUndoWithImageData:nil frame:NSZeroRect];
 			
 			// Clean up!
-			[originalImageCopy release];
 			originalImageCopy = nil;
 		}
 	}
@@ -304,7 +297,7 @@
 				  withComposition:YES];
 
 		// Redraw the entire image
-		[super addRectToRedrawRect:NSMakeRect(0,0,[mainImageCopy size].width,[mainImageCopy size].height)];
+		[super addRectToRedrawRect:NSMakeRect(0,0,mainImageCopy.size.width,mainImageCopy.size.height)];
 		
 		// Finally, move all of mainImageCopy to _mainImage
 		[SWImageTools drawToImage:_mainImage fromImage:mainImageCopy withComposition:NO];
@@ -323,7 +316,6 @@
 	[self deleteKey];
 	
 	// Clean up after ourselves
-	[mainImageCopy release];
 	_mainImage = nil;
 }
 
@@ -343,17 +335,20 @@
 	isSelected = YES;
 	
 	// Create the image to paste
-	[SWImageTools initImageRep:&selectedImage withSize:[_bufferImage size]];
+    NSBitmapImageRep *selectedImage = nil, *selImageWithTransparency = nil;
+	[SWImageTools initImageRep:&selectedImage withSize:_bufferImage.size];
+    self->selectedImage = selectedImage;
 	SWLockFocus(selectedImage);
-	[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationNone];
+	[NSGraphicsContext currentContext].imageInterpolation = NSImageInterpolationNone;
 	// Create the point to paste at
 	NSPoint point = NSMakePoint(clippingRect.origin.x, clippingRect.origin.y + (clippingRect.size.height - selectedImage.size.height));
 	[image drawAtPoint:point];
 	SWUnlockFocus(selectedImage);
 	
 	// Make the copies of the image for with/without transparency
-	selImageSansTransparency = [selectedImage retain];
-	[SWImageTools initImageRep:&selImageWithTransparency withSize:[_bufferImage size]];
+	selImageSansTransparency = selectedImage;
+	[SWImageTools initImageRep:&selImageWithTransparency withSize:_bufferImage.size];
+    self->selImageWithTransparency = selImageWithTransparency;
 	[SWImageTools drawToImage:selImageWithTransparency
 					fromImage:selImageSansTransparency 
 			  withComposition:NO];
@@ -378,7 +373,7 @@
 
 - (NSData *)imageData
 {
-	return [originalImageCopy TIFFRepresentation];
+	return originalImageCopy.TIFFRepresentation;
 }
 
 - (NSBitmapImageRep *)selectedImage
@@ -394,7 +389,7 @@
 - (NSCursor *)cursor
 {
 	if (!customCursor) {
-		customCursor = [[NSCursor crosshairCursor] retain];
+		customCursor = NSCursor.crosshairCursor;
 	}
 	return customCursor;
 }
@@ -419,11 +414,6 @@
 - (void)dealloc
 {
 	[toolboxController removeObserver:self forKeyPath:@"selectionTransparency"];
-	[originalImageCopy release];
-	[selectedImage release];
-	[selImageWithTransparency release];
-	[selImageSansTransparency release];
-	[super dealloc];
 }
 
 @end

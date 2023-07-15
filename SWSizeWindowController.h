@@ -35,9 +35,7 @@
 - (IBAction)endSheet:(id)sender;
 
 // A few accessors and mutators
-- (NSInteger)width;
-- (NSInteger)height;
-- (void)setWidth:(NSInteger)newWidth;
-- (void)setHeight:(NSInteger)newHeight;
+@property (NS_NONATOMIC_IOSONLY) NSInteger width;
+@property (NS_NONATOMIC_IOSONLY) NSInteger height;
 
 @end

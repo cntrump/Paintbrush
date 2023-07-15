@@ -22,6 +22,7 @@
 #import "SWToolList.h"
 #import "SWColorSelector.h"
 #import "SWDocument.h"
+#import "SWMatrix.h"
 
 // Heights for the panel, based on what is shown
 #define LARGE_HEIGHT 467
@@ -42,7 +43,7 @@
 // Curiosity...!
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
-	NSWindow *window = [notification object];
+	NSWindow *window = notification.object;
 
 	NSDocumentController *controller = [NSDocumentController sharedDocumentController];
 	id document = [controller documentForWindow:window];
@@ -67,7 +68,7 @@
 
 
 // Override the initializer
-- (id)initWithWindowNibName:(NSString *)windowNibName
+- (instancetype)initWithWindowNibName:(NSString *)windowNibName
 {
 	if (self = [super initWithWindowNibName:windowNibName]) {		
 		// Curiosity...
@@ -94,10 +95,10 @@
 	toolbox = [[SWToolbox alloc] initWithDocument:nil];
 	
 	// Set the starting toolbox info
-	[self setLineWidthDisplay:3];
-	[self setForegroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:1.0]];
-	[self setBackgroundColor:[NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0]];
-	[self setFillStyle:STROKE_ONLY];
+	self.lineWidthDisplay = 3;
+	self.foregroundColor = [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:1.0];
+	self.backgroundColor = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+	self.fillStyle = STROKE_ONLY;
 	[self setSelectionTransparency:NO];
 	[self changeCurrentTool:toolMatrix];	
 }
@@ -106,11 +107,11 @@
 // Called externally at times
 - (void)updateInfo
 {
-	[self setLineWidthDisplay:[self lineWidthDisplay]];
-	[self setForegroundColor:[self foregroundColor]];
-	[self setBackgroundColor:[self backgroundColor]];
-	[self setFillStyle:[self fillStyle]];
-	[self setSelectionTransparency:[self selectionTransparency]];
+	self.lineWidthDisplay = self.lineWidthDisplay;
+	self.foregroundColor = self.foregroundColor;
+	self.backgroundColor = self.backgroundColor;
+	self.fillStyle = self.fillStyle;
+	self.selectionTransparency = self.selectionTransparency;
 	[self changeCurrentTool:toolMatrix];	
 }
 
@@ -127,7 +128,7 @@
 
 - (void)setLineWidthDisplay:(NSInteger)width
 {
-	[self setLineWidth:width];
+	self.lineWidth = width;
 }
 
 
@@ -144,39 +145,39 @@
 	
 	SWTool *tempTool = [toolbox toolForLabel:currentTool];
 		
-	[fillMatrix setHidden:(![tempTool shouldShowFillOptions])];
-	[transparencyMatrix setHidden:(![tempTool shouldShowTransparencyOptions])];
+    [fillMatrix setHidden:(!tempTool.shouldShowFillOptions)];
+    [transparencyMatrix setHidden:(!tempTool.shouldShowTransparencyOptions)];
 	
 	// Handle resizing of tool palette, based on which tool is selected
-	NSRect aRect = [[super window] frame];
-	if ([tempTool shouldShowFillOptions] || [tempTool shouldShowTransparencyOptions]) {
+	NSRect aRect = super.window.frame;
+	if (tempTool.shouldShowFillOptions || tempTool.shouldShowTransparencyOptions) {
 		aRect.origin.y += (aRect.size.height - LARGE_HEIGHT);
 		aRect.size.height = LARGE_HEIGHT;
 	} else {
 		aRect.origin.y += (aRect.size.height - SMALL_HEIGHT);
 		aRect.size.height = SMALL_HEIGHT;
 	}
-	[[super window] setFrame:aRect display:YES animate:YES];
+	[super.window setFrame:aRect display:YES animate:YES];
 }
 
 
 - (void)keyDown:(NSEvent *)event
 {
 	// At the moment, most of the keyboard shortcuts are set in Interface Builder
-	NSUInteger modifiers = [event modifierFlags];
+	NSUInteger modifiers = event.modifierFlags;
 	
-	if (modifiers & NSAlternateKeyMask) {
+    if (modifiers & NSEventModifierFlagOption) {
 		// They held option
-		if ([event keyCode] == 125) {
+		if (event.keyCode == 125) {
 			// They pressed down
-			[self setLineWidthDisplay:fmax([self lineWidthDisplay]-1,1)];
-		} else if ([event keyCode] == 126) {
+			self.lineWidthDisplay = fmax(self.lineWidthDisplay-1,1);
+		} else if (event.keyCode == 126) {
 			// They pressed up
-			[self setLineWidthDisplay:[self lineWidthDisplay]+1];
+			self.lineWidthDisplay = self.lineWidthDisplay+1;
 		}
 	} else {
 		// Check the letter pressed
-		NSString *string = [[event characters] lowercaseString];
+		NSString *string = event.characters.lowercaseString;
 		
 		switch([string characterAtIndex:0]) {
 			case 'a':
@@ -191,8 +192,8 @@
 - (IBAction)flipColors:(id)sender 
 {
 	NSColor *tempColor = [foregroundColor copy];
-	[self setForegroundColor:backgroundColor];
-	[self setBackgroundColor:tempColor];
+	self.foregroundColor = backgroundColor;
+	self.backgroundColor = tempColor;
 }
 
 
@@ -202,19 +203,19 @@
 {
 	NSString *string = [[sender selectedCell] title];
 	if (string && ![string isEqualToString:@""])
-		[self setCurrentTool:string];
+		self.currentTool = string;
 }
 
 
 - (IBAction)changeFillStyle:(id)sender
 {
-	[self setFillStyle:[sender selectedTag]];
+	self.fillStyle = [sender selectedTag];
 }
 
 
 - (IBAction)changeSelectionTransparency:(id)sender
 {
-	[self setSelectionTransparency:[sender selectedTag]];
+	self.selectionTransparency = [sender selectedTag];
 }
 
 
@@ -223,7 +224,7 @@
 {
 	for (NSCell *cell in [toolMatrix cells])
 	{
-		if ([[cell title] isEqualToString:@"Selection"])
+		if ([cell.title isEqualToString:@"Selection"])
 		{
 			[toolMatrix selectCell:cell];
 			[self changeCurrentTool:toolMatrix];
@@ -236,8 +237,6 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[toolbox release];
-	[super dealloc];
 }
 
 @end

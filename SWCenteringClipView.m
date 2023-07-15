@@ -30,9 +30,9 @@
         backgroundGradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.88 alpha:1.0]
 															endingColor:[NSColor colorWithCalibratedWhite:0.78 alpha:1.0]];
 	}
-	[backgroundGradient drawInRect:[self bounds] angle:90.0];
+	[backgroundGradient drawInRect:self.bounds angle:90.0];
 
-	NSRect docRect = [[self documentView] bounds];
+	NSRect docRect = self.documentView.bounds;
 	
 	[NSGraphicsContext saveGraphicsState];
 	
@@ -40,17 +40,17 @@
 	if (shadow == nil) 
 	{
 		shadow = [[NSShadow alloc] init];
-		[shadow setShadowOffset:NSMakeSize(3.0, -3.0)];
-		[shadow setShadowBlurRadius:15.0];
+		shadow.shadowOffset = NSMakeSize(3.0, -3.0);
+		shadow.shadowBlurRadius = 15.0;
 		
-		[shadow setShadowColor:[NSColor blackColor]];		
+		shadow.shadowColor = [NSColor blackColor];		
 	}
 	
 	[shadow set];
 	
 	// Draw the background -- either an image pattern or a color
 	if (bgImage) {
-		[bgImage drawInRect:[[self documentView] bounds]];
+		[bgImage drawInRect:self.documentView.bounds];
 	} else {
 		[[NSColor whiteColor] setFill];		
 		NSRectFill(docRect);
@@ -61,8 +61,8 @@
 
 - (void)centerDocument
 {
-	NSRect docRect = [[self documentView] frame];
-	NSRect clipRect = [self bounds];
+	NSRect docRect = self.documentView.frame;
+	NSRect clipRect = self.bounds;
 
 	// We can leave these values as integers (don't need the "2.0")
 	if (docRect.size.width < clipRect.size.width) {
@@ -79,9 +79,8 @@
 		BOOL needsRedraw = NO;
 		
 		// Did we change image sizes?
-		if (bgImage && !NSEqualSizes([bgImage size], docRect.size))
+		if (bgImage && !NSEqualSizes(bgImage.size, docRect.size))
 		{
-			[bgImage release];
 			bgImage = nil;
 			needsRedraw = YES;
 		}
@@ -89,7 +88,9 @@
 		// Do we not have an image?
 		if (!bgImage && !NSEqualSizes(docRect.size, NSZeroSize))
 		{
+            NSBitmapImageRep *bgImage = nil;
 			[SWImageTools initImageRep:&bgImage withSize:docRect.size];
+            self->bgImage = bgImage;
 			needsRedraw = YES;
 		}
 		
@@ -97,9 +98,9 @@
 		if (bgImage && needsRedraw) 
 		{
 			SWLockFocus(bgImage);
-			CGContextDrawTiledImage([[NSGraphicsContext currentContext] graphicsPort], 
-									CGRectMake(0, 0, [bgImagePattern size].width, [bgImagePattern size].height), 
-									[[NSBitmapImageRep imageRepWithData:[bgImagePattern TIFFRepresentation]] CGImage]);
+            CGContextDrawTiledImage([NSGraphicsContext currentContext].CGContext, 
+									CGRectMake(0, 0, bgImagePattern.size.width, bgImagePattern.size.height), 
+									[NSBitmapImageRep imageRepWithData:bgImagePattern.TIFFRepresentation].CGImage);
 			SWUnlockFocus(bgImage);
 		}
 	}
@@ -110,8 +111,8 @@
 
 - (NSPoint)constrainScrollPoint:(NSPoint)proposedNewOrigin
 {
-	NSRect docRect = [[self documentView] frame];
-	NSRect clipRect = [self bounds];
+	NSRect docRect = self.documentView.frame;
+	NSRect clipRect = self.bounds;
 	NSPoint newScrollPoint = proposedNewOrigin;
 	CGFloat maxX = docRect.size.width - clipRect.size.width;
 	CGFloat maxY = docRect.size.height - clipRect.size.height;
@@ -165,7 +166,7 @@
 
 - (void)setFrame:(NSRect)frameRect
 {
-	[super setFrame:frameRect];
+	super.frame = frameRect;
 	[self centerDocument];
 }
 
@@ -183,7 +184,7 @@
 
 - (void)setFrameRotation:(CGFloat)angle
 {
-	[super setFrameRotation:angle];
+	super.frameRotation = angle;
 	[self centerDocument];
 }
 
@@ -192,15 +193,5 @@
 {
 	return YES;
 }
-
-- (void)dealloc
-{
-	[backgroundGradient release];
-	[shadow release];
-	[bgImage release];
-	[bgImagePattern release];
-	[super dealloc];
-}
-
 
 @end

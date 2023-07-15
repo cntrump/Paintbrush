@@ -26,10 +26,12 @@
 //   Not currently being used!!!
 // -----------------------------------------------------------------------------
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-	[super initWithCoder:aDecoder];
-	knobImage = [NSImage imageNamed:@"knob"];
+    if (self = [super initWithCoder:aDecoder]) {
+        knobImage = [NSImage imageNamed:@"knob"];
+    }
+
 	return self;
 }
 
@@ -40,7 +42,7 @@
 // Overridden to 
 - (void)drawKnob:(NSRect)knobRect {
 	[knobImage compositeToPoint:NSMakePoint(knobRect.origin.x,knobRect.origin.y+knobRect.size.height) 
-					  operation:NSCompositeSourceOver];
+                      operation:NSCompositingOperationSourceOver];
 }
 
 // -----------------------------------------------------------------------------

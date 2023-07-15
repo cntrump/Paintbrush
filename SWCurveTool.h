@@ -27,7 +27,6 @@
 	NSPoint cp1, cp2, beginPoint, endPoint;
 }
 
-- (void)setNumberOfClicks:(NSInteger)clicks;
-- (NSInteger)numberOfClicks;
+@property (NS_NONATOMIC_IOSONLY) NSInteger numberOfClicks;
 
 @end

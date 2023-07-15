@@ -31,21 +31,21 @@
 }
 
 // Initializers
-- (id)initWithSize:(NSSize)size;
-- (id)initWithURL:(NSURL *)url;
-- (id)initWithPasteboard;
+- (instancetype)initWithSize:(NSSize)size NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithURL:(NSURL *)url;
+- (instancetype)initWithPasteboard;
 
 // Modifiers to the image
 - (void)resizeToSize:(NSSize)size
 		  scaleImage:(BOOL)shouldScale;
 
 // Need to change the image?  We got your back -- here be datas
-- (NSData *)copyMainImageData;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSData *copyMainImageData;
 - (void)restoreMainImageFromData:(NSData *)tiffData;
 - (void)restoreBufferImageFromData:(NSData *)tiffData; // For pasting
 
 // For drawing
-- (NSArray *)imageArray;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *imageArray;
 
 // Accessing information about the image source
 @property (readonly) NSSize size;

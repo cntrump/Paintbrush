@@ -20,10 +20,10 @@
 #import <Cocoa/Cocoa.h>
 
 
-typedef enum {
+typedef NS_ENUM(unsigned int, SWUnit) {
 	PERCENT = 0,
 	PIXELS = 1
-} SWUnit;
+};
 
 
 @interface SWResizeWindowController : NSWindowController {	
@@ -56,11 +56,10 @@ typedef enum {
 - (IBAction)changeUnits:(id)sender;
 
 // A few accessors and mutators
-- (NSInteger)width;
-- (NSInteger)height;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger width;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger height;
 - (void)setCurrentSize:(NSSize)currSize;
-- (BOOL)scales;
-- (void)setScales:(BOOL)s;
+@property (NS_NONATOMIC_IOSONLY) BOOL scales;
 
 @property (assign) SWUnit selectedUnit;
 

@@ -41,7 +41,7 @@
 		if (document /*&& [document isKindOfClass:[SWDocument class]]*/) 
 		{
 			// Were they zooming in or out?
-			if (flags & NSAlternateKeyMask)
+            if (flags & NSEventModifierFlagOption)
 				[document zoomOut:self];
 			else
 				[document zoomIn:self];

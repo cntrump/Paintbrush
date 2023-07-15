@@ -34,23 +34,23 @@
 {
 	NSAssert(!dataSource, @"No data source when preparing PaintView!");
 	NSAssert(!toolbox, @"No toolbox when preparing PainView!");
-	dataSource = [ds retain]; // Hold on to it!
-	toolbox = [tb retain]; // This one too!
+	dataSource = ds; // Hold on to it!
+	toolbox = tb; // This one too!
 	
 	// First things first: make sure we are the right size!
-	NSRect frameRect = NSMakeRect(0.0, 0.0, [ds size].width, [ds size].height);
-	[self setFrame:frameRect];
+	NSRect frameRect = NSMakeRect(0.0, 0.0, ds.size.width, ds.size.height);
+	self.frame = frameRect;
 	
 	toolboxController = [SWToolboxController sharedToolboxPanelController];
 	isPayingAttention = YES;
 		
 	// Tracking area
-	[self addTrackingArea:[[[NSTrackingArea alloc] initWithRect:[self frame]
+	[self addTrackingArea:[[NSTrackingArea alloc] initWithRect:self.frame
 														options: NSTrackingMouseMoved | NSTrackingCursorUpdate
 							| NSTrackingEnabledDuringMouseDrag | NSTrackingActiveWhenFirstResponder
 														  owner:self
-													   userInfo:nil] autorelease]];
-	[[self window] setAcceptsMouseMovedEvents:YES];
+													   userInfo:nil]];
+	[self.window setAcceptsMouseMovedEvents:YES];
 		
 	// Grid related
 	showsGrid = NO;
@@ -61,8 +61,7 @@
 	[self cursorUpdate:nil];
 	
 	// Set up drag stuff
-	[[self window] registerForDraggedTypes:[NSArray arrayWithObjects:
-											NSTIFFPboardType, nil]];
+    [self.window registerForDraggedTypes:@[NSPasteboardTypeTIFF]];
 	
 	[self setNeedsDisplay:YES];	
 }
@@ -70,18 +69,10 @@
 
 - (void)dealloc
 {
-	[dataSource release];
-	[toolbox release];
-
-	[undoData release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[frontColor release];
-	[backColor release];
-	[[self undoManager] removeAllActions]; 
+	[self.undoManager removeAllActions]; 
 	// Note: do NOT release the current tool, as it is just a pointer to the
 	// object inherited from ToolboxController
-	
-	[super dealloc];
 }
 
 
@@ -89,17 +80,17 @@
 {
 	// Set the window's maximum size to the size of the screen
 	// Does not seem to work all the time
-	NSRect screenRect = [[NSScreen mainScreen] frame];
+	NSRect screenRect = [NSScreen mainScreen].frame;
 	
 	// Center the shrunken/enlarged window with respect to its initial location
-	NSRect tempRect = [[super window] frameRectForContentRect:frameRect];
-	NSPoint newOrigin = [[super window] frame].origin;
+	NSRect tempRect = [super.window frameRectForContentRect:frameRect];
+	NSPoint newOrigin = super.window.frame.origin;
 	
 	tempRect.size.width += [NSScroller scrollerWidth];
 	tempRect.size.height += [NSScroller scrollerWidth];
 	
-	newOrigin.y += floor(0.5 * ([[super window] frame].size.height - tempRect.size.height));
-	newOrigin.x += floor(0.5 * ([[super window] frame].size.width - tempRect.size.width));
+	newOrigin.y += floor(0.5 * (super.window.frame.size.height - tempRect.size.height));
+	newOrigin.x += floor(0.5 * (super.window.frame.size.width - tempRect.size.width));
 	tempRect.origin = newOrigin;
 	
 	// Ensures that the document is never wider than the screen
@@ -122,32 +113,32 @@
 		[NSGraphicsContext saveGraphicsState];
 
 		// If you don't do this, the image looks blurry when zoomed in
-		[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationNone];
-		CGContextRef cgContext = [[NSGraphicsContext currentContext] graphicsPort];
-		NSBitmapImageRep *mainImage = [dataSource mainImage];
-		NSBitmapImageRep *bufferImage = [dataSource bufferImage];
+		[NSGraphicsContext currentContext].imageInterpolation = NSImageInterpolationNone;
+        CGContextRef cgContext = [NSGraphicsContext currentContext].CGContext;
+		NSBitmapImageRep *mainImage = dataSource.mainImage;
+		NSBitmapImageRep *bufferImage = dataSource.bufferImage;
 		
 		//CGContextBeginTransparencyLayer(cgContext, NULL);
 		
 		// Draw the NSBitmapImageRep to the view
 		if (mainImage) 
-			CGContextDrawImage(cgContext, NSRectToCGRect([self bounds]), [mainImage CGImage]);
+			CGContextDrawImage(cgContext, NSRectToCGRect(self.bounds), mainImage.CGImage);
 		
 		// If there's an overlay image being used at the moment, draw it
 		if (bufferImage) 
 		{
-			NSRect rect = (NSRect){ NSZeroPoint, [bufferImage size] };
-			CGContextDrawImage(cgContext, NSRectToCGRect(rect), [bufferImage CGImage]);
+			NSRect rect = (NSRect){ NSZeroPoint, bufferImage.size };
+			CGContextDrawImage(cgContext, NSRectToCGRect(rect), bufferImage.CGImage);
 		}
 		
 		//CGContextEndTransparencyLayer(cgContext);
 		
 		// If the grid is turned on, draw that too (but only after everything else!
-		if (showsGrid && [(SWScalingScrollView *)[[self superview] superview] scaleFactor] > 2.0) 
+		if (showsGrid && [(SWScalingScrollView *)self.superview.superview scaleFactor] > 2.0) 
 		{
 			[gridColor set];
 			[[NSGraphicsContext currentContext] setShouldAntialias:NO];
-			[[self gridInRect:[self frame]] stroke];
+			[[self gridInRect:self.frame] stroke];
 		}
 		
 		[NSGraphicsContext restoreGraphicsState];
@@ -158,7 +149,7 @@
 + (NSMenu *)defaultMenu 
 {
 	//NSMenu *theMenu = [super initWithWindowNibName:@"Preferences"];
-    NSMenu *theMenu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
+    NSMenu *theMenu = [[NSMenu alloc] initWithTitle:@""];
     [theMenu insertItemWithTitle:NSLocalizedString(@"Cut", @"Cut the selection") 
 						  action:@selector(cut:) 
 				   keyEquivalent:@"" 
@@ -199,43 +190,43 @@
 - (void)mouseDown:(NSEvent *)event
 {
 	isPayingAttention = YES;
-	NSPoint p = [event locationInWindow];
+	NSPoint p = event.locationInWindow;
 	NSPoint downPoint = [self convertPoint:p fromView:nil];
 	
 	// Necessary for when the view is zoomed above 100%
 	currentPoint.x = floor(downPoint.x);
 	currentPoint.y = floor(downPoint.y);
 
-	[[toolbox currentTool] setSavedPoint:currentPoint];
+	[toolbox.currentTool setSavedPoint:currentPoint];
 	
 	// If it's shifted, do something about it
-	[[toolbox currentTool] setFlags:[event modifierFlags]];
-	[[toolbox currentTool] performDrawAtPoint:currentPoint 
-					  withMainImage:[dataSource mainImage]
-						bufferImage:[dataSource bufferImage]
+	toolbox.currentTool.flags = event.modifierFlags;
+	[toolbox.currentTool performDrawAtPoint:currentPoint 
+					  withMainImage:dataSource.mainImage
+						bufferImage:dataSource.bufferImage
 						 mouseEvent:MOUSE_DOWN];
 	
-	[self setNeedsDisplayInRect:[[toolbox currentTool] invalidRect]];
+	[self setNeedsDisplayInRect:[toolbox.currentTool invalidRect]];
 }
 
 - (void)mouseDragged:(NSEvent *)event
 {
 	if (isPayingAttention) 
 	{
-		NSPoint p = [event locationInWindow];
+		NSPoint p = event.locationInWindow;
 		NSPoint dragPoint = [self convertPoint:p fromView:nil];
 		
 		// Necessary for when the view is zoomed above 100%
 		currentPoint.x = floor(dragPoint.x);
 		currentPoint.y = floor(dragPoint.y);
 		
-		[[toolbox currentTool] setFlags:[event modifierFlags]];
-		[[toolbox currentTool] performDrawAtPoint:currentPoint 
-									withMainImage:[dataSource mainImage]
-									  bufferImage:[dataSource bufferImage]
+		toolbox.currentTool.flags = event.modifierFlags;
+		[toolbox.currentTool performDrawAtPoint:currentPoint 
+									withMainImage:dataSource.mainImage
+									  bufferImage:dataSource.bufferImage
 									   mouseEvent:MOUSE_DRAGGED];
 		
-		[self setNeedsDisplayInRect:[[toolbox currentTool] invalidRect]];
+		[self setNeedsDisplayInRect:[toolbox.currentTool invalidRect]];
 	}
 }
 
@@ -243,75 +234,75 @@
 {
 	if (isPayingAttention) 
 	{
-		NSPoint p = [event locationInWindow];
+		NSPoint p = event.locationInWindow;
 		NSPoint upPoint = [self convertPoint:p fromView:nil];
 		
 		// Necessary for when the view is zoomed above 100%
 		currentPoint.x = floor(upPoint.x);
 		currentPoint.y = floor(upPoint.y);
-		[[toolbox currentTool] setFlags:[event modifierFlags]];
-		NSBezierPath *path = [[toolbox currentTool] performDrawAtPoint:currentPoint 
-														 withMainImage:[dataSource mainImage]
-														   bufferImage:[dataSource bufferImage]
+		toolbox.currentTool.flags = event.modifierFlags;
+		NSBezierPath *path = [toolbox.currentTool performDrawAtPoint:currentPoint 
+														 withMainImage:dataSource.mainImage
+														   bufferImage:dataSource.bufferImage
 															mouseEvent:MOUSE_UP];
 		
 		if (path) {
 			expPath = path;
 		}
 		
-		[self setNeedsDisplayInRect:[[toolbox currentTool] invalidRect]];
+		[self setNeedsDisplayInRect:[toolbox.currentTool invalidRect]];
 	}
 }
 
 // We want right-clicks to result in the use of the background color
 - (void)rightMouseDown:(NSEvent *)theEvent
 {
-	NSUInteger flags = [theEvent modifierFlags] | 
-		([[toolbox currentTool] shouldShowContextualMenu] ? NSControlKeyMask : NSAlternateKeyMask);
+	NSUInteger flags = theEvent.modifierFlags | 
+    ([toolbox.currentTool shouldShowContextualMenu] ? NSEventModifierFlagControl : NSEventModifierFlagOption);
 	
-	NSEvent *modifiedEvent = [NSEvent mouseEventWithType:NSLeftMouseDown
-												location:[theEvent locationInWindow] 
+    NSEvent *modifiedEvent = [NSEvent mouseEventWithType:NSEventTypeLeftMouseDown
+												location:theEvent.locationInWindow 
 										   modifierFlags:flags
-											   timestamp:[theEvent timestamp]
-											windowNumber:[theEvent windowNumber]
-												 context:[theEvent context]
-											 eventNumber:[theEvent eventNumber]
-											  clickCount:[theEvent clickCount]
-												pressure:[theEvent pressure]];
+											   timestamp:theEvent.timestamp
+											windowNumber:theEvent.windowNumber
+												 context:theEvent.context
+											 eventNumber:theEvent.eventNumber
+											  clickCount:theEvent.clickCount
+												pressure:theEvent.pressure];
 	[NSApp postEvent:modifiedEvent atStart:YES];
 }
 
 - (void)rightMouseDragged:(NSEvent *)theEvent
 {
-	NSUInteger flags = [theEvent modifierFlags] | 
-		([[toolbox currentTool] shouldShowContextualMenu] ? NSControlKeyMask : NSAlternateKeyMask);
+	NSUInteger flags = theEvent.modifierFlags | 
+    ([toolbox.currentTool shouldShowContextualMenu] ? NSEventModifierFlagControl : NSEventModifierFlagOption);
 	
-	NSEvent *modifiedEvent = [NSEvent mouseEventWithType:NSLeftMouseDragged
-												location:[theEvent locationInWindow] 
+    NSEvent *modifiedEvent = [NSEvent mouseEventWithType:NSEventTypeLeftMouseDragged
+												location:theEvent.locationInWindow 
 										   modifierFlags:flags
-											   timestamp:[theEvent timestamp]
-											windowNumber:[theEvent windowNumber]
-												 context:[theEvent context]
-											 eventNumber:[theEvent eventNumber]
-											  clickCount:[theEvent clickCount]
-												pressure:[theEvent pressure]];
+											   timestamp:theEvent.timestamp
+											windowNumber:theEvent.windowNumber
+												 context:theEvent.context
+											 eventNumber:theEvent.eventNumber
+											  clickCount:theEvent.clickCount
+												pressure:theEvent.pressure];
 	[NSApp postEvent:modifiedEvent atStart:YES];
 }
 
 - (void)rightMouseUp:(NSEvent *)theEvent
 {
-	NSUInteger flags = [theEvent modifierFlags] | 
-		([[toolbox currentTool] shouldShowContextualMenu] ? NSControlKeyMask : NSAlternateKeyMask);
+	NSUInteger flags = theEvent.modifierFlags | 
+    ([toolbox.currentTool shouldShowContextualMenu] ? NSEventModifierFlagControl : NSEventModifierFlagOption);
 	
-	NSEvent *modifiedEvent = [NSEvent mouseEventWithType:NSLeftMouseUp
-												location:[theEvent locationInWindow] 
+    NSEvent *modifiedEvent = [NSEvent mouseEventWithType:NSEventTypeLeftMouseUp
+												location:theEvent.locationInWindow 
 										   modifierFlags:flags
-											   timestamp:[theEvent timestamp]
-											windowNumber:[theEvent windowNumber]
-												 context:[theEvent context]
-											 eventNumber:[theEvent eventNumber]
-											  clickCount:[theEvent clickCount]
-												pressure:[theEvent pressure]];
+											   timestamp:theEvent.timestamp
+											windowNumber:theEvent.windowNumber
+												 context:theEvent.context
+											 eventNumber:theEvent.eventNumber
+											  clickCount:theEvent.clickCount
+												pressure:theEvent.pressure];
 	[NSApp postEvent:modifiedEvent atStart:YES];
 }
 
@@ -319,23 +310,23 @@
 // Currently only necessary for the text tool, but we'll see where we go with it
 - (void)mouseMoved:(NSEvent *)event
 {
-	NSPoint p = [event locationInWindow];
+	NSPoint p = event.locationInWindow;
 	NSPoint motionPoint = [self convertPoint:p fromView:nil];
 	
 	// Necessary for when the view is zoomed above 100%
 	motionPoint.x = floor(motionPoint.x) + 0.5;
 	motionPoint.y = floor(motionPoint.y) + 0.5;	
-	[[toolbox currentTool] mouseHasMoved:motionPoint];
+	[toolbox.currentTool mouseHasMoved:motionPoint];
 }
 
 
 // Overridden to set the correct cursor
 - (void)cursorUpdate:(NSEvent *)event
 {
-	if (toolbox && [toolbox currentTool]) 
+	if (toolbox && toolbox.currentTool) 
 	{
-		NSCursor *cursor = [[toolbox currentTool] cursor];
-		[(NSClipView *)[self superview] setDocumentCursor:cursor];
+		NSCursor *cursor = [toolbox.currentTool cursor];
+		((NSClipView *)self.superview).documentCursor = cursor;
 		[cursor push];
 	}
 	else
@@ -347,21 +338,21 @@
 - (void)keyDown:(NSEvent *)event
 {
 	// Escape key
-	if ([event keyCode] == 53) 
+	if (event.keyCode == 53) 
 	{
 		isPayingAttention = NO;
 		[toolbox tieUpLooseEndsForCurrentTool];
-		[SWImageTools clearImage:[dataSource bufferImage]];
+		[SWImageTools clearImage:dataSource.bufferImage];
 		[self setNeedsDisplay:YES];
 	} 
-	else if ([event keyCode] == 51 || [event keyCode] == 117) 
+	else if (event.keyCode == 51 || event.keyCode == 117) 
 	{
 		// Delete keys (back and forward)
 		[self clearOverlay];
 	} 
 	else
 	{
-		[[[toolboxController window] contentView] keyDown:event];
+		[toolboxController.window.contentView keyDown:event];
 	}
 }
 
@@ -375,8 +366,6 @@
 
 - (void)setBackgroundColor:(NSColor *)color
 {
-	[color retain];
-	[backgroundColor release];
 	backgroundColor = color;
 }
 
@@ -409,7 +398,7 @@
     }
 	
     //[gridPath setLineWidth:0.5];
-    [gridPath setLineWidth:(1.0 / [(SWScalingScrollView *)[[self superview] superview] scaleFactor])];
+    gridPath.lineWidth = (1.0 / [(SWScalingScrollView *)self.superview.superview scaleFactor]);
     //[gridPath stroke];
 	return gridPath;
 }
@@ -435,8 +424,6 @@
 // Change the color of the grid from the default gray
 - (void)setGridColor:(NSColor *)newGridColor 
 {
-	[newGridColor retain];
-	[gridColor release];
 	gridColor = newGridColor;
 	[self setNeedsDisplay: YES];
 }
@@ -469,8 +456,8 @@
 // Releases the overlay image, then tells the tool about it
 - (void)clearOverlay
 {
-	[SWImageTools clearImage:[dataSource bufferImage]];
-	[[toolbox currentTool] deleteKey];
+	[SWImageTools clearImage:dataSource.bufferImage];
+	[toolbox.currentTool deleteKey];
 	[toolbox tieUpLooseEndsForCurrentTool];
 	[self setNeedsDisplay:YES];
 }

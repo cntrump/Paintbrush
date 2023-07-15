@@ -28,8 +28,8 @@
 // scrolling motion, similar to that found with the volume scroller in iTunes
 - (void)scrollWheel:(NSEvent *)theEvent
 {
-	CGFloat deltaX = [theEvent deltaX];
-	CGFloat deltaY = [theEvent deltaY];
+	CGFloat deltaX = theEvent.deltaX;
+	CGFloat deltaY = theEvent.deltaY;
 	if (deltaX) {
 		// For some reason, deltaX is a negative value when scrolling to the right
 		savedScroll -= deltaX;
@@ -38,15 +38,15 @@
 	}
 	
 	if (fabs(savedScroll) >= 1.0) {
-		NSInteger newValue = [self integerValue] + (savedScroll / fabs(savedScroll));
-		NSInteger newValue2 = fmin(fmax(1, newValue), [self maxValue]);
+		NSInteger newValue = self.integerValue + (savedScroll / fabs(savedScroll));
+		NSInteger newValue2 = fmin(fmax(1, newValue), self.maxValue);
 		//[self setIntegerValue:newValue2];
 		savedScroll = 0.0;
 		
 		// Notify the toolbox controller that we've moved the slider through
 		// an alternate channel
 		SWToolboxController *t = [SWToolboxController sharedToolboxPanelController];
-		[t setLineWidthDisplay:newValue2];
+		t.lineWidthDisplay = newValue2;
 	}
 }
 

@@ -61,12 +61,9 @@
 //- (NSPoint)currentMouseLocation;
 
 // Grid related
-- (void)setShowsGrid:(BOOL)shouldShowGrid;
-- (void)setGridSpacing:(CGFloat)spacing;
-- (void)setGridColor:(NSColor *)color;
-- (BOOL)showsGrid;
-- (CGFloat)gridSpacing;
-- (NSColor *)gridColor;
+@property (NS_NONATOMIC_IOSONLY) BOOL showsGrid;
+@property (NS_NONATOMIC_IOSONLY) CGFloat gridSpacing;
+@property (NS_NONATOMIC_IOSONLY, copy) NSColor *gridColor;
 - (NSBezierPath *)gridInRect:(NSRect)rect;
 
 @end

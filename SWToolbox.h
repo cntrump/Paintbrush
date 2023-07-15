@@ -34,7 +34,7 @@
 
 @property (retain,nonatomic) SWTool *currentTool;
 
-- (id)initWithDocument:(SWDocument *)doc;
+- (instancetype)initWithDocument:(SWDocument *)doc NS_DESIGNATED_INITIALIZER;
 + (NSArray *)toolClassList;
 - (SWTool *)toolForLabel:(NSString *)label;
 - (void)tieUpLooseEndsForCurrentTool;

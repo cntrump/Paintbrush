@@ -28,23 +28,21 @@
 + (void)invertImage:(NSBitmapImageRep *)image
 {
 	NSBitmapImageRep *imageRep;
-	[SWImageTools initImageRep:&imageRep withSize:[image size]];
+	[SWImageTools initImageRep:&imageRep withSize:image.size];
 	[SWImageTools drawToImage:imageRep fromImage:image withComposition:NO];
 	
 	CIFilter *colorInvert = [CIFilter filterWithName:@"CIColorInvert"];
 	[colorInvert setValue: [[CIImage alloc] initWithBitmapImageRep:imageRep] forKey: @"inputImage"];
 	CIImage *result = [colorInvert valueForKey: @"outputImage"];
-	[imageRep release];
-	
+
 	imageRep = [[NSBitmapImageRep alloc] initWithCIImage:result];
 	
 	[SWImageTools drawToImage:image fromImage:imageRep withComposition:NO];
-	[imageRep release];
 }
 
 + (void)clearImage:(NSBitmapImageRep *)image
 {
-	NSRect rect = NSMakeRect(0,0,[image pixelsWide],[image pixelsHigh]);
+	NSRect rect = NSMakeRect(0,0,image.pixelsWide,image.pixelsHigh);
 	[SWImageTools clearImage:image inRect:rect];
 }
 
@@ -53,7 +51,7 @@
 {
 	SWLockFocus(image);
 	[[NSColor clearColor] setFill];
-	NSRectFillUsingOperation(rect, NSCompositeCopy);
+    NSRectFillUsingOperation(rect, NSCompositingOperationCopy);
 	SWUnlockFocus(image);
 }
 
@@ -79,12 +77,12 @@
 	[NSGraphicsContext saveGraphicsState];
 	[NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithBitmapImageRep:dest]];
 	if (shouldCompositeOver)
-		[[NSGraphicsContext currentContext] setCompositingOperation:NSCompositeSourceOver];
+        [NSGraphicsContext currentContext].compositingOperation = NSCompositingOperationSourceOver;
 	else
-		[[NSGraphicsContext currentContext] setCompositingOperation:NSCompositeCopy];		
+        [NSGraphicsContext currentContext].compositingOperation = NSCompositingOperationCopy;		
 //	[src draw];
-	CGContextDrawImage([[NSGraphicsContext currentContext] graphicsPort], 
-					   CGRectMake(point.x, point.y, [src pixelsWide], [src pixelsHigh]), [src CGImage]);
+    CGContextDrawImage([NSGraphicsContext currentContext].CGContext, 
+					   CGRectMake(point.x, point.y, src.pixelsWide, src.pixelsHigh), src.CGImage);
 	[NSGraphicsContext restoreGraphicsState];
 }
 
@@ -93,23 +91,21 @@
 {
 	// Make a copy of our image for using is a second
 	NSBitmapImageRep *tempImage;
-	[SWImageTools initImageRep:&tempImage withSize:[bitmap size]];
+	[SWImageTools initImageRep:&tempImage withSize:bitmap.size];
 	[SWImageTools drawToImage:tempImage fromImage:bitmap withComposition:NO];
 	[SWImageTools clearImage:bitmap];
 	NSAffineTransform *transform = [NSAffineTransform transform];
 	
 	// Create the transform
 	[transform scaleXBy:-1.0 yBy:1.0];
-	[transform translateXBy:(0-[bitmap pixelsWide]) yBy:0];
+	[transform translateXBy:(0-bitmap.pixelsWide) yBy:0];
 	
 	[NSGraphicsContext saveGraphicsState];
 	[NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithBitmapImageRep:bitmap]];
 	[transform concat];
-	[[NSGraphicsContext currentContext] setCompositingOperation:NSCompositeSourceOver];
+    [NSGraphicsContext currentContext].compositingOperation = NSCompositingOperationSourceOver;
 	[tempImage draw];
 	[NSGraphicsContext restoreGraphicsState];
-	
-	[tempImage release];
 }
 
 
@@ -117,23 +113,21 @@
 {
 	// Make a copy of our image for using is a second
 	NSBitmapImageRep *tempImage;
-	[SWImageTools initImageRep:&tempImage withSize:[bitmap size]];
+	[SWImageTools initImageRep:&tempImage withSize:bitmap.size];
 	[SWImageTools drawToImage:tempImage fromImage:bitmap withComposition:NO];
 	[SWImageTools clearImage:bitmap];
 	NSAffineTransform *transform = [NSAffineTransform transform];
 	
 	// Create the transform
 	[transform scaleXBy:1.0 yBy:-1.0];
-	[transform translateXBy:0 yBy:(0-[bitmap pixelsHigh])];
+	[transform translateXBy:0 yBy:(0-bitmap.pixelsHigh)];
 	
 	[NSGraphicsContext saveGraphicsState];
 	[NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithBitmapImageRep:bitmap]];
 	[transform concat];
-	[[NSGraphicsContext currentContext] setCompositingOperation:NSCompositeSourceOver];
+    [NSGraphicsContext currentContext].compositingOperation = NSCompositingOperationSourceOver;
 	[tempImage draw];
 	[NSGraphicsContext restoreGraphicsState];
-	
-	[tempImage release];
 }
 
 
@@ -161,8 +155,8 @@
 // Requested by a user -- converts an image to a monochrome bitmap
 + (NSBitmapImageRep *)createMonochromeImage:(NSBitmapImageRep *)baseImage
 {
-	NSUInteger w = [baseImage pixelsWide];
-	NSUInteger h = [baseImage pixelsHigh];
+	NSUInteger w = baseImage.pixelsWide;
+	NSUInteger h = baseImage.pixelsHigh;
 	
 	// Need a place to put the monochrome pixels.
 	NSBitmapImageRep *bwRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes: nil  // Nil pointer tells the kit to allocate the pixel buffer for us.
@@ -177,11 +171,11 @@
 																	bitsPerPixel: 0];  // This must agree with bitsPerSample and samplesPerPixel.
 	
 	// Get a pointer to the pixel data -- both the new one and the old one
-	unsigned char *colorData = [baseImage bitmapData];
-	unsigned char *bwData = [bwRep bitmapData];
+	unsigned char *colorData = baseImage.bitmapData;
+	unsigned char *bwData = bwRep.bitmapData;
 	unsigned char *thisPixel = bwData;
 	
-	CGFloat maxColorValue = pow(2, [baseImage bitsPerSample]);
+	CGFloat maxColorValue = pow(2, baseImage.bitsPerSample);
 	
 	NSUInteger row, col;
 	NSUInteger bitInByte = 0;
@@ -191,7 +185,7 @@
 			
 			// First calculate the offset for the point passed in
 			NSUInteger offset = (w * row) + col;
-			offset *= [baseImage samplesPerPixel];
+			offset *= baseImage.samplesPerPixel;
 			
 			// Next get the components at that offset
 			NSUInteger red = colorData[offset + 0];
@@ -215,7 +209,7 @@
 		}		
 	}
 	
-	return [bwRep autorelease];
+	return bwRep;
 }
 
 
@@ -223,8 +217,8 @@
 + (NSString *)convertFileType:(NSString *)fileType
 {
 	NSString *finalString = nil;
-	NSString *lowerCaseFileType = [fileType lowercaseString];
-	if ([lowerCaseFileType length] == 3) 
+	NSString *lowerCaseFileType = fileType.lowercaseString;
+	if (lowerCaseFileType.length == 3) 
 	{
 		finalString = lowerCaseFileType;		
 	}
@@ -267,8 +261,8 @@
 {
 	// This offset will climb through the entire image
 	//int offset;
-	NSInteger samplesPerPixel = [imageRep samplesPerPixel];
-	unsigned char *bitmapData = [imageRep bitmapData];
+	NSInteger samplesPerPixel = imageRep.samplesPerPixel;
+	unsigned char *bitmapData = imageRep.bitmapData;
 	
 	// Get the components of the given NSColor
 	CGFloat colorRed, colorGreen, colorBlue, colorAlpha;
@@ -284,10 +278,10 @@
 	// We can't go linearly, as 10.4+ don't always pack bytes -- it may not be contiguous!
 	// Instead, we must go row by row
 	int row, col;
-    for (row = 0; row < [imageRep pixelsHigh]; row++, bitmapData += [imageRep bytesPerRow]) 
+    for (row = 0; row < imageRep.pixelsHigh; row++, bitmapData += imageRep.bytesPerRow) 
 	{
         unsigned char* p = bitmapData;
-        for (col = 0; col < [imageRep pixelsWide]; col++)
+        for (col = 0; col < imageRep.pixelsWide; col++)
 		{
 			// Next get the components at that offset
 			NSInteger red = *p;
@@ -315,9 +309,9 @@
 {
 	NSData *data = nil;
 	
-	if ([pb availableTypeFromArray:[NSArray arrayWithObject:NSTIFFPboardType]])
-		data = [pb dataForType:NSTIFFPboardType];
-	else if ([pb availableTypeFromArray:[NSArray arrayWithObject:NSPICTPboardType]])
+    if ([pb availableTypeFromArray:@[NSPasteboardTypeTIFF]])
+        data = [pb dataForType:NSPasteboardTypeTIFF];
+	else if ([pb availableTypeFromArray:@[NSPICTPboardType]])
 		data = [pb dataForType:NSPICTPboardType];
 
 	return data;

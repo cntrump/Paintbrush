@@ -28,7 +28,6 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[super dealloc];
 }
 
 
@@ -39,12 +38,12 @@
 	NSInteger width, height;
 	switch (selectedUnit) {
 		case PERCENT:
-			width = [widthFieldNew integerValue] * originalSize.width / 100;
-			height = [heightFieldNew integerValue] * originalSize.height / 100;
+			width = widthFieldNew.integerValue * originalSize.width / 100;
+			height = heightFieldNew.integerValue * originalSize.height / 100;
 			break;
 		case PIXELS:
-			width = [widthFieldNew integerValue];
-			height = [heightFieldNew integerValue];
+			width = widthFieldNew.integerValue;
+			height = heightFieldNew.integerValue;
 			break;
 		default:
 			DebugLog(@"Error!  The selected units are wrong!");
@@ -62,19 +61,19 @@
 												 name:NSControlTextDidChangeNotification
 											   object:nil];
 	
-	[heightFieldOriginal setIntegerValue:originalSize.height];
-	[widthFieldOriginal setIntegerValue:originalSize.width];
+	heightFieldOriginal.integerValue = originalSize.height;
+	widthFieldOriginal.integerValue = originalSize.width;
 	
 	newSize = originalSize;
 	
 	switch (selectedUnit) {
 		case PERCENT:
-			[widthFieldNew setIntegerValue:100];
-			[heightFieldNew setIntegerValue:100];
+			widthFieldNew.integerValue = 100;
+			heightFieldNew.integerValue = 100;
 			break;
 		case PIXELS:
-			[widthFieldNew setIntegerValue:newSize.width];
-			[heightFieldNew setIntegerValue:newSize.height];
+			widthFieldNew.integerValue = newSize.width;
+			heightFieldNew.integerValue = newSize.height;
 			break;
 		default:
 			break;
@@ -87,12 +86,12 @@
 {
 	switch (selectedUnit) {
 		case PERCENT:
-			[widthFieldNew setIntegerValue:(100 * newSize.width / originalSize.width)];
-			[heightFieldNew setIntegerValue:(100 * newSize.height / originalSize.height)];
+			widthFieldNew.integerValue = (100 * newSize.width / originalSize.width);
+			heightFieldNew.integerValue = (100 * newSize.height / originalSize.height);
 			break;
 		case PIXELS:
-			[widthFieldNew setIntegerValue:newSize.width];
-			[heightFieldNew setIntegerValue:newSize.height];
+			widthFieldNew.integerValue = newSize.width;
+			heightFieldNew.integerValue = newSize.height;
 			break;
 		default:
 			break;
@@ -103,8 +102,8 @@
 // After they click OK or Cancel
 - (IBAction)endSheet:(id)sender
 {
-	if ([sender tag] == NSOKButton) {
-		if ([widthFieldNew integerValue] > 0 && [heightFieldNew integerValue] > 0) {
+    if ([sender tag] == NSModalResponseOK) {
+		if (widthFieldNew.integerValue > 0 && heightFieldNew.integerValue > 0) {
 			
 			// Save entered values as defaults
 //			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -113,15 +112,15 @@
 //			[defaults setObject:width forKey:@"HorizontalSize"];
 //			[defaults setObject:height forKey:@"VerticalSize"];
 			
-			[[self window] orderOut:sender];
-			[NSApp endSheet:[self window] returnCode:NSOKButton];
+			[self.window orderOut:sender];
+            [NSApp endSheet:self.window returnCode:NSModalResponseOK];
 		} else {
 			NSBeep();
 		}
 	} else {
 		// They clicked cancel
-		[[self window] orderOut:sender];
-		[NSApp endSheet:[self window] returnCode:NSCancelButton];
+		[self.window orderOut:sender];
+        [NSApp endSheet:self.window returnCode:NSModalResponseCancel];
 	}	
 }
 

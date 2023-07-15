@@ -23,7 +23,7 @@
 
 @implementation SWTextTool
 
-- (id)initWithController:(SWToolboxController *)controller
+- (instancetype)initWithController:(SWToolboxController *)controller
 {
 	if (self = [super initWithController:controller]) {
 		[[NSNotificationCenter defaultCenter] addObserver:self
@@ -72,8 +72,8 @@
 		NSRect rect = [stringToInsert boundingRectWithSize:[stringToInsert size] 
 												   options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics];
 		
-		CGFloat xOffset = abs(rect.origin.x);
-		CGFloat yOffset = abs(rect.origin.y);
+		CGFloat xOffset = fabs(rect.origin.x);
+		CGFloat yOffset = fabs(rect.origin.y);
 		rect.size.width += xOffset + textSize.width;
 		rect.size.height += yOffset + textSize.height;
 		
@@ -86,13 +86,13 @@
 		rect.origin.x += xOffset;
 
 		// Fix the origin, since we're dealing with flipped stuff
-		rect.origin.y = [drawToMe pixelsHigh] - rect.origin.y - rect.size.height;
+		rect.origin.y = drawToMe.pixelsHigh - rect.origin.y - rect.size.height;
 		
 		SWLockFocus(drawToMe);
 		NSAffineTransform *transform = [NSAffineTransform transform];			
 		// Create the transform
 		[transform scaleXBy:1.0 yBy:-1.0];
-		[transform translateXBy:0 yBy:(0-[drawToMe pixelsHigh])];
+		[transform translateXBy:0 yBy:(0-drawToMe.pixelsHigh)];
 		[transform concat];
 		[stringToInsert drawAtPoint:rect.origin];
 		[NSGraphicsContext restoreGraphicsState];
@@ -113,8 +113,7 @@
 // Summoned by the NSNotificationCenter when the user clicks "OK" in the sheet
 - (void)insertText:(NSNotification *)note
 {
-	[stringToInsert release];
-	stringToInsert = [[NSAttributedString alloc] initWithAttributedString:[[note userInfo] objectForKey:@"newText"]];
+	stringToInsert = [[NSAttributedString alloc] initWithAttributedString:note.userInfo[@"newText"]];
 	
 	// Get the current point and then draw it
 	// Doesn't work quite right yet
@@ -137,7 +136,6 @@
 
 - (void)tieUpLooseEnds
 {
-	[stringToInsert release];
 	stringToInsert = nil;
 	canInsert = NO;
 	
@@ -147,7 +145,7 @@
 - (NSCursor *)cursor
 {
 	if (!customCursor) {
-		customCursor = [[NSCursor IBeamCursor] retain];
+		customCursor = NSCursor.IBeamCursor;
 	}
 	return customCursor;
 }
@@ -167,8 +165,6 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[stringToInsert release];
-	[super dealloc];
 }
 
 @end

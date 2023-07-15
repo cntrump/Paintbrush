@@ -29,11 +29,11 @@
 						  mouseEvent:(SWMouseEvent)event
 {
 	// This should happen regardless of the type of click
-	NSColor *colorClicked = [mainImage colorAtX:point.x y:([mainImage pixelsHigh] - point.y - 1)];
+	NSColor *colorClicked = [mainImage colorAtX:point.x y:(mainImage.pixelsHigh - point.y - 1)];
 	
 	if (colorClicked != nil) {
 		NSColor *colorClickedConverted = [colorClicked colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
-		if (flags & NSAlternateKeyMask) {
+        if (flags & NSEventModifierFlagOption) {
 			[[SWToolboxController sharedToolboxPanelController] setBackgroundColor:colorClickedConverted];
 		} else {
 			[[SWToolboxController sharedToolboxPanelController] setForegroundColor:colorClickedConverted];

@@ -24,7 +24,6 @@
 	NSRect clippingRect;
 	
 	// The two images, and the one pointer to the active image
-	NSBitmapImageRep *selectedImage;
 	NSBitmapImageRep *selImageWithTransparency;
 	NSBitmapImageRep *selImageSansTransparency;
 	
@@ -42,10 +41,10 @@
 	BOOL shouldOmitBackground;
 }
 
-- (BOOL)isSelected;
-- (NSRect)clippingRect;
-- (NSBitmapImageRep *)selectedImage;
-- (NSData *)imageData;
+@property (NS_NONATOMIC_IOSONLY, getter=isSelected, readonly) BOOL selected;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSRect clippingRect;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSBitmapImageRep *selectedImage;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSData *imageData;
 - (void)setClippingRect:(NSRect)rect forImage:(NSBitmapImageRep *)image withMainImage:(NSBitmapImageRep *)image;
 - (void)drawNewBorder:(NSTimer *)timer;
 - (void)updateBackgroundOmission;

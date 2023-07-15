@@ -32,7 +32,7 @@ NSString * const kSWUndoKey = @"UndoLevels";
 @implementation SWAppController
 
 
-- (id)init
+- (instancetype)init
 {
 	// Leopard's AppKit version is ≥ 949, while older versions of the OS hae a lower number. This 
 	// program requires 10.5 or higher, so this checks to make sure. I'm sure there's an easier
@@ -42,7 +42,7 @@ NSString * const kSWUndoKey = @"UndoLevels";
 	if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_4) {
 		// Pop up a warning dialog... 
 		NSRunAlertPanel(@"Sorry, this program requires Mac OS X 10.5.3 or later", @"You are running %@", 
-						@"OK", nil, nil, [[[NSProcessInfo alloc] operatingSystemVersionString] autorelease]);
+						@"OK", nil, nil, NSProcessInfo.processInfo.operatingSystemVersionString);
 		DebugLog(@"Failed to run: running version %lf", NSAppKitVersionNumber);
 		// then quit the program
 		[NSApp terminate:self]; 
@@ -53,16 +53,16 @@ NSString * const kSWUndoKey = @"UndoLevels";
 		NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 		
 		// Put initial defaults in the dictionary
-		[defaultValues setObject:[NSNumber numberWithInt:640] forKey:@"HorizontalSize"];
-		[defaultValues setObject:[NSNumber numberWithInt:480] forKey:@"VerticalSize"];
-		[defaultValues setObject:[NSNumber numberWithInt:10] forKey:kSWUndoKey];
-		[defaultValues setObject:@"PNG" forKey:@"FileType"];
+		defaultValues[@"HorizontalSize"] = @640;
+		defaultValues[@"VerticalSize"] = @480;
+		defaultValues[kSWUndoKey] = @10;
+		defaultValues[@"FileType"] = @"PNG";
 		
 		// Register the dictionary of defaults
 		[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];		
 
 		[[NSColorPanel sharedColorPanel] setShowsAlpha:YES];
-		[NSColorPanel setPickerMode:NSCrayonModeColorPanel];
+        [NSColorPanel setPickerMode:NSColorPanelModeCrayon];
 		[[SWToolboxController sharedToolboxPanelController] showWindow:self];
 	}
 	
@@ -91,7 +91,7 @@ NSString * const kSWUndoKey = @"UndoLevels";
 - (IBAction)showToolboxPanel:(id)sender
 {
 	SWToolboxController *toolboxPanel = [SWToolboxController sharedToolboxPanelController];
-	if ([[toolboxPanel window] isVisible]) {
+	if (toolboxPanel.window.visible) {
 		[toolboxPanel close];
 	} else {
 		[toolboxPanel showWindow:self];
@@ -108,9 +108,9 @@ NSString * const kSWUndoKey = @"UndoLevels";
 
 - (void)killTheSheet:(id)sender
 {
-	for (NSWindow *window in [NSApp windows]) 
+	for (NSWindow *window in NSApp.windows) 
 	{
-		if ([window isSheet] && [[[window windowController] class] isEqualTo:[SWSizeWindowController class]]) 
+		if (window.sheet && [[window.windowController class] isEqualTo:[SWSizeWindowController class]]) 
 		{
 			// Close all the size sheets, but no other ones
 			[window close];
@@ -146,7 +146,7 @@ NSString * const kSWUndoKey = @"UndoLevels";
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
-	SEL action = [menuItem action];
+	SEL action = menuItem.action;
 	if (action == @selector(newFromClipboard:)) {
 		return ([SWImageTools readImageFromPasteboard:[NSPasteboard generalPasteboard]] != nil);
 	}
@@ -179,12 +179,6 @@ NSString * const kSWUndoKey = @"UndoLevels";
 {	
 	// Open the URL
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:soggywaffles@gmail.com"]];
-}
-
-- (void)dealloc
-{
-	[preferenceController release];
-	[super dealloc];
 }
 
 @end

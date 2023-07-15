@@ -45,14 +45,14 @@
 		_mainImage = mainImage;
 		
 		// We do this to make a copy of the color
-		bombColor = (flags & NSAlternateKeyMask) ? frontColor : backColor;
+        bombColor = (flags & NSEventModifierFlagOption) ? frontColor : backColor;
 		
-		if (flags & NSShiftKeyMask) {
+        if (flags & NSEventModifierFlagShift) {
 			bombSpeed = 2;
 		} else {
 			bombSpeed = 50;
 		}
-		max = sqrt([mainImage size].width*[mainImage size].width + [_mainImage size].height*[_mainImage size].height);
+		max = sqrt(mainImage.size.width*mainImage.size.width + _mainImage.size.height*_mainImage.size.height);
 		bombTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/60.0) // 1 μs
 													 target:self
 												   selector:@selector(drawNewCircle:)
@@ -82,7 +82,7 @@
 //		[[NSColor clearColor] set];
 //		[[NSBezierPath bezierPathWithOvalInRect:rect] fill];
 		[NSGraphicsContext saveGraphicsState];
-		[[NSGraphicsContext currentContext] setCompositingOperation:NSCompositeCopy];
+        [NSGraphicsContext currentContext].compositingOperation = NSCompositingOperationCopy;
 		[bombColor set];
 		[[NSBezierPath bezierPathWithOvalInRect:rect] fill];
 		[NSGraphicsContext restoreGraphicsState];
@@ -111,7 +111,7 @@
 	
 	SWLockFocus(_mainImage);	
 	[bombColor set];
-	NSRectFill(NSMakeRect(0,0,[_mainImage size].width, [_mainImage size].height));
+	NSRectFill(NSMakeRect(0,0,_mainImage.size.width, _mainImage.size.height));
 	SWUnlockFocus(_mainImage);
 
 	[SWImageTools clearImage:_bufferImage];

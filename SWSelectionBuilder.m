@@ -43,26 +43,26 @@ static void MaskDataProviderReleaseDataCallback(void *info, const void *data, si
 - (unsigned int) pixelDifference:(NSPoint)point;
 
 - (void) processSegment:(SWSegment *)segment;
-- (CGImageRef) createMask;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGImageRef createMask;
 
 @end
 
 @implementation SWSelectionBuilder
 
-- (id) initWithBitmapImageRep:(NSBitmapImageRep *)imageRep point:(NSPoint)point tolerance:(CGFloat)tolerance
+- (instancetype) initWithBitmapImageRep:(NSBitmapImageRep *)imageRep point:(NSPoint)point tolerance:(CGFloat)tolerance
 {
 	self = [super init];
 	
 	if ( self != nil ) {
 		// Just retain the source image. We don't want to make a heavy copy of it
 		//	(too expensive) but we don't want it going away on us
-		mImageRep = [imageRep retain];
+		mImageRep = imageRep;
 		[mImageRep getBitmapDataPlanes:&mBitmapData];
 		
 		// Record the width and height of the source image. We'll use it to
 		//	figure out how big to make our mask.
-		mWidth = [mImageRep pixelsWide];
-		mHeight = [mImageRep pixelsHigh];
+		mWidth = mImageRep.pixelsWide;
+		mHeight = mImageRep.pixelsHigh;
 		
 		// Calloc marks the mask as all black, or all masked in (i.e. the image
 		//	would be all there, by default). So use memset() to mark them all
@@ -91,7 +91,7 @@ static void MaskDataProviderReleaseDataCallback(void *info, const void *data, si
 		// We need to scale the tolerance from [0..1] to [0..maxSampleValue], but to
 		//	do that, we first need to figure out what the maximum sample value
 		//	is. Compute how many bits are in a pixel component, then use that.
-		int bitsPerSample = [mImageRep bitsPerPixel] / [mImageRep samplesPerPixel];
+		int bitsPerSample = mImageRep.bitsPerPixel / mImageRep.samplesPerPixel;
 		int maxSampleValue = 0;
 		int i = 0;
 		for (i = 0; i < bitsPerSample; ++i)
@@ -110,15 +110,11 @@ static void MaskDataProviderReleaseDataCallback(void *info, const void *data, si
 - (void) dealloc
 {
 	// Let go of our source image, free up our visited buffer, and our stack.
-	[mImageRep release];
 	free(mSegments);
 	free(mVisited);
 
 	// Note that we don't free mMaskData -- this is intentional, as it'll be freed
 	// when the mask image is freed
-	[mStack release];
-	
-	[super dealloc];
 }
 
 - (CGImageRef) mask
@@ -130,10 +126,10 @@ static void MaskDataProviderReleaseDataCallback(void *info, const void *data, si
 	
 	// While the stack isn't empty, continue to process line segments that
 	//	are on the stack.
-	while ( [mStack count] > 0 ) {
+	while ( mStack.count > 0 ) {
 		// Pop the top segment off the stack
-//		NSDictionary* segment = [[[mStack lastObject] retain] autorelease];
-		SWSegment *segment = [[mStack lastObject] pointerValue];
+//		NSDictionary* segment = mStack.lastObject;
+		SWSegment *segment = [mStack.lastObject pointerValue];
 		[mStack removeLastObject];
 		
 		// Process the segment, by looking both above and below it for pixels
@@ -265,8 +261,8 @@ static void MaskDataProviderReleaseDataCallback(void *info, const void *data, si
 	
 	// We can't go linearly, as 10.4+ don't always pack bytes -- it may not be contiguous!
 	// Instead, we must go row by row
-	unsigned char * p = mBitmapData + ((int)point.y * [mImageRep bytesPerRow]);
-	p += (int)point.x * [mImageRep samplesPerPixel];
+	unsigned char * p = mBitmapData + ((int)point.y * mImageRep.bytesPerRow);
+	p += (int)point.x * mImageRep.samplesPerPixel;
 	
 	// Next get the components at that offset
 	NSInteger red = *p;
@@ -295,13 +291,13 @@ static void MaskDataProviderReleaseDataCallback(void *info, const void *data, si
 	// Determine the largest difference in the pixel components. Note that we
 	//	assume the alpha channel is the last component, and we skip it.
 	unsigned int maxDifference = 0;
-	int samplesPerPixel = [mImageRep samplesPerPixel];	
+	int samplesPerPixel = mImageRep.samplesPerPixel;	
 	int i = 0;
 	for (i = 0; i < (samplesPerPixel - 1); ++i) {
 		//		if (mPickedPixel[i] != pixel[i]) {
 		//			return -1;
 		//		}
-		unsigned int difference = abs((long)mPickedPixel[i] - (long)pixel[i]);
+		unsigned int difference = labs((long)mPickedPixel[i] - (long)pixel[i]);
 		if ( difference > maxDifference )
 			maxDifference = difference;
 	}

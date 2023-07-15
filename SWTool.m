@@ -25,7 +25,7 @@
 @synthesize flags;
 @synthesize document;
 
-- (id)initWithController:(SWToolboxController *)controller
+- (instancetype)initWithController:(SWToolboxController *)controller
 {
 	if(self = [super init]) 
 	{
@@ -54,7 +54,7 @@
 // Returns a copy of this object
 //- (id)copyWithZone:(NSZone *)zone
 //{
-//    SWTool *copy = [[[self class] allocWithZone: zone] initWithController:toolbox];
+//    SWTool *copy = [[[self class] alloc] initWithController:toolbox];
 //	
 //    return copy;
 //}
@@ -65,7 +65,7 @@
 						change:(NSDictionary *)change 
 					   context:(void *)context
 {
-	id thing = [change objectForKey:NSKeyValueChangeNewKey];
+	id thing = change[NSKeyValueChangeNewKey];
 	
 	if ([keyPath isEqualToString:@"lineWidth"]) {
 		[self setLineWidth:[thing integerValue]];
@@ -177,7 +177,7 @@
 {
 	NSRect tempRect;
 	tempRect.origin = NSMakePoint(round(fmin(p1.x, p2.x) - (lineWidth/2) - 1), round(fmin(p1.y, p2.y) - (lineWidth/2) - 1));
-	tempRect.size = NSMakeSize((abs(p1.x - p2.x) + lineWidth + 2), (abs(p1.y - p2.y) + lineWidth + 2));
+	tempRect.size = NSMakeSize((fabs(p1.x - p2.x) + lineWidth + 2), (fabs(p1.y - p2.y) + lineWidth + 2));
 	return [self addRectToRedrawRect:tempRect];
 }
 
@@ -214,13 +214,10 @@
 
 - (void)dealloc
 {
-	[customCursor release];
-	[document release];
 	[toolboxController removeObserver:self forKeyPath:@"lineWidth"];
 	[toolboxController removeObserver:self forKeyPath:@"foregroundColor"];
 	[toolboxController removeObserver:self forKeyPath:@"backgroundColor"];
 	[toolboxController removeObserver:self forKeyPath:@"fillStyle"];
-	[super dealloc];
 }
 
 

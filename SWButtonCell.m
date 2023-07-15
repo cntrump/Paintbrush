@@ -28,16 +28,16 @@
 	return;
 }
 
-- (id)initWithCoder:(NSCoder *)coder
+- (instancetype)initWithCoder:(NSCoder *)coder
 {
-	[super initWithCoder:coder];
-	
-	backupImage = [[self image] retain];
-	
-	// Generate the two images we'll use for the other states
-	[self generateAltImage];
-	[self generateHovImage];
-	
+    if (self = [super initWithCoder:coder]) {
+        backupImage = self.image;
+
+        // Generate the two images we'll use for the other states
+        [self generateAltImage];
+        [self generateHovImage];
+    }
+
 	return self;
 }
 
@@ -45,9 +45,9 @@
 {
 	if (!altImage) 
 	{
-		NSImage *normal = [self image];
+		NSImage *normal = self.image;
 		NSImage *highlight;
-		NSSize size = [normal size];
+		NSSize size = normal.size;
 		
 		if (NSEqualSizes(size, NSMakeSize(32, 32)))
 			highlight = [NSImage imageNamed:@"pressedsmall.png"];			
@@ -62,17 +62,16 @@
 		[altImage lockFocus];
 		[highlight drawAtPoint:NSZeroPoint
 					  fromRect:NSZeroRect
-					 operation:NSCompositeSourceOver
+                     operation:NSCompositingOperationSourceOver
 					  fraction:1.0];
 		NSShadow *shadow = [[NSShadow alloc] init];
-		[shadow setShadowBlurRadius:4.0];
-		[shadow setShadowColor:[NSColor whiteColor]];
+		shadow.shadowBlurRadius = 4.0;
+		shadow.shadowColor = [NSColor whiteColor];
 		[shadow set];
 		[normal drawAtPoint:NSZeroPoint
 				   fromRect:NSZeroRect
-				  operation:NSCompositeSourceOver
+                  operation:NSCompositingOperationSourceOver
 				   fraction:1.0];
-		[shadow release];
 		[altImage unlockFocus];
 	}
 }
@@ -81,9 +80,9 @@
 {
 	if (!hovImage)
 	{
-		NSImage *normal = [self image];
+		NSImage *normal = self.image;
 		NSImage *highlight;
-		NSSize size = [normal size];
+		NSSize size = normal.size;
 		
 		if (NSEqualSizes(size, NSMakeSize(32, 32)))
 			highlight = [NSImage imageNamed:@"hoveredsmall.png"];			
@@ -98,12 +97,12 @@
 		[hovImage lockFocus];
 		[highlight drawAtPoint:NSZeroPoint
 					  fromRect:NSZeroRect
-					 operation:NSCompositeSourceOver
+                     operation:NSCompositingOperationSourceOver
 					  fraction:1.0];
 		
 		[normal drawAtPoint:NSZeroPoint
 				   fromRect:NSZeroRect
-				  operation:NSCompositeSourceOver
+                  operation:NSCompositingOperationSourceOver
 				   fraction:1.0];
 		[hovImage unlockFocus];
 	}
@@ -112,9 +111,9 @@
 - (void)setIsHovered:(BOOL)flag;
 {
 	if (flag)
-		[self setImage:hovImage];
+		self.image = hovImage;
 	else
-		[self setImage:backupImage];
+		self.image = backupImage;
 }
 
 - (NSImage *)alternateImage
@@ -124,15 +123,5 @@
 	}
 	return altImage;
 }
-
-- (void)dealloc
-{
-	[altImage release];
-	[hovImage release];
-	[backupImage release];
-	
-	[super dealloc];
-}
-
 
 @end
