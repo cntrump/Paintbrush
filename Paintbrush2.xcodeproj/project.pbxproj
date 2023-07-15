@@ -254,6 +254,7 @@
 		151AC0EA2A62ED5000EE41C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Toolbox.xib; sourceTree = "<group>"; };
 		151AC0EB2A62ED5300EE41C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		151AC0EC2A62ED5400EE41C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		151AC0ED2A62F0FB00EE41C1 /* Paintbrush-AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Paintbrush-AppStore.entitlements"; sourceTree = "<group>"; };
 		2704064A0BFE3F3600C308C8 /* ToDo.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ToDo.rtf; sourceTree = "<group>"; };
 		2706B80F10ED6FE400080D4A /* PaintViewDrawingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintViewDrawingTest.h; sourceTree = "<group>"; };
 		2706B81010ED6FE400080D4A /* PaintViewDrawingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintViewDrawingTest.m; sourceTree = "<group>"; };
@@ -724,6 +725,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* Paintbrush */ = {
 			isa = PBXGroup;
 			children = (
+				151AC0ED2A62F0FB00EE41C1 /* Paintbrush-AppStore.entitlements */,
 				27A60E100B879A6A0091A1B0 /* Classes */,
 				2706B81E10ED700000080D4A /* Tests */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
@@ -1298,9 +1300,11 @@
 		27A2E0CB16AB70B400F124D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Paintbrush-AppStore.entitlements";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 2.2.0;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PREFIX_HEADER = Paintbrush_Prefix.pch;
 				INFOPLIST_FILE = "Info-AppStore.plist";
@@ -1319,8 +1323,10 @@
 		27A2E0CC16AB70B400F124D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Paintbrush-AppStore.entitlements";
 				CURRENT_PROJECT_VERSION = 2.1.2;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
