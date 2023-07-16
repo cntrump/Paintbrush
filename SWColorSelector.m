@@ -32,7 +32,7 @@
                                                              owner:self
                                                           userInfo:nil]];
         [self.window setAcceptsMouseMovedEvents:YES];
-        //	[self seta
+        //    [self seta
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(updateWells:)
@@ -40,77 +40,77 @@
                                                    object:nil];
     }
 
-	return self;
+    return self;
 }
 
 
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
 //- (void)observeValueForKeyPath:(NSString *)keyPath 
-//					  ofObject:(id)object
-//						change:(NSDictionary *)change 
-//					   context:(void *)context
+//                      ofObject:(id)object
+//                        change:(NSDictionary *)change 
+//                       context:(void *)context
 //{
-//	if ([keyPath isEqualToString:@"foregroundColor"]) {
-//		DebugLog(@"Changed foreground color");
-//	} else if ([keyPath isEqualToString:@"backgroundColor"]) {
-//		DebugLog(@"Changed background color");
-//	} else {
-//		DebugLog(@"BOOM");
-//	}
+//    if ([keyPath isEqualToString:@"foregroundColor"]) {
+//        DebugLog(@"Changed foreground color");
+//    } else if ([keyPath isEqualToString:@"backgroundColor"]) {
+//        DebugLog(@"Changed background color");
+//    } else {
+//        DebugLog(@"BOOM");
+//    }
 //}
 
 - (void)mouseExited:(NSEvent *)event
 {
-	[backWell setIsHovered:NO];
-	[frontWell setIsHovered:NO];
-	[self updateWells:nil];
+    [backWell setIsHovered:NO];
+    [frontWell setIsHovered:NO];
+    [self updateWells:nil];
 }
 
 - (void)mouseMoved:(NSEvent *)event
 {
-	NSPoint p = event.locationInWindow;
-	NSPoint downPoint = [self convertPoint:p fromView:nil];
-	if ([frontWell hitTest:downPoint])
-	{
-		[backWell setIsHovered:NO];
-		[frontWell setIsHovered:YES];
-	}
-	else if ([backWell hitTest:downPoint]) 
-	{
-		[backWell setIsHovered:YES];
-		[frontWell setIsHovered:NO];
-	}
-	else 
-	{
-		[backWell setIsHovered:NO];
-		[frontWell setIsHovered:NO];
-	}
-	
-	[self updateWells:nil];
+    NSPoint p = event.locationInWindow;
+    NSPoint downPoint = [self convertPoint:p fromView:nil];
+    if ([frontWell hitTest:downPoint])
+    {
+        [backWell setIsHovered:NO];
+        [frontWell setIsHovered:YES];
+    }
+    else if ([backWell hitTest:downPoint]) 
+    {
+        [backWell setIsHovered:YES];
+        [frontWell setIsHovered:NO];
+    }
+    else 
+    {
+        [backWell setIsHovered:NO];
+        [frontWell setIsHovered:NO];
+    }
+    
+    [self updateWells:nil];
 }
 
 
 - (void)mouseDown:(NSEvent *)event
 {
-	[self updateWells:nil];
+    [self updateWells:nil];
 }
 
 
 // Called whenever one of the color wells has changed colors, so both can redraw
 - (void)updateWells:(NSNotification *)n
 {
-	[backWell setNeedsDisplay:YES];
-	[frontWell setNeedsDisplay:YES];
+    [backWell setNeedsDisplay:YES];
+    [frontWell setNeedsDisplay:YES];
 }
 
 - (BOOL)acceptsFirstMouse
 {
-	return YES;
+    return YES;
 }
 
 @end

@@ -29,43 +29,43 @@
 
 - (instancetype)initWithDocument:(SWDocument *)doc
 {
-	self = [super init];
-	
-	sharedController = [SWToolboxController sharedToolboxPanelController];
-	
-	// Create the dictionary
-	toolList = [[NSMutableDictionary alloc] initWithCapacity:14];
-	for (Class c in [SWToolbox toolClassList]) 
-	{
-		SWTool *tool = [[c alloc] initWithController:sharedController];
-		tool.document = doc;
-		toolList[tool.description] = tool;
-	}
-	
-	[sharedController addObserver:self 
-					   forKeyPath:@"currentTool" 
-						  options:NSKeyValueObservingOptionNew 
-						  context:NULL];
-	
-	// Set the initial tool info
-	[sharedController updateInfo];
-	
-	return self;
+    self = [super init];
+    
+    sharedController = [SWToolboxController sharedToolboxPanelController];
+    
+    // Create the dictionary
+    toolList = [[NSMutableDictionary alloc] initWithCapacity:14];
+    for (Class c in [SWToolbox toolClassList]) 
+    {
+        SWTool *tool = [[c alloc] initWithController:sharedController];
+        tool.document = doc;
+        toolList[tool.description] = tool;
+    }
+    
+    [sharedController addObserver:self 
+                       forKeyPath:@"currentTool" 
+                          options:NSKeyValueObservingOptionNew 
+                          context:NULL];
+    
+    // Set the initial tool info
+    [sharedController updateInfo];
+    
+    return self;
 }
 
 
 // Don't forget to remove my registration to the toolbox controller!
 - (void)dealloc
 {
-	[sharedController removeObserver:self forKeyPath:@"currentTool"];
+    [sharedController removeObserver:self forKeyPath:@"currentTool"];
 }
 
 
 // Here's the setter for the tool: make sure you wrap up loose ends for the previous tool!
 - (void)setCurrentTool:(SWTool *)tool
 {
-	[currentTool tieUpLooseEnds];
-	currentTool = tool;
+    [currentTool tieUpLooseEnds];
+    currentTool = tool;
     
     
     SWToolboxController *controller = [SWToolboxController sharedToolboxPanelController];
@@ -78,40 +78,40 @@
 
 // Something happened!
 - (void)observeValueForKeyPath:(NSString *)keyPath 
-					  ofObject:(id)object 
-						change:(NSDictionary *)change 
-					   context:(void *)context
+                      ofObject:(id)object 
+                        change:(NSDictionary *)change 
+                       context:(void *)context
 {
-	id thing = change[NSKeyValueChangeNewKey];
-	
-	if ([keyPath isEqualToString:@"currentTool"]) {
-		SWTool *tool = [self toolForLabel:thing];
-		if (tool) {
-			self.currentTool = tool;
-		}
-	}
+    id thing = change[NSKeyValueChangeNewKey];
+    
+    if ([keyPath isEqualToString:@"currentTool"]) {
+        SWTool *tool = [self toolForLabel:thing];
+        if (tool) {
+            self.currentTool = tool;
+        }
+    }
 }
 
 
 // Which tool comes from which label?
 - (SWTool *)toolForLabel:(NSString *)label
 {
-	return toolList[[NSString stringWithString:label]];
+    return toolList[[NSString stringWithString:label]];
 }
 
 
 + (NSArray *)toolClassList
 {
-	return @[[SWBrushTool class], [SWEraserTool class], [SWSelectionTool class], 
-			[SWAirbrushTool class], [SWFillTool class], [SWBombTool class], [SWLineTool class], 
-			[SWCurveTool class], [SWRectangleTool class], [SWEllipseTool class], [SWRoundedRectangleTool class], 
-			[SWTextTool class], [SWEyeDropperTool class], [SWZoomTool class]];
+    return @[[SWBrushTool class], [SWEraserTool class], [SWSelectionTool class], 
+            [SWAirbrushTool class], [SWFillTool class], [SWBombTool class], [SWLineTool class], 
+            [SWCurveTool class], [SWRectangleTool class], [SWEllipseTool class], [SWRoundedRectangleTool class], 
+            [SWTextTool class], [SWEyeDropperTool class], [SWZoomTool class]];
 }
 
 
 - (void)tieUpLooseEndsForCurrentTool
 {
-	[currentTool tieUpLooseEnds];
+    [currentTool tieUpLooseEnds];
 }
 
 

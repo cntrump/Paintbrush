@@ -26,12 +26,12 @@
 + (void)clearImage:(NSBitmapImageRep *)image;
 + (void)clearImage:(NSBitmapImageRep *)image inRect:(NSRect)rect;
 + (void)drawToImage:(NSBitmapImageRep *)dest 
-		  fromImage:(NSBitmapImageRep *)src
-	withComposition:(BOOL)shouldCompositeOver;
+          fromImage:(NSBitmapImageRep *)src
+    withComposition:(BOOL)shouldCompositeOver;
 + (void)drawToImage:(NSBitmapImageRep *)dest 
-		  fromImage:(NSBitmapImageRep *)src 
-			atPoint:(NSPoint)point
-	withComposition:(BOOL)shouldCompositeOver;
+          fromImage:(NSBitmapImageRep *)src 
+            atPoint:(NSPoint)point
+    withComposition:(BOOL)shouldCompositeOver;
 + (void)initImageRep:(NSBitmapImageRep **)imageRep withSize:(NSSize)size;
 + (void)flipImageHorizontal:(NSBitmapImageRep *)bitmap;
 + (void)flipImageVertical:(NSBitmapImageRep *)bitmap;

@@ -36,37 +36,37 @@
         hoveredCell = nil;
     }
     
-	return self;
+    return self;
 }
 
 // When the mouse exits the tracking area, remove any highlights
 - (void)mouseExited:(NSEvent *)theEvent
 {
-	[hoveredCell setIsHovered:NO];
-	hoveredPoint = NSMakePoint(-1,-1);
-	hoveredCell = nil;
+    [hoveredCell setIsHovered:NO];
+    hoveredPoint = NSMakePoint(-1,-1);
+    hoveredCell = nil;
 }
 
 // When the mouse moves, make sure the correct button is hovered
 - (void)mouseMoved:(NSEvent *)theEvent
 {
-	NSPoint p = theEvent.locationInWindow;
-	NSPoint converted = [self convertPoint:p fromView:nil];
-	
-	// Calculate which row and column this point equates to
-	NSInteger row, col;
-	[self getRow:&row column:&col forPoint:converted];
-	
-	// Is it a new cell?
-	if (hoveredPoint.x != row || hoveredPoint.y != col) {
-		hoveredPoint = NSMakePoint(row,col);
-		
-		// Switch to the new cell
-		[hoveredCell setIsHovered:NO];
-		hoveredCell = [self cellAtRow:row column:col];
-		
-		[hoveredCell setIsHovered:YES];			
-	}
+    NSPoint p = theEvent.locationInWindow;
+    NSPoint converted = [self convertPoint:p fromView:nil];
+    
+    // Calculate which row and column this point equates to
+    NSInteger row, col;
+    [self getRow:&row column:&col forPoint:converted];
+    
+    // Is it a new cell?
+    if (hoveredPoint.x != row || hoveredPoint.y != col) {
+        hoveredPoint = NSMakePoint(row,col);
+        
+        // Switch to the new cell
+        [hoveredCell setIsHovered:NO];
+        hoveredCell = [self cellAtRow:row column:col];
+        
+        [hoveredCell setIsHovered:YES];            
+    }
 }
 
 @end

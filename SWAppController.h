@@ -26,7 +26,7 @@ extern NSString * const kSWUndoKey;
 
 @interface SWAppController : NSObject
 {
-	SWPreferenceController *preferenceController;
+    SWPreferenceController *preferenceController;
 }
 - (IBAction)showPreferencePanel:(id)sender;
 - (IBAction)showToolboxPanel:(id)sender;

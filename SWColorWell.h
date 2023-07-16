@@ -20,10 +20,10 @@
 #import <Cocoa/Cocoa.h>
 
 @interface SWColorWell : NSColorWell {
-	NSImage *hovImage;
-	NSImage *pressedImage;
-	
-	BOOL isHovered;
+    NSImage *hovImage;
+    NSImage *pressedImage;
+    
+    BOOL isHovered;
 }
 
 //- (void)needsRedraw:(NSNotification *)n;

@@ -27,32 +27,32 @@
 
 @interface SWPaintView : NSView 
 {
-	// Have a connection to the SWDocument instance that owns this view
-	IBOutlet SWDocument *document;
-	
-	// The data source: light of our life
-	SWImageDataSource *dataSource;
-	
-	NSPoint currentPoint;
-	NSColor *frontColor;
-	NSColor *backColor;
-	NSData *undoData;
-	NSBezierPath *expPath;
-	SWToolboxController *toolboxController;
-	SWToolbox *toolbox;
+    // Have a connection to the SWDocument instance that owns this view
+    IBOutlet SWDocument *document;
+    
+    // The data source: light of our life
+    SWImageDataSource *dataSource;
+    
+    NSPoint currentPoint;
+    NSColor *frontColor;
+    NSColor *backColor;
+    NSData *undoData;
+    NSBezierPath *expPath;
+    SWToolboxController *toolboxController;
+    SWToolbox *toolbox;
 
-	BOOL isPayingAttention;
-	
-	NSColor *backgroundColor;
-	
-	// Grid related
-	BOOL showsGrid;
-	CGFloat gridSpacing;
-	NSColor *gridColor;
+    BOOL isPayingAttention;
+    
+    NSColor *backgroundColor;
+    
+    // Grid related
+    BOOL showsGrid;
+    CGFloat gridSpacing;
+    NSColor *gridColor;
 }
 
 - (void)preparePaintViewWithDataSource:(SWImageDataSource *)ds
-							   toolbox:(SWToolbox *)tb;
+                               toolbox:(SWToolbox *)tb;
 - (NSRect)calculateWindowBounds:(NSRect)frameRect;
 - (void)setBackgroundColor:(NSColor *)color;
 - (void)clearOverlay;

@@ -21,11 +21,11 @@
 
 
 @interface SWSizeWindowController : NSWindowController {
-	IBOutlet NSPopUpButton *sizeButton;
-	IBOutlet NSMenuItem *clipboard;
-	
-	IBOutlet NSTextField *heightField;
-	IBOutlet NSTextField *widthField;
+    IBOutlet NSPopUpButton *sizeButton;
+    IBOutlet NSMenuItem *clipboard;
+    
+    IBOutlet NSTextField *heightField;
+    IBOutlet NSTextField *widthField;
 }
 
 // Called whenever the size is manually changed by the user

@@ -24,99 +24,99 @@
 
 - (NSBezierPath *)pathFromPoint:(NSPoint)begin toPoint:(NSPoint)end
 {
-	path = [NSBezierPath bezierPath];
-	path.lineWidth = lineWidth;
-	[path moveToPoint:begin];
-	if (lineWidth <= 1) 
-	{
-		begin.x += 0.5;
-		begin.y += 0.5;
-		end.x += 0.5;
-		end.y += 0.5;
-	}
+    path = [NSBezierPath bezierPath];
+    path.lineWidth = lineWidth;
+    [path moveToPoint:begin];
+    if (lineWidth <= 1) 
+    {
+        begin.x += 0.5;
+        begin.y += 0.5;
+        end.x += 0.5;
+        end.y += 0.5;
+    }
     if (flags & NSEventModifierFlagShift) {
         CGFloat size = fmin(fabs(end.x-begin.x),fabs(end.y-begin.y));
-		NSInteger x = (end.x-begin.x) / fabs(end.x-begin.x);
-		NSInteger y = (end.y-begin.y) / fabs(end.y-begin.y);
-		[path appendBezierPathWithOvalInRect:NSMakeRect(begin.x, begin.y, x*size, y*size)];
-	} else {
-		[path appendBezierPathWithOvalInRect:NSMakeRect(begin.x, begin.y, (end.x - begin.x), (end.y - begin.y))];
-	}
-	
-	return path;	
+        NSInteger x = (end.x-begin.x) / fabs(end.x-begin.x);
+        NSInteger y = (end.y-begin.y) / fabs(end.y-begin.y);
+        [path appendBezierPathWithOvalInRect:NSMakeRect(begin.x, begin.y, x*size, y*size)];
+    } else {
+        [path appendBezierPathWithOvalInRect:NSMakeRect(begin.x, begin.y, (end.x - begin.x), (end.y - begin.y))];
+    }
+    
+    return path;    
 }
 
 - (NSBezierPath *)performDrawAtPoint:(NSPoint)point 
-					   withMainImage:(NSBitmapImageRep *)mainImage 
-						 bufferImage:(NSBitmapImageRep *)bufferImage 
-						  mouseEvent:(SWMouseEvent)event
-{	
-	// Use the points clicked to build a redraw rectangle
-	[super addRedrawRectFromPoint:savedPoint toPoint:point];
-	
-	[SWImageTools clearImage:bufferImage];
-	
-	if (event == MOUSE_UP) 
-	{
-		[document handleUndoWithImageData:nil frame:NSZeroRect];
-		drawToMe = mainImage;
-	} 
-	else
-		drawToMe = bufferImage;
-	
-	SWLockFocus(drawToMe); 
-	[[NSGraphicsContext currentContext] setShouldAntialias:NO];
-	
-	// Which colors should we draw with?
-	if (event == MOUSE_DOWN) {
+                       withMainImage:(NSBitmapImageRep *)mainImage 
+                         bufferImage:(NSBitmapImageRep *)bufferImage 
+                          mouseEvent:(SWMouseEvent)event
+{    
+    // Use the points clicked to build a redraw rectangle
+    [super addRedrawRectFromPoint:savedPoint toPoint:point];
+    
+    [SWImageTools clearImage:bufferImage];
+    
+    if (event == MOUSE_UP) 
+    {
+        [document handleUndoWithImageData:nil frame:NSZeroRect];
+        drawToMe = mainImage;
+    } 
+    else
+        drawToMe = bufferImage;
+    
+    SWLockFocus(drawToMe); 
+    [[NSGraphicsContext currentContext] setShouldAntialias:NO];
+    
+    // Which colors should we draw with?
+    if (event == MOUSE_DOWN) {
         if (flags & NSEventModifierFlagOption) {
-			primaryColor = backColor;
-			secondaryColor = frontColor;
-		} else {
-			primaryColor = frontColor;
-			secondaryColor = backColor;
-		}
-	}
-	
-	[self pathFromPoint:savedPoint toPoint:point];
-	if (shouldFill && shouldStroke)
-	{
-		[primaryColor setStroke];
-		[secondaryColor setFill];
-		[path fill];
-		[path stroke];
-	}
-	else if (shouldFill) 
-	{
-		[primaryColor setFill];
-		[path fill];
-	}
-	else if (shouldStroke) 
-	{
-		[primaryColor setStroke];
-		[path stroke];
-	}
-	
-	SWUnlockFocus(drawToMe);
-	return nil;
+            primaryColor = backColor;
+            secondaryColor = frontColor;
+        } else {
+            primaryColor = frontColor;
+            secondaryColor = backColor;
+        }
+    }
+    
+    [self pathFromPoint:savedPoint toPoint:point];
+    if (shouldFill && shouldStroke)
+    {
+        [primaryColor setStroke];
+        [secondaryColor setFill];
+        [path fill];
+        [path stroke];
+    }
+    else if (shouldFill) 
+    {
+        [primaryColor setFill];
+        [path fill];
+    }
+    else if (shouldStroke) 
+    {
+        [primaryColor setStroke];
+        [path stroke];
+    }
+    
+    SWUnlockFocus(drawToMe);
+    return nil;
 }
 
 - (NSCursor *)cursor
 {
-	if (!customCursor) {
-		customCursor = NSCursor.crosshairCursor;
-	}
-	return customCursor;
+    if (!customCursor) {
+        customCursor = NSCursor.crosshairCursor;
+    }
+    return customCursor;
 }
 
 - (BOOL)shouldShowFillOptions
 {
-	return YES;
+    return YES;
 }
 
 - (NSString *)description
 {
-	return @"Ellipse";
+    return @"Ellipse";
 }
 
 @end

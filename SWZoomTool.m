@@ -25,43 +25,43 @@
 @implementation SWZoomTool
 
 - (NSBezierPath *)performDrawAtPoint:(NSPoint)point 
-					   withMainImage:(NSBitmapImageRep *)mainImage 
-						 bufferImage:(NSBitmapImageRep *)bufferImage 
-						  mouseEvent:(SWMouseEvent)event
+                       withMainImage:(NSBitmapImageRep *)mainImage 
+                         bufferImage:(NSBitmapImageRep *)bufferImage 
+                          mouseEvent:(SWMouseEvent)event
 {
-	// Only zoom on a down-click
-	if (event == MOUSE_DOWN) 
-	{
-		savedPoint = point;
+    // Only zoom on a down-click
+    if (event == MOUSE_DOWN) 
+    {
+        savedPoint = point;
 
-		//NSDocumentController *controller = [NSDocumentController sharedDocumentController];
-		//id document = [controller documentForWindow: [NSApp mainWindow]];
-		
-		// If it's a Paintbrush document, get its PaintView
-		if (document /*&& [document isKindOfClass:[SWDocument class]]*/) 
-		{
-			// Were they zooming in or out?
+        //NSDocumentController *controller = [NSDocumentController sharedDocumentController];
+        //id document = [controller documentForWindow: [NSApp mainWindow]];
+        
+        // If it's a Paintbrush document, get its PaintView
+        if (document /*&& [document isKindOfClass:[SWDocument class]]*/) 
+        {
+            // Were they zooming in or out?
             if (flags & NSEventModifierFlagOption)
-				[document zoomOut:self];
-			else
-				[document zoomIn:self];
-		}
-	}
-	return nil;
+                [document zoomOut:self];
+            else
+                [document zoomIn:self];
+        }
+    }
+    return nil;
 }
 
 - (NSCursor *)cursor
 {
-	if (!customCursor) {
-		NSImage *customImage = [NSImage imageNamed:@"zoom-cursor-2.png"];
-		customCursor = [[NSCursor alloc] initWithImage:customImage hotSpot:NSMakePoint(1,15)];
-	}
-	return customCursor;
+    if (!customCursor) {
+        NSImage *customImage = [NSImage imageNamed:@"zoom-cursor-2.png"];
+        customCursor = [[NSCursor alloc] initWithImage:customImage hotSpot:NSMakePoint(1,15)];
+    }
+    return customCursor;
 }
 
 - (NSString *)description
 {
-	return @"Zoom";
+    return @"Zoom";
 }
 
 @end

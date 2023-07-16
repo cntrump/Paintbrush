@@ -21,9 +21,9 @@
 #import "SWTool.h"
 
 @interface SWTextTool : SWTool {
-	BOOL canInsert;
-	NSAttributedString *stringToInsert;
-	NSBitmapImageRep *image;
+    BOOL canInsert;
+    NSAttributedString *stringToInsert;
+    NSBitmapImageRep *image;
 }
 
 - (void)insertText:(NSNotification *)note;

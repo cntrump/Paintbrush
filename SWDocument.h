@@ -34,24 +34,24 @@
 
 @interface SWDocument : NSDocument
 {
-	IBOutlet SWPaintView *paintView;
-	IBOutlet SWScalingScrollView *scrollView;	/* ScrollView containing document */
-	
-	// The image data
-	SWImageDataSource * dataSource;
-	
-	// A bunch of controllers and one view
-	SWToolboxController *toolboxController;
-	SWToolbox *toolbox;
-	SWCenteringClipView *clipView;
-	SWTextToolWindowController *textController;
-	SWSizeWindowController *sizeController;
-	SWResizeWindowController *resizeController;
-	SWSavePanelAccessoryViewController *savePanelAccessoryViewController;
-	
-	// Misc other member variables
-	NSNotificationCenter *nc;
-	NSString *currentFileType;
+    IBOutlet SWPaintView *paintView;
+    IBOutlet SWScalingScrollView *scrollView;    /* ScrollView containing document */
+    
+    // The image data
+    SWImageDataSource * dataSource;
+    
+    // A bunch of controllers and one view
+    SWToolboxController *toolboxController;
+    SWToolbox *toolbox;
+    SWCenteringClipView *clipView;
+    SWTextToolWindowController *textController;
+    SWSizeWindowController *sizeController;
+    SWResizeWindowController *resizeController;
+    SWSavePanelAccessoryViewController *savePanelAccessoryViewController;
+    
+    // Misc other member variables
+    NSNotificationCenter *nc;
+    NSString *currentFileType;
 }
 
 // Properties
@@ -76,15 +76,15 @@
 
 // Sheets for size!
 - (void)sizeSheetDidEnd:(NSWindow *)sheet
-			 returnCode:(NSInteger)returnCode
-			contextInfo:(void *)contextInfo;
+             returnCode:(NSInteger)returnCode
+            contextInfo:(void *)contextInfo;
 - (IBAction)raiseSizeSheet:(id)sender;
 - (IBAction)raiseResizeSheet:(id)sender;
 - (void)setUpPaintView;
 
 // Undo
 - (void)handleUndoWithImageData:(NSData *)mainImageData 
-						  frame:(NSRect)frame;
+                          frame:(NSRect)frame;
 
 // For copy-and-paste
 - (void)writeImageToPasteboard:(NSPasteboard *)pb;

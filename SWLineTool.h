@@ -21,7 +21,7 @@
 #import "SWTool.h"
 
 @interface SWLineTool : SWTool {
-	NSColor *primaryColor;
+    NSColor *primaryColor;
 }
 
 @end

@@ -21,24 +21,24 @@
 #import "SWTool.h"
 
 @interface SWSelectionTool : SWTool {
-	NSRect clippingRect;
-	
-	// The two images, and the one pointer to the active image
-	NSBitmapImageRep *selImageWithTransparency;
-	NSBitmapImageRep *selImageSansTransparency;
-	
-	NSTimer *animationTimer;
-	CGFloat dottedLineArray[2];
-	NSInteger dottedLineOffset;
-	NSBitmapImageRep *originalImageCopy;
-	NSPoint previousPoint;
-	NSPoint oldOrigin;
-	BOOL isSelected;
-	BOOL isAlreadyShifting;
-	NSInteger deltax, deltay;
-	char direction;					// Either X or Y
-	
-	BOOL shouldOmitBackground;
+    NSRect clippingRect;
+    
+    // The two images, and the one pointer to the active image
+    NSBitmapImageRep *selImageWithTransparency;
+    NSBitmapImageRep *selImageSansTransparency;
+    
+    NSTimer *animationTimer;
+    CGFloat dottedLineArray[2];
+    NSInteger dottedLineOffset;
+    NSBitmapImageRep *originalImageCopy;
+    NSPoint previousPoint;
+    NSPoint oldOrigin;
+    BOOL isSelected;
+    BOOL isAlreadyShifting;
+    NSInteger deltax, deltay;
+    char direction;                    // Either X or Y
+    
+    BOOL shouldOmitBackground;
 }
 
 @property (NS_NONATOMIC_IOSONLY, getter=isSelected, readonly) BOOL selected;

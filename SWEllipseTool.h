@@ -21,8 +21,8 @@
 #import "SWTool.h"
 
 @interface SWEllipseTool : SWTool {
-	NSColor *primaryColor;
-	NSColor *secondaryColor;
+    NSColor *primaryColor;
+    NSColor *secondaryColor;
 }
 
 @end

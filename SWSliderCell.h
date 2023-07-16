@@ -21,7 +21,7 @@
 
 
 @interface SWSliderCell : NSSliderCell {
-	NSImage *knobImage;
+    NSImage *knobImage;
 }
 
 @end

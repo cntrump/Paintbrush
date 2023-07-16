@@ -22,7 +22,7 @@
 
 
 @interface SWEyeDropperTool : SWTool {
-	NSBitmapImageRep *imageRep;
+    NSBitmapImageRep *imageRep;
 }
 
 @end

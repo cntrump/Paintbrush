@@ -13,14 +13,14 @@
 
 - (void)checkForUpdates:(id)sender
 {
-	// Here we are!  We "respond"
+    // Here we are!  We "respond"
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
-	// Hide them!  Hide them all!
-	[menuItem setHidden:YES];
-	return YES;
+    // Hide them!  Hide them all!
+    [menuItem setHidden:YES];
+    return YES;
 }
 
 @end

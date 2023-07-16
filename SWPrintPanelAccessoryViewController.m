@@ -31,25 +31,25 @@
 - (void)setRepresentedObject:(id)printInfo 
 {
     super.representedObject = printInfo;
-	NSNumber * shouldScaleValue = [[NSUserDefaults standardUserDefaults] objectForKey:@"ScaleImageToFitPage"];
-	BOOL shouldScale = YES;
-	if (shouldScaleValue != nil)
-		shouldScale = shouldScaleValue.boolValue;
+    NSNumber * shouldScaleValue = [NSUserDefaults.standardUserDefaults objectForKey:@"ScaleImageToFitPage"];
+    BOOL shouldScale = YES;
+    if (shouldScaleValue != nil)
+        shouldScale = shouldScaleValue.boolValue;
     [self setScaling:shouldScale];
 }
 
 
 - (void)setScaling:(BOOL)flag
 {
-	NSPrintInfo *printInfo = self.representedObject;
+    NSPrintInfo *printInfo = self.representedObject;
     [printInfo dictionary][NSPrintHorizontalPagination] = [NSNumber numberWithInteger:(flag ? NSFitPagination : NSAutoPagination)];
-    [printInfo dictionary][NSPrintVerticalPagination] = [NSNumber numberWithInteger:(flag ? NSFitPagination : NSAutoPagination)];	
+    [printInfo dictionary][NSPrintVerticalPagination] = [NSNumber numberWithInteger:(flag ? NSFitPagination : NSAutoPagination)];    
 }
 
 
 - (BOOL)scaling
 {
-	NSPrintInfo *printInfo = self.representedObject;
+    NSPrintInfo *printInfo = self.representedObject;
     return ( [[printInfo dictionary][NSPrintVerticalPagination] integerValue] ) == NSFitPagination;
 }
 
@@ -57,7 +57,7 @@
 - (NSArray *)localizedSummaryItems
 {
     return @[@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedString(@"Scaling", @"Print panel summary item title for whether the image should be scaled down to fit on a page"),
-			 NSPrintPanelAccessorySummaryItemDescriptionKey: [self scaling] ? NSLocalizedString(@"On", @"Print panel summary value when scaling is on") : NSLocalizedString(@"Off", @"Print panel summary value when scaling is off")}];	
+             NSPrintPanelAccessorySummaryItemDescriptionKey: [self scaling] ? NSLocalizedString(@"On", @"Print panel summary value when scaling is on") : NSLocalizedString(@"Off", @"Print panel summary value when scaling is off")}];    
 }
 
 

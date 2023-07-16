@@ -23,11 +23,11 @@
 @class SWSelectionBuilder;
 
 @interface SWFillTool : SWTool {
-	NSBitmapImageRep *aRep, *imageRep;
-	NSBitmapImageRep *image;
-	NSInteger h;
-	NSInteger w;
-	NSColor *fillColor;
+    NSBitmapImageRep *aRep, *imageRep;
+    NSBitmapImageRep *image;
+    NSInteger h;
+    NSInteger w;
+    NSColor *fillColor;
 }
 
 

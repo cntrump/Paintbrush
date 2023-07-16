@@ -21,8 +21,8 @@
 #import "SWTool.h"
 
 @interface SWRoundedRectangleTool : SWTool {
-	NSColor *primaryColor;
-	NSColor *secondaryColor;
+    NSColor *primaryColor;
+    NSColor *secondaryColor;
 }
 
 @end

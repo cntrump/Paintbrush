@@ -22,8 +22,8 @@
 @class SWDocument;
 
 @interface SWTextToolWindowController : NSWindowController {
-	IBOutlet NSTextView *textView;
-	SWDocument *document;
+    IBOutlet NSTextView *textView;
+    SWDocument *document;
 }
 
 - (instancetype)initWithDocument:(SWDocument *)doc NS_DESIGNATED_INITIALIZER;

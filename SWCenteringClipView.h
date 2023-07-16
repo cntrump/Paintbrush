@@ -20,10 +20,10 @@
 #import <Cocoa/Cocoa.h>
 
 @interface SWCenteringClipView : NSClipView {
-	NSGradient *backgroundGradient;
-	NSShadow *shadow;
-	NSImage *bgImagePattern;
-	NSBitmapImageRep *bgImage;
+    NSGradient *backgroundGradient;
+    NSShadow *shadow;
+    NSImage *bgImagePattern;
+    NSBitmapImageRep *bgImage;
 }
 
 -(void)centerDocument;

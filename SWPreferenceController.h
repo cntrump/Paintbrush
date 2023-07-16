@@ -20,14 +20,14 @@
 #import <Cocoa/Cocoa.h>
 
 @interface SWPreferenceController : NSWindowController {
-	IBOutlet NSStepper *undoStepper;
-	IBOutlet NSTextField *undoTextField;
-	IBOutlet NSPopUpButton *fileTypeButton;
-	
-	IBOutlet NSView *generalPrefsView;
-	IBOutlet NSView *advancedPrefsView;
-	
-	int currentViewTag;
+    IBOutlet NSStepper *undoStepper;
+    IBOutlet NSTextField *undoTextField;
+    IBOutlet NSPopUpButton *fileTypeButton;
+    
+    IBOutlet NSView *generalPrefsView;
+    IBOutlet NSView *advancedPrefsView;
+    
+    NSInteger currentViewTag;
 }
 
 - (IBAction)changeFileType:(id)sender;

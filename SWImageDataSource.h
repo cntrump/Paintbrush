@@ -22,12 +22,12 @@
 
 @interface SWImageDataSource : NSObject 
 {
-	NSBitmapImageRep * mainImage;	// The main storage image
-	NSBitmapImageRep * bufferImage;	// The buffer drawn to for temporary actions
-	
-	NSArray * imageArray;	// Array of images used for drawing (the images above)
-	
-	NSSize size;			// Cached size
+    NSBitmapImageRep * mainImage;    // The main storage image
+    NSBitmapImageRep * bufferImage;    // The buffer drawn to for temporary actions
+    
+    NSArray * imageArray;    // Array of images used for drawing (the images above)
+    
+    NSSize size;            // Cached size
 }
 
 // Initializers
@@ -37,7 +37,7 @@
 
 // Modifiers to the image
 - (void)resizeToSize:(NSSize)size
-		  scaleImage:(BOOL)shouldScale;
+          scaleImage:(BOOL)shouldScale;
 
 // Need to change the image?  We got your back -- here be datas
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSData *copyMainImageData;

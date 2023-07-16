@@ -30,31 +30,31 @@
 
 - (instancetype)initWithSize:(NSSize)sizeIn
 {
-	self = [super init];
-	if (self)
-	{
-		// Save the size
-		size = sizeIn;
-		
-		// Create the two images we'll be using
+    self = [super init];
+    if (self)
+    {
+        // Save the size
+        size = sizeIn;
+        
+        // Create the two images we'll be using
         NSBitmapImageRep *mainImage = nil, *bufferImage = nil;
-		[SWImageTools initImageRep:&mainImage withSize:size];
-		[SWImageTools initImageRep:&bufferImage withSize:size];
+        [SWImageTools initImageRep:&mainImage withSize:size];
+        [SWImageTools initImageRep:&bufferImage withSize:size];
         self->mainImage = mainImage;
         self->bufferImage = bufferImage;
-		
-		// New Image: gotta paint the background color
-		SWLockFocus(mainImage);
-		
-		NSColor *bgColor = [[SWToolboxController sharedToolboxPanelController] backgroundColor];
-		[bgColor setFill];
+        
+        // New Image: gotta paint the background color
+        SWLockFocus(mainImage);
+        
+        NSColor *bgColor = [[SWToolboxController sharedToolboxPanelController] backgroundColor];
+        [bgColor setFill];
 
-		NSRect newRect = (NSRect) { NSZeroPoint, sizeIn };
-		NSRectFill(newRect);
-		
-		SWUnlockFocus(mainImage);		
-	}
-	return self;
+        NSRect newRect = (NSRect) { NSZeroPoint, sizeIn };
+        NSRectFill(newRect);
+        
+        SWUnlockFocus(mainImage);        
+    }
+    return self;
 }
 
 
@@ -63,7 +63,7 @@
     // Temporary image to get dimensions
     NSBitmapImageRep *tempImage = [NSBitmapImageRep imageRepWithContentsOfURL:url];
 
-    if (!tempImage)	// failure case
+    if (!tempImage)    // failure case
         return nil;
 
     // Run baseline initializer
@@ -76,19 +76,19 @@
             [SWImageTools flipImageVertical:mainImage];
     }
 
-	return self;
+    return self;
 }
 
 
 - (instancetype)initWithPasteboard
 {
-	NSBitmapImageRep *tempImage = [NSBitmapImageRep imageRepWithPasteboard:[NSPasteboard generalPasteboard]];
-	
-	NSAssert(tempImage, @"We can't initialize with a pasteboard without an image on it!");
-	if (!tempImage)	// failure case
-		return nil;
-	
-	// Run baseline initializer
+    NSBitmapImageRep *tempImage = [NSBitmapImageRep imageRepWithPasteboard:[NSPasteboard generalPasteboard]];
+    
+    NSAssert(tempImage, @"We can't initialize with a pasteboard without an image on it!");
+    if (!tempImage)    // failure case
+        return nil;
+    
+    // Run baseline initializer
     if (self = [self initWithSize:NSMakeSize(tempImage.pixelsWide, tempImage.pixelsHigh)]) {
         // Copy the image to the mainImage
         [SWImageTools drawToImage:mainImage fromImage:tempImage withComposition:NO];
@@ -98,7 +98,7 @@
             [SWImageTools flipImageVertical:mainImage];
     }
 
-	return self;
+    return self;
 }
 
 // -----------------------------------------------------------------------------
@@ -106,39 +106,39 @@
 // -----------------------------------------------------------------------------
 
 - (void)resizeToSize:(NSSize)newSize
-		  scaleImage:(BOOL)shouldScale;
+          scaleImage:(BOOL)shouldScale;
 {
-	// We'll be replacing the two images behind the scenes
-	NSBitmapImageRep *newMainImage = nil;
-	NSBitmapImageRep *newBufferImage = nil;
-	[SWImageTools initImageRep:&newMainImage 
-					  withSize:newSize];
-	[SWImageTools initImageRep:&newBufferImage
-					  withSize:newSize];
-	
-	NSRect newRect = (NSRect) { NSZeroPoint, newSize };
-	SWLockFocus(newMainImage);
-	if (shouldScale) 
-	{
-		// Stretch the image to the correct size
-		[NSGraphicsContext currentContext].imageInterpolation = NSImageInterpolationNone;
-		[mainImage drawInRect:newRect];
-	}
-	else 
-	{
-		NSColor *bgColor = [[SWToolboxController sharedToolboxPanelController] backgroundColor];
-		[bgColor setFill];
-		NSRectFill(newRect);
-		[mainImage drawAtPoint:NSZeroPoint];
-	}
-	SWUnlockFocus(newMainImage);
-	
-	// Release and set (no need to retain: we already own the new images)
-	mainImage = newMainImage;
-	bufferImage = newBufferImage;
-	
-	// Finally, update our cached size
-	size = newSize;
+    // We'll be replacing the two images behind the scenes
+    NSBitmapImageRep *newMainImage = nil;
+    NSBitmapImageRep *newBufferImage = nil;
+    [SWImageTools initImageRep:&newMainImage 
+                      withSize:newSize];
+    [SWImageTools initImageRep:&newBufferImage
+                      withSize:newSize];
+    
+    NSRect newRect = (NSRect) { NSZeroPoint, newSize };
+    SWLockFocus(newMainImage);
+    if (shouldScale) 
+    {
+        // Stretch the image to the correct size
+        [NSGraphicsContext currentContext].imageInterpolation = NSImageInterpolationNone;
+        [mainImage drawInRect:newRect];
+    }
+    else 
+    {
+        NSColor *bgColor = [[SWToolboxController sharedToolboxPanelController] backgroundColor];
+        [bgColor setFill];
+        NSRectFill(newRect);
+        [mainImage drawAtPoint:NSZeroPoint];
+    }
+    SWUnlockFocus(newMainImage);
+    
+    // Release and set (no need to retain: we already own the new images)
+    mainImage = newMainImage;
+    bufferImage = newBufferImage;
+    
+    // Finally, update our cached size
+    size = newSize;
 }
 
 
@@ -154,10 +154,10 @@
 // Creates an array if none exists, and returns it
 - (NSArray *)imageArray
 {
-	if (!imageArray)
-		imageArray = [[NSArray alloc] initWithObjects:mainImage, bufferImage, nil];
-	
-	return imageArray;
+    if (!imageArray)
+        imageArray = [[NSArray alloc] initWithObjects:mainImage, bufferImage, nil];
+    
+    return imageArray;
 }
 
 
@@ -167,47 +167,47 @@
 
 - (NSData *)copyMainImageData
 {
-	if (mainImage)
-		return mainImage.TIFFRepresentation;
-	
-	// No image, no data
-	return nil;
+    if (mainImage)
+        return mainImage.TIFFRepresentation;
+    
+    // No image, no data
+    return nil;
 }
 
 
 - (void)restoreMainImageFromData:(NSData *)tiffData
 {
-	if (!tiffData)
-		return;
-	
-	NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithData:tiffData];
-	[SWImageTools drawToImage:mainImage fromImage:imageRep withComposition:NO];
+    if (!tiffData)
+        return;
+    
+    NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithData:tiffData];
+    [SWImageTools drawToImage:mainImage fromImage:imageRep withComposition:NO];
 }
 
 
 - (void)restoreBufferImageFromData:(NSData *)tiffData
 {
-	if (!tiffData)
-		return;
-	
-	NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithData:tiffData];
-	
-	// Unlike the main image, the buffer image can have its size change.  Do that here.
-	NSRect bufferImageRect = NSMakeRect(0, 0, bufferImage.pixelsWide, bufferImage.pixelsHigh);
-	NSRect pastedImageRect = NSMakeRect(0, 0, imageRep.pixelsWide, imageRep.pixelsHigh);
-	NSRect finalRect = NSUnionRect(bufferImageRect, pastedImageRect);
-	
-	if (!NSEqualRects(bufferImageRect, finalRect))
-	{
-		// Pasting something bigger than the previous image, so create a new one with the new size
-		bufferImage = nil;
+    if (!tiffData)
+        return;
+    
+    NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithData:tiffData];
+    
+    // Unlike the main image, the buffer image can have its size change.  Do that here.
+    NSRect bufferImageRect = NSMakeRect(0, 0, bufferImage.pixelsWide, bufferImage.pixelsHigh);
+    NSRect pastedImageRect = NSMakeRect(0, 0, imageRep.pixelsWide, imageRep.pixelsHigh);
+    NSRect finalRect = NSUnionRect(bufferImageRect, pastedImageRect);
+    
+    if (!NSEqualRects(bufferImageRect, finalRect))
+    {
+        // Pasting something bigger than the previous image, so create a new one with the new size
+        bufferImage = nil;
 
         NSBitmapImageRep *bufferImage = nil;
-		[SWImageTools initImageRep:&bufferImage withSize:finalRect.size];
+        [SWImageTools initImageRep:&bufferImage withSize:finalRect.size];
         self->bufferImage = bufferImage;
-	}
-	
-	[SWImageTools drawToImage:bufferImage fromImage:imageRep withComposition:NO];
+    }
+    
+    [SWImageTools drawToImage:bufferImage fromImage:imageRep withComposition:NO];
 }
 
 

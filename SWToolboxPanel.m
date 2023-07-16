@@ -24,7 +24,7 @@
 
 - (BOOL)canBecomeKeyWindow
 {
-	return NO;
+    return NO;
 }
 
 @end

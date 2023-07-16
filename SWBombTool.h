@@ -22,14 +22,14 @@
 
 
 @interface SWBombTool : SWTool {
-	NSRect rect;
-	NSInteger max;
-	NSInteger i;
-	NSInteger bombSpeed;
-	BOOL isExploding;
-	NSPoint p;
-	NSTimer *bombTimer;
-	NSColor *bombColor;
+    NSRect rect;
+    NSInteger max;
+    NSInteger i;
+    NSInteger bombSpeed;
+    BOOL isExploding;
+    NSPoint p;
+    NSTimer *bombTimer;
+    NSColor *bombColor;
 }
 
 - (void)drawNewCircle:(NSTimer *)timer;

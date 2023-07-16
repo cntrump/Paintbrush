@@ -20,32 +20,32 @@
 #import <Cocoa/Cocoa.h>
 
 
-typedef NS_ENUM(unsigned int, SWUnit) {
-	PERCENT = 0,
-	PIXELS = 1
+typedef NS_ENUM(NSUInteger, SWUnit) {
+    PERCENT = 0,
+    PIXELS = 1
 };
 
 
-@interface SWResizeWindowController : NSWindowController {	
-	IBOutlet NSTextField *heightFieldNew;
-	IBOutlet NSTextField *widthFieldNew;
-	
-	IBOutlet NSTextField *heightFieldOriginal;
-	IBOutlet NSTextField *widthFieldOriginal;
-	
-	IBOutlet NSPopUpButton *heightUnits;
-	IBOutlet NSPopUpButton *widthUnits;
-	
-	// Store the original size for a moment
-	NSSize originalSize;
-	
-	// Don't forget about the new size!
-	NSSize newSize;
-	
-	// Percent or pixels?
-	SWUnit selectedUnit;
-	
-	BOOL scales;
+@interface SWResizeWindowController : NSWindowController {    
+    IBOutlet NSTextField *heightFieldNew;
+    IBOutlet NSTextField *widthFieldNew;
+    
+    IBOutlet NSTextField *heightFieldOriginal;
+    IBOutlet NSTextField *widthFieldOriginal;
+    
+    IBOutlet NSPopUpButton *heightUnits;
+    IBOutlet NSPopUpButton *widthUnits;
+    
+    // Store the original size for a moment
+    NSSize originalSize;
+    
+    // Don't forget about the new size!
+    NSSize newSize;
+    
+    // Percent or pixels?
+    SWUnit selectedUnit;
+    
+    BOOL scales;
 }
 
 

@@ -7,7 +7,7 @@
 //  The contents of this file are dedicated to the public domain.
 //
 //  Contributors:
-//	  Andy Kim
+//      Andy Kim
 //    John Brayton
 //    Chad Sellers
 //    Kevin LaCoste
@@ -32,11 +32,11 @@
 
 // Needs to be defined for compiling under 10.4 SDK
 #ifndef NSAppKitVersionNumber10_4
-	#define NSAppKitVersionNumber10_4 824
+    #define NSAppKitVersionNumber10_4 824
 #endif
 // Needs to be defined for compiling under 10.5 SDK
 #ifndef NSAppKitVersionNumber10_5
-	#define NSAppKitVersionNumber10_5 949
+    #define NSAppKitVersionNumber10_5 949
 #endif
 
 // By default, we use a small control/font for the suppression button.
@@ -60,194 +60,194 @@ static BOOL CopyBundle(NSString *srcPath, NSString *dstPath);
 // Main worker function
 void PFMoveToApplicationsFolderIfNecessary(void)
 {
-	// Skip if user suppressed the alert before
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:AlertSuppressKey]) return;
+    // Skip if user suppressed the alert before
+    if ([NSUserDefaults.standardUserDefaults boolForKey:AlertSuppressKey]) return;
 
-	// Path of the bundle
-	NSString *bundlePath = [NSBundle mainBundle].bundlePath;
+    // Path of the bundle
+    NSString *bundlePath = [NSBundle mainBundle].bundlePath;
 
-	// Skip if the application is already in some Applications folder
-	if (IsInApplicationsFolder(bundlePath)) return;
+    // Skip if the application is already in some Applications folder
+    if (IsInApplicationsFolder(bundlePath)) return;
 
-	// File Manager
-	NSFileManager *fm = [NSFileManager defaultManager];
-	BOOL bundlePathIsWritable = [fm isWritableFileAtPath:bundlePath];
+    // File Manager
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL bundlePathIsWritable = [fm isWritableFileAtPath:bundlePath];
 
-	// Guess if we have launched from a disk image
-	BOOL isLaunchedFromDMG = ([bundlePath hasPrefix:@"/Volumes/"] && !bundlePathIsWritable);
+    // Guess if we have launched from a disk image
+    BOOL isLaunchedFromDMG = ([bundlePath hasPrefix:@"/Volumes/"] && !bundlePathIsWritable);
 
-	// Fail silently if there's no access to delete the original application
-	if (!isLaunchedFromDMG && !bundlePathIsWritable) {
-		NSLog(@"INFO -- No access to delete the app. Not offering to move it.");
-		return;
-	}
+    // Fail silently if there's no access to delete the original application
+    if (!isLaunchedFromDMG && !bundlePathIsWritable) {
+        NSLog(@"INFO -- No access to delete the app. Not offering to move it.");
+        return;
+    }
 
-	// Since we are good to go, get the preferred installation directory.
-	BOOL installToUserApplications = NO;
-	NSString *applicationsDirectory = PreferredInstallLocation(&installToUserApplications);
-	NSString *bundleName = bundlePath.lastPathComponent;
-	NSString *destinationPath = [applicationsDirectory stringByAppendingPathComponent:bundleName];
+    // Since we are good to go, get the preferred installation directory.
+    BOOL installToUserApplications = NO;
+    NSString *applicationsDirectory = PreferredInstallLocation(&installToUserApplications);
+    NSString *bundleName = bundlePath.lastPathComponent;
+    NSString *destinationPath = [applicationsDirectory stringByAppendingPathComponent:bundleName];
 
-	// Check if we need admin password to write to the Applications directory
-	BOOL needAuthorization = ([fm isWritableFileAtPath:applicationsDirectory] == NO);
+    // Check if we need admin password to write to the Applications directory
+    BOOL needAuthorization = ([fm isWritableFileAtPath:applicationsDirectory] == NO);
 
-	// Setup the alert
-	NSAlert *alert = [[NSAlert alloc] init];
-	{
-		NSString *informativeText = nil;
+    // Setup the alert
+    NSAlert *alert = [[NSAlert alloc] init];
+    {
+        NSString *informativeText = nil;
 
-		alert.messageText = (installToUserApplications ? kStrMoveApplicationQuestionTitleHome : kStrMoveApplicationQuestionTitle);
+        alert.messageText = (installToUserApplications ? kStrMoveApplicationQuestionTitleHome : kStrMoveApplicationQuestionTitle);
 
-		informativeText = kStrMoveApplicationQuestionMessage;
+        informativeText = kStrMoveApplicationQuestionMessage;
 
-		if (needAuthorization) {
-			informativeText = [informativeText stringByAppendingString:@" "];
-			informativeText = [informativeText stringByAppendingString:kStrMoveApplicationQuestionInfoWillRequirePasswd];
-		}
-		else if (IsInDownloadsFolder(bundlePath)) {
-			// Don't mention this stuff if we need authentication. The informative text is long enough as it is in that case.
-			informativeText = [informativeText stringByAppendingString:@" "];
-			informativeText = [informativeText stringByAppendingString:kStrMoveApplicationQuestionInfoInDownloadsFolder];
-		}
+        if (needAuthorization) {
+            informativeText = [informativeText stringByAppendingString:@" "];
+            informativeText = [informativeText stringByAppendingString:kStrMoveApplicationQuestionInfoWillRequirePasswd];
+        }
+        else if (IsInDownloadsFolder(bundlePath)) {
+            // Don't mention this stuff if we need authentication. The informative text is long enough as it is in that case.
+            informativeText = [informativeText stringByAppendingString:@" "];
+            informativeText = [informativeText stringByAppendingString:kStrMoveApplicationQuestionInfoInDownloadsFolder];
+        }
 
-		alert.informativeText = informativeText;
+        alert.informativeText = informativeText;
 
-		// Add accept button
-		[alert addButtonWithTitle:kStrMoveApplicationButtonMove];
+        // Add accept button
+        [alert addButtonWithTitle:kStrMoveApplicationButtonMove];
 
-		// Add deny button
-		NSButton *cancelButton = [alert addButtonWithTitle:kStrMoveApplicationButtonDoNotMove];
-		cancelButton.keyEquivalent = @"\e";
+        // Add deny button
+        NSButton *cancelButton = [alert addButtonWithTitle:kStrMoveApplicationButtonDoNotMove];
+        cancelButton.keyEquivalent = @"\e";
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_4
-		if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
-			// Setup suppression button
-			[alert setShowsSuppressionButton:YES];
+        if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
+            // Setup suppression button
+            [alert setShowsSuppressionButton:YES];
 
-			if (PFUseSmallAlertSuppressCheckbox) {
+            if (PFUseSmallAlertSuppressCheckbox) {
                 alert.suppressionButton.cell.controlSize = NSControlSizeSmall;
-				alert.suppressionButton.cell.font = [NSFont systemFontOfSize:[NSFont smallSystemFontSize]];
-			}
-		}
+                alert.suppressionButton.cell.font = [NSFont systemFontOfSize:[NSFont smallSystemFontSize]];
+            }
+        }
 #endif
-	}
+    }
 
-	// Activate app -- work-around for focus issues related to "scary file from internet" OS dialog.
-	if (!NSApp.active) {
-		[NSApp activateIgnoringOtherApps:YES];
-	}
+    // Activate app -- work-around for focus issues related to "scary file from internet" OS dialog.
+    if (!NSApp.active) {
+        [NSApp activateIgnoringOtherApps:YES];
+    }
 
-	if ([alert runModal] == NSAlertFirstButtonReturn) {
-		NSLog(@"INFO -- Moving myself to the Applications folder");
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        NSLog(@"INFO -- Moving myself to the Applications folder");
 
-		// Move
-		if (needAuthorization) {
-			BOOL authorizationCanceled;
+        // Move
+        if (needAuthorization) {
+            BOOL authorizationCanceled;
 
-			if (!AuthorizedInstall(bundlePath, destinationPath, &authorizationCanceled)) {
-				if (authorizationCanceled) {
-					NSLog(@"INFO -- Not moving because user canceled authorization");
-					return;
-				}
-				else {
-					NSLog(@"ERROR -- Could not copy myself to /Applications with authorization");
-					goto fail;
-				}
-			}
-		}
-		else {
-			// If a copy already exists in the Applications folder, put it in the Trash
-			if ([fm fileExistsAtPath:destinationPath]) {
-				// But first, make sure that it's not running
-				NSString *script = [NSString stringWithFormat:@"ps ax -o comm | grep '%@/' | grep -v grep >/dev/null", destinationPath];
-				NSTask *task = [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:@[@"-c", script]];
-				[task waitUntilExit];
+            if (!AuthorizedInstall(bundlePath, destinationPath, &authorizationCanceled)) {
+                if (authorizationCanceled) {
+                    NSLog(@"INFO -- Not moving because user canceled authorization");
+                    return;
+                }
+                else {
+                    NSLog(@"ERROR -- Could not copy myself to /Applications with authorization");
+                    goto fail;
+                }
+            }
+        }
+        else {
+            // If a copy already exists in the Applications folder, put it in the Trash
+            if ([fm fileExistsAtPath:destinationPath]) {
+                // But first, make sure that it's not running
+                NSString *script = [NSString stringWithFormat:@"ps ax -o comm | grep '%@/' | grep -v grep >/dev/null", destinationPath];
+                NSTask *task = [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:@[@"-c", script]];
+                [task waitUntilExit];
 
-				// If the task terminated with status 0, it means that the final grep produced 1 or more lines of output.
-				// It means that the app is already running
-				if (task.terminationStatus == 0) {
-					// Give the running app focus and terminate myself
-					NSLog(@"INFO -- Switching to an already running version");
-					[[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[destinationPath]] waitUntilExit];
-					[(SWAppController *)NSApp.delegate quit:nil];
-				}
-				else {
-					if (!Trash([applicationsDirectory stringByAppendingPathComponent:bundleName]))
-						goto fail;
-				}
-			}
+                // If the task terminated with status 0, it means that the final grep produced 1 or more lines of output.
+                // It means that the app is already running
+                if (task.terminationStatus == 0) {
+                    // Give the running app focus and terminate myself
+                    NSLog(@"INFO -- Switching to an already running version");
+                    [[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[destinationPath]] waitUntilExit];
+                    [(SWAppController *)NSApp.delegate quit:nil];
+                }
+                else {
+                    if (!Trash([applicationsDirectory stringByAppendingPathComponent:bundleName]))
+                        goto fail;
+                }
+            }
 
- 			if (!CopyBundle(bundlePath, destinationPath)) {
-				NSLog(@"ERROR -- Could not copy myself to %@", destinationPath);
-				goto fail;
-			}
-		}
+             if (!CopyBundle(bundlePath, destinationPath)) {
+                NSLog(@"ERROR -- Could not copy myself to %@", destinationPath);
+                goto fail;
+            }
+        }
 
-		// Trash the original app. It's okay if this fails.
-		// NOTE: This final delete does not work if the source bundle is in a network mounted volume.
-		//       Calling rm or file manager's delete method doesn't work either. It's unlikely to happen
-		//       but it'd be great if someone could fix this.
-		if (!isLaunchedFromDMG && !Trash(bundlePath)) {
-			NSLog(@"WARNING -- Could not delete application after moving it to Applications folder");
-		}
+        // Trash the original app. It's okay if this fails.
+        // NOTE: This final delete does not work if the source bundle is in a network mounted volume.
+        //       Calling rm or file manager's delete method doesn't work either. It's unlikely to happen
+        //       but it'd be great if someone could fix this.
+        if (!isLaunchedFromDMG && !Trash(bundlePath)) {
+            NSLog(@"WARNING -- Could not delete application after moving it to Applications folder");
+        }
 
-		// Relaunch.
-		// The shell script waits until the original app process terminates.
-		// This is done so that the relaunched app opens as the front-most app.
-		int pid = [NSProcessInfo processInfo].processIdentifier;
+        // Relaunch.
+        // The shell script waits until the original app process terminates.
+        // This is done so that the relaunched app opens as the front-most app.
+        int pid = [NSProcessInfo processInfo].processIdentifier;
 
-		// Command run just before running open /final/path
-		NSString *preOpenCmd = @"";
+        // Command run just before running open /final/path
+        NSString *preOpenCmd = @"";
 
-		// OS X >=10.5:
-		// Before we launch the new app, clear xattr:com.apple.quarantine to avoid
-		// duplicate "scary file from the internet" dialog.
+        // OS X >=10.5:
+        // Before we launch the new app, clear xattr:com.apple.quarantine to avoid
+        // duplicate "scary file from the internet" dialog.
 #if MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_4
-		if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_5) {
-			preOpenCmd = [NSString stringWithFormat:@"/usr/bin/xattr -d com.apple.quarantine '%@';", destinationPath];
-		}
-		else if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
-			preOpenCmd = [NSString stringWithFormat:@"/usr/bin/xattr -d -r com.apple.quarantine '%@';", destinationPath];
-		}
+        if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_5) {
+            preOpenCmd = [NSString stringWithFormat:@"/usr/bin/xattr -d com.apple.quarantine '%@';", destinationPath];
+        }
+        else if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
+            preOpenCmd = [NSString stringWithFormat:@"/usr/bin/xattr -d -r com.apple.quarantine '%@';", destinationPath];
+        }
 #endif
 
-		NSString *script = [NSString stringWithFormat:@"(while [ `ps -p %d | wc -l` -gt 1 ]; do sleep 0.1; done; %@ open '%@') &", pid, preOpenCmd, destinationPath];
+        NSString *script = [NSString stringWithFormat:@"(while [ `ps -p %d | wc -l` -gt 1 ]; do sleep 0.1; done; %@ open '%@') &", pid, preOpenCmd, destinationPath];
 
-		[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:@[@"-c", script]];
+        [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:@[@"-c", script]];
 
-		// Launched from within a DMG? -- unmount (if no files are open after 5 seconds,
-		// otherwise leave it mounted).
-		if (isLaunchedFromDMG) {
-			script = [NSString stringWithFormat:@"(sleep 5 && hdiutil detach '%@') &", bundlePath.stringByDeletingLastPathComponent];
-			[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:@[@"-c", script]];
-		}
+        // Launched from within a DMG? -- unmount (if no files are open after 5 seconds,
+        // otherwise leave it mounted).
+        if (isLaunchedFromDMG) {
+            script = [NSString stringWithFormat:@"(sleep 5 && hdiutil detach '%@') &", bundlePath.stringByDeletingLastPathComponent];
+            [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:@[@"-c", script]];
+        }
 
-		[(SWAppController *)NSApp.delegate quit:nil];
-	}
-	else {
-		if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
-			// Save the alert suppress preference if checked
+        [(SWAppController *)NSApp.delegate quit:nil];
+    }
+    else {
+        if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
+            // Save the alert suppress preference if checked
 #if MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_4
             if (alert.suppressionButton.state == NSControlStateValueOn) {
-				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:AlertSuppressKey];
-			}
+                [NSUserDefaults.standardUserDefaults setBool:YES forKey:AlertSuppressKey];
+            }
 #endif
-		}
-		else {
-			// Always suppress after the first decline on 10.4 since there is no suppression checkbox
-			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:AlertSuppressKey];
-		}
-	}
+        }
+        else {
+            // Always suppress after the first decline on 10.4 since there is no suppression checkbox
+            [NSUserDefaults.standardUserDefaults setBool:YES forKey:AlertSuppressKey];
+        }
+    }
 
-	return;
+    return;
 
 fail:
-	{
-		// Show failure message
-		alert = [[NSAlert alloc] init];
-		[alert setMessageText:kStrMoveApplicationCouldNotMove];
-		[alert runModal];
-	}
+    {
+        // Show failure message
+        alert = [[NSAlert alloc] init];
+        [alert setMessageText:kStrMoveApplicationCouldNotMove];
+        [alert runModal];
+    }
 }
 
 #pragma mark -
@@ -255,174 +255,174 @@ fail:
 
 static NSString *PreferredInstallLocation(BOOL *isUserDirectory)
 {
-	// Return the preferred install location.
-	// Assume that if the user has a ~/Applications folder, they'd prefer their
-	// applications to go there.
+    // Return the preferred install location.
+    // Assume that if the user has a ~/Applications folder, they'd prefer their
+    // applications to go there.
 
-	
-	// Paintbrush-only: we will never move to the ~/Applications directory.  Always go to the
-	// /Applications directory.
+
+    // Paintbrush-only: we will never move to the ~/Applications directory.  Always go to the
+    // /Applications directory.
 #if 0
-	NSFileManager *fm = [NSFileManager defaultManager];
+    NSFileManager *fm = [NSFileManager defaultManager];
 
-	NSArray *userApplicationsDirs = NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSUserDomainMask, YES);
-	if ([userApplicationsDirs count] > 0) {
-		NSString *userApplicationsDir = [userApplicationsDirs objectAtIndex:0];
-		BOOL isDirectory;
+    NSArray *userApplicationsDirs = NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSUserDomainMask, YES);
+    if ([userApplicationsDirs count] > 0) {
+        NSString *userApplicationsDir = [userApplicationsDirs objectAtIndex:0];
+        BOOL isDirectory;
 
-		if ([fm fileExistsAtPath:userApplicationsDir isDirectory:&isDirectory] && isDirectory) {
-			if (isUserDirectory) *isUserDirectory = YES;
-			return userApplicationsDir;
-		}
-	}
+        if ([fm fileExistsAtPath:userApplicationsDir isDirectory:&isDirectory] && isDirectory) {
+            if (isUserDirectory) *isUserDirectory = YES;
+            return userApplicationsDir;
+        }
+    }
 #endif // 0
 
-	// No user Applications directory. Return the machine local Applications directory
-	if (isUserDirectory) *isUserDirectory = NO;
-	return NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSLocalDomainMask, YES).lastObject;
+    // No user Applications directory. Return the machine local Applications directory
+    if (isUserDirectory) *isUserDirectory = NO;
+    return NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSLocalDomainMask, YES).lastObject;
 }
 
 static BOOL IsInApplicationsFolder(NSString *path)
 {
-	NSEnumerator *e = [NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSAllDomainsMask, YES) objectEnumerator];
-	NSString *appDirPath = nil;
+    NSEnumerator *e = [NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSAllDomainsMask, YES) objectEnumerator];
+    NSString *appDirPath = nil;
 
-	while ((appDirPath = [e nextObject])) {
-		if ([path hasPrefix:appDirPath]) return YES;
-	}
+    while ((appDirPath = [e nextObject])) {
+        if ([path hasPrefix:appDirPath]) return YES;
+    }
 
-	return NO;
+    return NO;
 }
 
 static BOOL IsInDownloadsFolder(NSString *path)
 {
 #if MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_4
-	// 10.5 or higher has NSDownloadsDirectory
-	if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
-		NSEnumerator *e = [NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSAllDomainsMask, YES) objectEnumerator];
-		NSString *downloadsDirPath = nil;
+    // 10.5 or higher has NSDownloadsDirectory
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
+        NSEnumerator *e = [NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSAllDomainsMask, YES) objectEnumerator];
+        NSString *downloadsDirPath = nil;
 
-		while ((downloadsDirPath = [e nextObject])) {
-			if ([path hasPrefix:downloadsDirPath]) return YES;
-		}
+        while ((downloadsDirPath = [e nextObject])) {
+            if ([path hasPrefix:downloadsDirPath]) return YES;
+        }
 
-		return NO;
-	}
+        return NO;
+    }
 #endif
-	// 10.4
-	return [path.stringByDeletingLastPathComponent.lastPathComponent isEqualToString:@"Downloads"];
+    // 10.4
+    return [path.stringByDeletingLastPathComponent.lastPathComponent isEqualToString:@"Downloads"];
 }
 
 static BOOL Trash(NSString *path)
 {
-	if ([[NSWorkspace sharedWorkspace] performFileOperation:NSWorkspaceRecycleOperation
-													 source:path.stringByDeletingLastPathComponent
-												destination:@""
-													  files:@[path.lastPathComponent]
-														tag:NULL]) {
-		return YES;
-	}
-	else {
-		NSLog(@"ERROR -- Could not trash '%@'", path);
-		return NO;
-	}
+    if ([[NSWorkspace sharedWorkspace] performFileOperation:NSWorkspaceRecycleOperation
+                                                     source:path.stringByDeletingLastPathComponent
+                                                destination:@""
+                                                      files:@[path.lastPathComponent]
+                                                        tag:NULL]) {
+        return YES;
+    }
+    else {
+        NSLog(@"ERROR -- Could not trash '%@'", path);
+        return NO;
+    }
 }
 
 static BOOL AuthorizedInstall(NSString *srcPath, NSString *dstPath, BOOL *canceled)
 {
-	if (canceled) *canceled = NO;
+    if (canceled) *canceled = NO;
 
-	// Make sure that the destination path is an app bundle. We're essentially running 'sudo rm -rf'
-	// so we really don't want to fuck this up.
-	if (![dstPath hasSuffix:@".app"]) return NO;
+    // Make sure that the destination path is an app bundle. We're essentially running 'sudo rm -rf'
+    // so we really don't want to fuck this up.
+    if (![dstPath hasSuffix:@".app"]) return NO;
 
-	// Do some more checks
-	if ([dstPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) return NO;
-	if ([srcPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) return NO;
+    // Do some more checks
+    if ([dstPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) return NO;
+    if ([srcPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) return NO;
 
-	int pid, status;
-	AuthorizationRef myAuthorizationRef;
+    int pid, status;
+    AuthorizationRef myAuthorizationRef;
 
-	// Get the authorization
-	OSStatus err = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &myAuthorizationRef);
-	if (err != errAuthorizationSuccess) return NO;
+    // Get the authorization
+    OSStatus err = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &myAuthorizationRef);
+    if (err != errAuthorizationSuccess) return NO;
 
-	AuthorizationItem myItems = {kAuthorizationRightExecute, 0, NULL, 0};
-	AuthorizationRights myRights = {1, &myItems};
-	AuthorizationFlags myFlags = kAuthorizationFlagInteractionAllowed | kAuthorizationFlagPreAuthorize | kAuthorizationFlagExtendRights;
+    AuthorizationItem myItems = {kAuthorizationRightExecute, 0, NULL, 0};
+    AuthorizationRights myRights = {1, &myItems};
+    AuthorizationFlags myFlags = kAuthorizationFlagInteractionAllowed | kAuthorizationFlagPreAuthorize | kAuthorizationFlagExtendRights;
 
-	err = AuthorizationCopyRights(myAuthorizationRef, &myRights, NULL, myFlags, NULL);
-	if (err != errAuthorizationSuccess) {
-		if (err == errAuthorizationCanceled && canceled)
-			*canceled = YES;
-		goto fail;
-	}
+    err = AuthorizationCopyRights(myAuthorizationRef, &myRights, NULL, myFlags, NULL);
+    if (err != errAuthorizationSuccess) {
+        if (err == errAuthorizationCanceled && canceled)
+            *canceled = YES;
+        goto fail;
+    }
 
-	// Delete the destination
-	{
-		char *args[] = {"-rf", (char *)dstPath.fileSystemRepresentation, NULL};
-		err = AuthorizationExecuteWithPrivileges(myAuthorizationRef, "/bin/rm", kAuthorizationFlagDefaults, args, NULL);
-		if (err != errAuthorizationSuccess) goto fail;
+    // Delete the destination
+    {
+        char *args[] = {"-rf", (char *)dstPath.fileSystemRepresentation, NULL};
+        err = AuthorizationExecuteWithPrivileges(myAuthorizationRef, "/bin/rm", kAuthorizationFlagDefaults, args, NULL);
+        if (err != errAuthorizationSuccess) goto fail;
 
-		// Wait until it's done
-		pid = wait(&status);
-		if (pid == -1 || !WIFEXITED(status)) goto fail; // We don't care about exit status as the destination most likely does not exist
-	}
+        // Wait until it's done
+        pid = wait(&status);
+        if (pid == -1 || !WIFEXITED(status)) goto fail; // We don't care about exit status as the destination most likely does not exist
+    }
 
-	// Copy
-	{
-		char *args[] = {"-pR", (char *)srcPath.fileSystemRepresentation, (char *)dstPath.fileSystemRepresentation, NULL};
-		err = AuthorizationExecuteWithPrivileges(myAuthorizationRef, "/bin/cp", kAuthorizationFlagDefaults, args, NULL);
-		if (err != errAuthorizationSuccess) goto fail;
+    // Copy
+    {
+        char *args[] = {"-pR", (char *)srcPath.fileSystemRepresentation, (char *)dstPath.fileSystemRepresentation, NULL};
+        err = AuthorizationExecuteWithPrivileges(myAuthorizationRef, "/bin/cp", kAuthorizationFlagDefaults, args, NULL);
+        if (err != errAuthorizationSuccess) goto fail;
 
-		// Wait until it's done
-		pid = wait(&status);
-		if (pid == -1 || !WIFEXITED(status) || WEXITSTATUS(status)) goto fail;
-	}
+        // Wait until it's done
+        pid = wait(&status);
+        if (pid == -1 || !WIFEXITED(status) || WEXITSTATUS(status)) goto fail;
+    }
 
-	AuthorizationFree(myAuthorizationRef, kAuthorizationFlagDefaults);
-	return YES;
+    AuthorizationFree(myAuthorizationRef, kAuthorizationFlagDefaults);
+    return YES;
 
 fail:
-	AuthorizationFree(myAuthorizationRef, kAuthorizationFlagDefaults);
-	return NO;
+    AuthorizationFree(myAuthorizationRef, kAuthorizationFlagDefaults);
+    return NO;
 }
 
 static BOOL CopyBundle(NSString *srcPath, NSString *dstPath)
 {
-	NSFileManager *fm = [NSFileManager defaultManager];
+    NSFileManager *fm = [NSFileManager defaultManager];
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_5
-	// 10.6 or higher
-	if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_5) {
-		NSError *error = nil;
-		if (![fm copyItemAtPath:srcPath toPath:dstPath error:&error]) {
-			NSLog(@"ERROR -- Could not copy '%@' to '%@' (%@)", srcPath, dstPath, error);
-			return NO;
-		}
-		return YES;
-	}
+    // 10.6 or higher
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_5) {
+        NSError *error = nil;
+        if (![fm copyItemAtPath:srcPath toPath:dstPath error:&error]) {
+            NSLog(@"ERROR -- Could not copy '%@' to '%@' (%@)", srcPath, dstPath, error);
+            return NO;
+        }
+        return YES;
+    }
 #endif
 #if MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_5
-	// 10.5. Welcome to the whack a deprecation warning show
-	BOOL success = NO;
-	SEL selector = @selector(copyPath:toPath:handler:);
-	NSMethodSignature *methodSig = [fm methodSignatureForSelector:selector];
-	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
-	id nilPointer = nil;
-	[invocation setSelector:selector];
-	[invocation setArgument:&srcPath atIndex:2];
-	[invocation setArgument:&dstPath atIndex:3];
-	[invocation setArgument:&nilPointer atIndex:4];
-	[invocation invokeWithTarget:fm];
-	[invocation getReturnValue:&success];
+    // 10.5. Welcome to the whack a deprecation warning show
+    BOOL success = NO;
+    SEL selector = @selector(copyPath:toPath:handler:);
+    NSMethodSignature *methodSig = [fm methodSignatureForSelector:selector];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+    id nilPointer = nil;
+    [invocation setSelector:selector];
+    [invocation setArgument:&srcPath atIndex:2];
+    [invocation setArgument:&dstPath atIndex:3];
+    [invocation setArgument:&nilPointer atIndex:4];
+    [invocation invokeWithTarget:fm];
+    [invocation getReturnValue:&success];
 
-	if (!success) {
-		NSLog(@"ERROR -- Could not copy '%@' to '%@'", srcPath, dstPath);
-	}
+    if (!success) {
+        NSLog(@"ERROR -- Could not copy '%@' to '%@'", srcPath, dstPath);
+    }
 
-	return success;
+    return success;
 #else
-	return NO;
+    return NO;
 #endif
 }

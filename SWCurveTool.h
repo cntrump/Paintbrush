@@ -21,10 +21,10 @@
 #import "SWTool.h"
 
 @interface SWCurveTool : SWTool {
-	NSInteger numberOfClicks;
-	NSColor *primaryColor;
+    NSInteger numberOfClicks;
+    NSColor *primaryColor;
 
-	NSPoint cp1, cp2, beginPoint, endPoint;
+    NSPoint cp1, cp2, beginPoint, endPoint;
 }
 
 @property (NS_NONATOMIC_IOSONLY) NSInteger numberOfClicks;

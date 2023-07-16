@@ -26,45 +26,45 @@
 
 - (instancetype)initWithDocument:(SWDocument *)doc
 {
-	self = [super initWithWindowNibName:@"TextEntry"];
-	document = doc;
-	return self;
+    self = [super initWithWindowNibName:@"TextEntry"];
+    document = doc;
+    return self;
 }
 
 - (void)awakeFromNib
 {
-	textView.font = [NSFont fontWithName:@"Helvetica" size:16.0];
-	[textView selectAll:textView];
+    textView.font = [NSFont fontWithName:@"Helvetica" size:16.0];
+    [textView selectAll:textView];
 }
 
 // When the user clicks "OK"
 - (IBAction)enterText:(id)sender
 {
-	NSRange range;
-	range.length = textView.string.length;
-	range.location = 0;
-	NSAttributedString *attrString = [[NSAttributedString alloc] initWithAttributedString:
-									  [textView attributedSubstringFromRange:range]];
-	NSDictionary *d = @{@"newText": attrString};
-	NSNotification *n = [NSNotification notificationWithName:@"SWTextEntered"
-													  object:self
-													userInfo:d];
-	
-	// Notify the text tool that I have clicked OK
-	[[NSNotificationCenter defaultCenter] postNotification:n];
-	[textView selectAll:textView];
-	[self close];
-	[NSApp endSheet:self.window];
+    NSRange range;
+    range.length = textView.string.length;
+    range.location = 0;
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithAttributedString:
+                                      [textView attributedSubstringFromRange:range]];
+    NSDictionary *d = @{@"newText": attrString};
+    NSNotification *n = [NSNotification notificationWithName:@"SWTextEntered"
+                                                      object:self
+                                                    userInfo:d];
+    
+    // Notify the text tool that I have clicked OK
+    [[NSNotificationCenter defaultCenter] postNotification:n];
+    [textView selectAll:textView];
+    [self close];
+    [NSApp endSheet:self.window];
 }
 
 // A cancel click calls this method
 - (IBAction)cancel:(id)sender
 {
-	[textView selectAll:textView];
-	[self close];
-	[NSApp endSheet:self.window];
-	if (document)
-		[document.toolbox tieUpLooseEndsForCurrentTool];
+    [textView selectAll:textView];
+    [self close];
+    [NSApp endSheet:self.window];
+    if (document)
+        [document.toolbox tieUpLooseEndsForCurrentTool];
 }
 
 @end

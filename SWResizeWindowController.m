@@ -27,7 +27,7 @@
 
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -35,67 +35,67 @@
 // one of the preset values in the popup button
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	NSInteger width, height;
-	switch (selectedUnit) {
-		case PERCENT:
-			width = widthFieldNew.integerValue * originalSize.width / 100;
-			height = heightFieldNew.integerValue * originalSize.height / 100;
-			break;
-		case PIXELS:
-			width = widthFieldNew.integerValue;
-			height = heightFieldNew.integerValue;
-			break;
-		default:
-			DebugLog(@"Error!  The selected units are wrong!");
-			return;
-	}
-	
-	newSize = NSMakeSize(width, height);
+    NSInteger width, height;
+    switch (selectedUnit) {
+        case PERCENT:
+            width = widthFieldNew.stringValue.integerValue * originalSize.width / 100;
+            height = heightFieldNew.stringValue.integerValue * originalSize.height / 100;
+            break;
+        case PIXELS:
+            width = widthFieldNew.stringValue.integerValue;
+            height = heightFieldNew.stringValue.integerValue;
+            break;
+        default:
+            DebugLog(@"Error!  The selected units are wrong!");
+            return;
+    }
+    
+    newSize = NSMakeSize(width, height);
 }
 
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(textDidChange:)
-												 name:NSControlTextDidChangeNotification
-											   object:nil];
-	
-	heightFieldOriginal.integerValue = originalSize.height;
-	widthFieldOriginal.integerValue = originalSize.width;
-	
-	newSize = originalSize;
-	
-	switch (selectedUnit) {
-		case PERCENT:
-			widthFieldNew.integerValue = 100;
-			heightFieldNew.integerValue = 100;
-			break;
-		case PIXELS:
-			widthFieldNew.integerValue = newSize.width;
-			heightFieldNew.integerValue = newSize.height;
-			break;
-		default:
-			break;
-	}
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textDidChange:)
+                                                 name:NSControlTextDidChangeNotification
+                                               object:nil];
+    
+    heightFieldOriginal.stringValue = @(originalSize.height).stringValue;
+    widthFieldOriginal.stringValue = @(originalSize.width).stringValue;
+    
+    newSize = originalSize;
+    
+    switch (selectedUnit) {
+        case PERCENT:
+            widthFieldNew.stringValue = @"100";
+            heightFieldNew.stringValue = @"100";
+            break;
+        case PIXELS:
+            widthFieldNew.stringValue = @(newSize.width).stringValue;
+            heightFieldNew.stringValue = @(newSize.height).stringValue;
+            break;
+        default:
+            break;
+    }
 }
 
 
 // Convert between percentage and pixels
 - (IBAction)changeUnits:(id)sender
 {
-	switch (selectedUnit) {
-		case PERCENT:
-			widthFieldNew.integerValue = (100 * newSize.width / originalSize.width);
-			heightFieldNew.integerValue = (100 * newSize.height / originalSize.height);
-			break;
-		case PIXELS:
-			widthFieldNew.integerValue = newSize.width;
-			heightFieldNew.integerValue = newSize.height;
-			break;
-		default:
-			break;
-	}
+    switch (selectedUnit) {
+        case PERCENT:
+            widthFieldNew.stringValue = @(100 * newSize.width / originalSize.width).stringValue;
+            heightFieldNew.stringValue = @(100 * newSize.height / originalSize.height).stringValue;
+            break;
+        case PIXELS:
+            widthFieldNew.stringValue = @(newSize.width).stringValue;
+            heightFieldNew.stringValue = @(newSize.height).stringValue;
+            break;
+        default:
+            break;
+    }
 }
 
 
@@ -103,50 +103,50 @@
 - (IBAction)endSheet:(id)sender
 {
     if ([sender tag] == NSModalResponseOK) {
-		if (widthFieldNew.integerValue > 0 && heightFieldNew.integerValue > 0) {
-			
-			// Save entered values as defaults
-//			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//			NSNumber *width = [NSNumber numberWithInt:[widthFieldNew integerValue]];
-//			NSNumber *height = [NSNumber numberWithInt:[heightFieldNew integerValue]];
-//			[defaults setObject:width forKey:@"HorizontalSize"];
-//			[defaults setObject:height forKey:@"VerticalSize"];
-			
-			[self.window orderOut:sender];
+        if (widthFieldNew.stringValue.integerValue > 0 && heightFieldNew.stringValue.integerValue > 0) {
+            
+            // Save entered values as defaults
+//            NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+//            NSNumber *width = [NSNumber numberWithInteger:[widthFieldNew integerValue]];
+//            NSNumber *height = [NSNumber numberWithInteger:[heightFieldNew integerValue]];
+//            [defaults setObject:width forKey:@"HorizontalSize"];
+//            [defaults setObject:height forKey:@"VerticalSize"];
+            
+            [self.window orderOut:sender];
             [NSApp endSheet:self.window returnCode:NSModalResponseOK];
-		} else {
-			NSBeep();
-		}
-	} else {
-		// They clicked cancel
-		[self.window orderOut:sender];
+        } else {
+            NSBeep();
+        }
+    } else {
+        // They clicked cancel
+        [self.window orderOut:sender];
         [NSApp endSheet:self.window returnCode:NSModalResponseCancel];
-	}	
+    }    
 }
 
 - (NSInteger)width
 {
-	return newSize.width;
+    return newSize.width;
 }
 
 - (NSInteger)height
 {
-	return newSize.height;
+    return newSize.height;
 }
 
 - (void)setCurrentSize:(NSSize)currSize
 {
-	originalSize = currSize;
+    originalSize = currSize;
 }
 
 - (BOOL)scales
 {
-	return scales;
+    return scales;
 }
 
 - (void)setScales:(BOOL)s
 {
-	scales = s;
+    scales = s;
 }
 
 

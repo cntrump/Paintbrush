@@ -21,9 +21,9 @@
 #import "SWTool.h"
 
 @interface SWAirbrushTool : SWTool {
-	NSTimer *airbrushTimer;
-	NSPoint p;
-	BOOL isSpraying;
+    NSTimer *airbrushTimer;
+    NSPoint p;
+    BOOL isSpraying;
 }
 
 - (void)endSpray:(NSTimer *)timer;

@@ -32,7 +32,7 @@
         pressedImage = [NSImage imageNamed:@"pressedwell.png"];
     }
 
-	return self;
+    return self;
 }
 
 
@@ -43,75 +43,75 @@
 //  deactivating the well.
 - (void)deactivate 
 {
-	// While we're at it, redraw everything
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
-	[super deactivate];
-	[[NSColorPanel sharedColorPanel] close];
+    // While we're at it, redraw everything
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
+    [super deactivate];
+    [[NSColorPanel sharedColorPanel] close];
 }
 
 
 // Instead of doing the regular drawing, we're kicking it up a notch!  Bam!
 - (void)drawRect:(NSRect)rect
 {
-	if (isHovered) 
-		rect = NSInsetRect(rect, 3.0, 3.0);
-	else
-		rect = NSInsetRect(rect, 4.0, 4.0);
-	
-	// An SWColorWell can be hovered, selected, or neither
-	if (self.active) 
-	{
-		[pressedImage drawAtPoint:NSZeroPoint 
-						 fromRect:NSZeroRect 
+    if (isHovered) 
+        rect = NSInsetRect(rect, 3.0, 3.0);
+    else
+        rect = NSInsetRect(rect, 4.0, 4.0);
+    
+    // An SWColorWell can be hovered, selected, or neither
+    if (self.active) 
+    {
+        [pressedImage drawAtPoint:NSZeroPoint 
+                         fromRect:NSZeroRect 
                         operation:NSCompositingOperationSourceOver 
-						 fraction:1.0];	
-	} 
-	else if (isHovered) 
-	{
-		[hovImage drawAtPoint:NSZeroPoint 
-					 fromRect:NSZeroRect 
+                         fraction:1.0];    
+    } 
+    else if (isHovered) 
+    {
+        [hovImage drawAtPoint:NSZeroPoint 
+                     fromRect:NSZeroRect 
                     operation:NSCompositingOperationSourceOver 
-					 fraction:1.0];
-	}
-	
-	rect.origin.x += 0.5;
-	rect.origin.y += 0.5;
-	NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:4 yRadius:4];
-	path.lineWidth = 1.0;
-	
-	// Draw the fill now
-	[self.color setFill];		
-	[path fill];
-	
-	[[NSColor grayColor] setStroke];
-	[path stroke];
+                     fraction:1.0];
+    }
+    
+    rect.origin.x += 0.5;
+    rect.origin.y += 0.5;
+    NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:4 yRadius:4];
+    path.lineWidth = 1.0;
+    
+    // Draw the fill now
+    [self.color setFill];        
+    [path fill];
+    
+    [[NSColor grayColor] setStroke];
+    [path stroke];
 }
 
 
 // When either of these three actions happens, make sure we redraw BOTH rects!  Very important.
 - (void)setColor:(NSColor *)color
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
-	super.color = color;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
+    super.color = color;
 }
 
 - (void)mouseDown:(NSEvent *)event
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
-	[super mouseDown:event];
-	[self.superview mouseDown:event];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
+    [super mouseDown:event];
+    [self.superview mouseDown:event];
 }
 
 - (void)mouseUp:(NSEvent *)event
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
-	[super mouseUp:event];
-	[self.superview mouseUp:event];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SWColorSet" object:nil];
+    [super mouseUp:event];
+    [self.superview mouseUp:event];
 }
 
 - (BOOL)isOpaque
 {
-	return NO;
+    return NO;
 }
 
 @end

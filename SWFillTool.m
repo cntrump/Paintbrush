@@ -34,62 +34,62 @@
 
 - (NSBezierPath *)pathFromPoint:(NSPoint)begin toPoint:(NSPoint)end
 {
-	return nil;
+    return nil;
 }
 
 
 - (NSBezierPath *)performDrawAtPoint:(NSPoint)point 
-					   withMainImage:(NSBitmapImageRep *)mainImage 
-						 bufferImage:(NSBitmapImageRep *)bufferImage 
-						  mouseEvent:(SWMouseEvent)event
-{	
-	if (event == MOUSE_DOWN) 
-	{
+                       withMainImage:(NSBitmapImageRep *)mainImage 
+                         bufferImage:(NSBitmapImageRep *)bufferImage 
+                          mouseEvent:(SWMouseEvent)event
+{    
+    if (event == MOUSE_DOWN) 
+    {
 
-		// Get the width and height of the image
-		w = mainImage.size.width;
-		h = mainImage.size.height;
-		
-		_mainImage = mainImage;
-		
-		// Which color are we using?
+        // Get the width and height of the image
+        w = mainImage.size.width;
+        h = mainImage.size.height;
+        
+        _mainImage = mainImage;
+        
+        // Which color are we using?
         fillColor = [(flags & NSEventModifierFlagOption) ? backColor : frontColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-		
-		// Check to make sure if we should even bother trying to fill - 
-		// if it's the same color, there's nothing to do
-		if (![SWImageTools color:[mainImage colorAtX:point.x y:(h - point.y)] 
-				  isEqualToColor:fillColor]) 
-		{
-			// Prep an undo - we're about to change things!
-			[document handleUndoWithImageData:nil frame:NSZeroRect];
-			
-			// Create the image mask we will be using to fill the selecteds region
-			CGImageRef mask = [self floodFillSelect:NSMakePoint(point.x, point.y+1) tolerance:0.0];
-			
-			// And then fill it!
-			[self fillMask:mask withColor:fillColor];
-			
-			// And then release it!
-			CGImageRelease(mask);
-			
-			[super addRedrawRectFromPoint:NSZeroPoint toPoint:NSMakePoint(_mainImage.pixelsWide, _mainImage.pixelsHigh)];
-		}
-	}
-	return nil;
+        
+        // Check to make sure if we should even bother trying to fill - 
+        // if it's the same color, there's nothing to do
+        if (![SWImageTools color:[mainImage colorAtX:point.x y:(h - point.y)] 
+                  isEqualToColor:fillColor]) 
+        {
+            // Prep an undo - we're about to change things!
+            [document handleUndoWithImageData:nil frame:NSZeroRect];
+            
+            // Create the image mask we will be using to fill the selecteds region
+            CGImageRef mask = [self floodFillSelect:NSMakePoint(point.x, point.y+1) tolerance:0.0];
+            
+            // And then fill it!
+            [self fillMask:mask withColor:fillColor];
+            
+            // And then release it!
+            CGImageRelease(mask);
+            
+            [super addRedrawRectFromPoint:NSZeroPoint toPoint:NSMakePoint(_mainImage.pixelsWide, _mainImage.pixelsHigh)];
+        }
+    }
+    return nil;
 }
 
 - (NSCursor *)cursor
 {
-	if (!customCursor) {
-		NSImage *customImage = [NSImage imageNamed:@"bucket-cursor.png"];
-		customCursor = [[NSCursor alloc] initWithImage:customImage hotSpot:NSMakePoint(14,13)];
-	}
-	return customCursor;
+    if (!customCursor) {
+        NSImage *customImage = [NSImage imageNamed:@"bucket-cursor.png"];
+        customCursor = [[NSCursor alloc] initWithImage:customImage hotSpot:NSMakePoint(14,13)];
+    }
+    return customCursor;
 }
 
 - (NSString *)description
 {
-	return @"Fill";
+    return @"Fill";
 }
 
 @end
@@ -98,43 +98,43 @@
 
 - (CGImageRef)floodFillSelect:(NSPoint)point tolerance:(CGFloat)tolerance
 {
-	// Building up a selection mask is pretty involved, so we're going to pass
-	//	the task to a helper class that can build up temporary state.
-	SWSelectionBuilder *builder = [[SWSelectionBuilder alloc] initWithBitmapImageRep:_mainImage point:point tolerance:tolerance];
-	CGImageRef ref = [builder mask];
+    // Building up a selection mask is pretty involved, so we're going to pass
+    //    the task to a helper class that can build up temporary state.
+    SWSelectionBuilder *builder = [[SWSelectionBuilder alloc] initWithBitmapImageRep:_mainImage point:point tolerance:tolerance];
+    CGImageRef ref = [builder mask];
 
-	return ref;
+    return ref;
 }
 
 - (void)fillMask:(CGImageRef)mask withColor:(NSColor *)color
 {
-	// We want to render the image into our bitmap image rep, so create a
-	//	NSGraphicsContext from it.
-	NSGraphicsContext *imageContext = [NSGraphicsContext graphicsContextWithBitmapImageRep:_mainImage];
+    // We want to render the image into our bitmap image rep, so create a
+    //    NSGraphicsContext from it.
+    NSGraphicsContext *imageContext = [NSGraphicsContext graphicsContextWithBitmapImageRep:_mainImage];
     CGContextRef cgContext = imageContext.CGContext;
-	
-	// "Focus" our image rep so the NSBitmapImageRep will use it to draw into
-	[NSGraphicsContext saveGraphicsState];
-	[NSGraphicsContext setCurrentContext:imageContext];
-	
-	// For filling with transparent colors
-    [NSGraphicsContext currentContext].compositingOperation = NSCompositingOperationCopy;		
+    
+    // "Focus" our image rep so the NSBitmapImageRep will use it to draw into
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:imageContext];
+    
+    // For filling with transparent colors
+    [NSGraphicsContext currentContext].compositingOperation = NSCompositingOperationCopy;        
 
-	// Clip out everything that we don't want to fill with the new color
-	CGContextClipToMask(cgContext, CGRectMake(0, 0, w, h), mask);
-	
-	// Set the color and fill
-	[fillColor set];
-	[NSBezierPath fillRect: NSMakeRect(0, 0, w, h)];
-//	[[[NSGradient alloc] initWithStartingColor:frontColor endingColor:backColor] drawInRect:NSMakeRect(0,0,w,h) angle:45];
-	
-	[NSGraphicsContext restoreGraphicsState];
+    // Clip out everything that we don't want to fill with the new color
+    CGContextClipToMask(cgContext, CGRectMake(0, 0, w, h), mask);
+    
+    // Set the color and fill
+    [fillColor set];
+    [NSBezierPath fillRect: NSMakeRect(0, 0, w, h)];
+//    [[[NSGradient alloc] initWithStartingColor:frontColor endingColor:backColor] drawInRect:NSMakeRect(0,0,w,h) angle:45];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 
 - (NSString *)description
 {
-	return @"Fill";
+    return @"Fill";
 }
 
 @end

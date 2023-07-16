@@ -22,8 +22,8 @@
 @class SWColorWell;
 
 @interface SWColorSelector : NSView {
-	IBOutlet SWColorWell *frontWell;
-	IBOutlet SWColorWell *backWell;
+    IBOutlet SWColorWell *frontWell;
+    IBOutlet SWColorWell *backWell;
 }
 
 - (void)updateWells:(NSNotification *)n;

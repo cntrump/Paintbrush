@@ -32,7 +32,7 @@
         knobImage = [NSImage imageNamed:@"knob"];
     }
 
-	return self;
+    return self;
 }
 
 // -----------------------------------------------------------------------------
@@ -41,7 +41,7 @@
 
 // Overridden to 
 - (void)drawKnob:(NSRect)knobRect {
-	[knobImage compositeToPoint:NSMakePoint(knobRect.origin.x,knobRect.origin.y+knobRect.size.height) 
+    [knobImage compositeToPoint:NSMakePoint(knobRect.origin.x,knobRect.origin.y+knobRect.size.height) 
                       operation:NSCompositingOperationSourceOver];
 }
 

@@ -21,9 +21,9 @@
 
 
 @interface SWButtonCell : NSButtonCell {
-	NSImage *altImage;
-	NSImage *hovImage;
-	NSImage *backupImage;
+    NSImage *altImage;
+    NSImage *hovImage;
+    NSImage *backupImage;
 }
 
 - (void)generateAltImage;

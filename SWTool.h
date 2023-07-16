@@ -22,35 +22,35 @@
 @class SWToolboxController;
 @class SWDocument;
 
-typedef NS_ENUM(unsigned int, SWMouseEvent) {
-	MOUSE_DOWN, 
-	MOUSE_DRAGGED,
-	MOUSE_UP,
-	MOUSE_MOVED
+typedef NS_ENUM(NSUInteger, SWMouseEvent) {
+    MOUSE_DOWN, 
+    MOUSE_DRAGGED,
+    MOUSE_UP,
+    MOUSE_MOVED
 };
 
 @interface SWTool : NSObject
 {
-	NSColor *frontColor;
-	NSColor *backColor;
-	NSBitmapImageRep *drawToMe;
-	NSBitmapImageRep *_mainImage;
-	NSBitmapImageRep *_bufferImage;
-	NSBezierPath *path;
-	CGFloat lineWidth;
-	BOOL shouldFill;
-	BOOL shouldStroke;
-	BOOL shouldShowFillOptions;
-	BOOL shouldShowTransparencyOptions;
-	NSUInteger flags;
-	NSPoint savedPoint;
-	NSRect redrawRect, savedRect;
-	SWToolboxController *toolboxController;
-	
-	NSCursor *customCursor;
-	
-	// We need to talk to the document once in a while
-	SWDocument *document;
+    NSColor *frontColor;
+    NSColor *backColor;
+    NSBitmapImageRep *drawToMe;
+    NSBitmapImageRep *_mainImage;
+    NSBitmapImageRep *_bufferImage;
+    NSBezierPath *path;
+    CGFloat lineWidth;
+    BOOL shouldFill;
+    BOOL shouldStroke;
+    BOOL shouldShowFillOptions;
+    BOOL shouldShowTransparencyOptions;
+    NSUInteger flags;
+    NSPoint savedPoint;
+    NSRect redrawRect, savedRect;
+    SWToolboxController *toolboxController;
+    
+    NSCursor *customCursor;
+    
+    // We need to talk to the document once in a while
+    SWDocument *document;
 }
 
 - (instancetype)initWithController:(SWToolboxController *)controller NS_DESIGNATED_INITIALIZER;
@@ -92,9 +92,9 @@ typedef NS_ENUM(unsigned int, SWMouseEvent) {
 @interface SWTool (Abstract)
 - (NSBezierPath *)pathFromPoint:(NSPoint)begin toPoint:(NSPoint)end;
 - (NSBezierPath *)performDrawAtPoint:(NSPoint)point 
-					   withMainImage:(NSBitmapImageRep *)mainImage 
-						 bufferImage:(NSBitmapImageRep *)bufferImage 
-						  mouseEvent:(SWMouseEvent)event;
+                       withMainImage:(NSBitmapImageRep *)mainImage 
+                         bufferImage:(NSBitmapImageRep *)bufferImage 
+                          mouseEvent:(SWMouseEvent)event;
 @property (NS_NONATOMIC_IOSONLY, readonly, strong) NSCursor *cursor;
 
 @end

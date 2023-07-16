@@ -32,49 +32,49 @@ static NSUInteger sizeOffset = 3; // How many non-size menu items are there?
 
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
 - (void)windowDidLoad
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(textDidChange:)
-												 name:NSControlTextDidChangeNotification
-											   object:nil];
-	
-	// Read the defaults for width and height
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	NSNumber *width = [defaults objectForKey:@"HorizontalSize"];
-	NSNumber *height = [defaults objectForKey:@"VerticalSize"];
-	widthField.intValue = width.integerValue;
-	heightField.intValue = height.integerValue;
-	
-	// Populate the sizeButton
-	[sizeButton removeAllItems];
-	
-	// Add the custom items to the popup
-	NSMenu *buttonMenu = sizeButton.menu;
-	clipboard = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"From Clipboard", @"Size of the image copied to the clipboard")
-										   action:@selector(changeSizeButton:)
-									keyEquivalent:@""];
-	[buttonMenu addItem:clipboard];
-	[buttonMenu addItemWithTitle:NSLocalizedString(@"Custom", @"Custom size")
-						  action:@selector(changeSizeButton:)
-				   keyEquivalent:@""];
-	[buttonMenu addItem:[NSMenuItem separatorItem]];
-	
-	// Add the zoom levels
-	NSUInteger cnt;
-	for (cnt = 0; cnt < numItems; cnt++) {
-		[buttonMenu addItemWithTitle:NSLocalizedString(sizeMenuLabels[cnt], nil)
-							  action:@selector(changeSizeButton:)
-					   keyEquivalent:@""];
-	}
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:NSControlTextDidChangeNotification 
-														object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textDidChange:)
+                                                 name:NSControlTextDidChangeNotification
+                                               object:nil];
+    
+    // Read the defaults for width and height
+    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+    
+    NSString *width = [defaults stringForKey:@"HorizontalSize"];
+    NSString *height = [defaults stringForKey:@"VerticalSize"];
+    widthField.stringValue = width;
+    heightField.stringValue = height;
+    
+    // Populate the sizeButton
+    [sizeButton removeAllItems];
+    
+    // Add the custom items to the popup
+    NSMenu *buttonMenu = sizeButton.menu;
+    clipboard = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"From Clipboard", @"Size of the image copied to the clipboard")
+                                           action:@selector(changeSizeButton:)
+                                    keyEquivalent:@""];
+    [buttonMenu addItem:clipboard];
+    [buttonMenu addItemWithTitle:NSLocalizedString(@"Custom", @"Custom size")
+                          action:@selector(changeSizeButton:)
+                   keyEquivalent:@""];
+    [buttonMenu addItem:[NSMenuItem separatorItem]];
+    
+    // Add the zoom levels
+    NSUInteger cnt;
+    for (cnt = 0; cnt < numItems; cnt++) {
+        [buttonMenu addItemWithTitle:NSLocalizedString(sizeMenuLabels[cnt], nil)
+                              action:@selector(changeSizeButton:)
+                       keyEquivalent:@""];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NSControlTextDidChangeNotification 
+                                                        object:nil];
 }
 
 
@@ -82,31 +82,31 @@ static NSUInteger sizeOffset = 3; // How many non-size menu items are there?
 // change the two text fields to stay synchronized with it
 - (IBAction)changeSizeButton:(id)sender
 {
-	if (sizeButton.selectedItem == clipboard) {
-		NSData *data = [SWImageTools readImageFromPasteboard:[NSPasteboard generalPasteboard]];
-		if (data) {
-			NSBitmapImageRep *temp = [[NSBitmapImageRep alloc] initWithData:data];
-			widthField.intValue = temp.size.width;
-			heightField.intValue = temp.size.height;
-		}
-	} else {
-		NSInteger index = sizeButton.indexOfSelectedItem;
-		if (index >= sizeOffset) {
-			// The user selected one of the size presets
-			index -= sizeOffset;
-			widthField.intValue = sizeMenuWidths[index];
-			heightField.intValue = sizeMenuHeights[index];
-		}
-	}
+    if (sizeButton.selectedItem == clipboard) {
+        NSData *data = [SWImageTools readImageFromPasteboard:[NSPasteboard generalPasteboard]];
+        if (data) {
+            NSBitmapImageRep *temp = [[NSBitmapImageRep alloc] initWithData:data];
+            widthField.stringValue = @(temp.size.width).stringValue;
+            heightField.stringValue = @(temp.size.height).stringValue;
+        }
+    } else {
+        NSInteger index = sizeButton.indexOfSelectedItem;
+        if (index >= sizeOffset) {
+            // The user selected one of the size presets
+            index -= sizeOffset;
+            widthField.stringValue = @(sizeMenuWidths[index]).stringValue;
+            heightField.stringValue = @(sizeMenuHeights[index]).stringValue;
+        }
+    }
 }
 
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
-	if (menuItem == clipboard) {
-		return ([SWImageTools readImageFromPasteboard:[NSPasteboard generalPasteboard]] != nil);
-	}
-	return YES;
+    if (menuItem == clipboard) {
+        return ([SWImageTools readImageFromPasteboard:[NSPasteboard generalPasteboard]] != nil);
+    }
+    return YES;
 }
 
 
@@ -114,22 +114,22 @@ static NSUInteger sizeOffset = 3; // How many non-size menu items are there?
 // one of the preset values in the popup button
 - (void)textDidChange:(NSNotification *)aNotification
 {
-	NSInteger width = widthField.integerValue;
-	NSInteger height = heightField.integerValue;
-	BOOL isFound = NO;
-	
-	NSUInteger cnt;
-	for (cnt = 0; cnt < numItems; cnt++) {
-		if (width == sizeMenuWidths[cnt] && height == sizeMenuHeights[cnt]) {
-			[sizeButton selectItemAtIndex:(cnt+sizeOffset)];
-			isFound = YES;
-			break;
-		}
-	}
-	
-	if (!isFound) {
-		[sizeButton selectItemWithTitle:@"Custom"];
-	}
+    NSInteger width = widthField.stringValue.integerValue;
+    NSInteger height = heightField.stringValue.integerValue;
+    BOOL isFound = NO;
+    
+    NSUInteger cnt;
+    for (cnt = 0; cnt < numItems; cnt++) {
+        if (width == sizeMenuWidths[cnt] && height == sizeMenuHeights[cnt]) {
+            [sizeButton selectItemAtIndex:(cnt+sizeOffset)];
+            isFound = YES;
+            break;
+        }
+    }
+    
+    if (!isFound) {
+        [sizeButton selectItemWithTitle:@"Custom"];
+    }
 }
 
 
@@ -137,49 +137,47 @@ static NSUInteger sizeOffset = 3; // How many non-size menu items are there?
 - (IBAction)endSheet:(id)sender
 {
     if ([sender tag] == NSModalResponseOK) {
-		if (widthField.integerValue > 0 && heightField.integerValue > 0) {
-			
-			// Save entered values as defaults
-			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-			NSNumber *width = [NSNumber numberWithInt:widthField.integerValue];
-			NSNumber *height = [NSNumber numberWithInt:heightField.integerValue];
-			[defaults setObject:width forKey:@"HorizontalSize"];
-			[defaults setObject:height forKey:@"VerticalSize"];
-			
-			[self.window orderOut:sender];
+        if (widthField.stringValue.integerValue > 0 && heightField.stringValue.integerValue > 0) {
+            
+            // Save entered values as defaults
+            NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+            [defaults setObject:widthField.stringValue forKey:@"HorizontalSize"];
+            [defaults setObject:heightField.stringValue forKey:@"VerticalSize"];
+            
+            [self.window orderOut:sender];
             [NSApp endSheet:self.window returnCode:NSModalResponseOK];
-		} else {
-			NSBeep();
-		}
-	} else {
-		// They clicked cancel
-		[self.window orderOut:sender];
+        } else {
+            NSBeep();
+        }
+    } else {
+        // They clicked cancel
+        [self.window orderOut:sender];
         [NSApp endSheet:self.window returnCode:NSModalResponseCancel];
-	}	
+    }    
 }
 
 
 - (NSInteger)width
 {
-	return widthField.integerValue;
+    return widthField.stringValue.integerValue;
 }
 
 
 - (NSInteger)height
 {
-	return heightField.integerValue;
+    return heightField.stringValue.integerValue;
 }
 
 
 - (void)setWidth:(NSInteger)newWidth
 {
-	widthField.integerValue = newWidth;
+    widthField.stringValue = @(newWidth).stringValue;
 }
 
 
 - (void)setHeight:(NSInteger)newHeight
 {
-	heightField.integerValue = newHeight;
+    heightField.stringValue = @(newHeight).stringValue;
 }
 
 

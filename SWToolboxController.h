@@ -19,10 +19,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef NS_ENUM(unsigned int, SWFillStyle) {
-	STROKE_ONLY,
-	FILL_ONLY,
-	FILL_AND_STROKE
+typedef NS_ENUM(NSUInteger, SWFillStyle) {
+    STROKE_ONLY,
+    FILL_ONLY,
+    FILL_AND_STROKE
 };
 
 @class SWColorSelector;
@@ -30,19 +30,19 @@ typedef NS_ENUM(unsigned int, SWFillStyle) {
 @class SWToolbox;
 @class SWDocument;
 
-@interface SWToolboxController : NSWindowController {	
-	NSColor *foregroundColor;
-	NSColor *backgroundColor;
-	NSInteger lineWidth;
-	SWFillStyle fillStyle;
-	BOOL selectionTransparency;
-	
-	IBOutlet SWMatrix *toolMatrix;
-	IBOutlet SWMatrix *transparencyMatrix;
-	IBOutlet SWMatrix *fillMatrix;	
-	
-	// My toolbox -- used when there's no active document
-	SWToolbox *toolbox;
+@interface SWToolboxController : NSWindowController {    
+    NSColor *foregroundColor;
+    NSColor *backgroundColor;
+    NSInteger lineWidth;
+    SWFillStyle fillStyle;
+    BOOL selectionTransparency;
+    
+    IBOutlet SWMatrix *toolMatrix;
+    IBOutlet SWMatrix *transparencyMatrix;
+    IBOutlet SWMatrix *fillMatrix;    
+    
+    // My toolbox -- used when there's no active document
+    SWToolbox *toolbox;
     
     // Active Document
     SWDocument *activeDocument;

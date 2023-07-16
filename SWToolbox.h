@@ -25,11 +25,11 @@
 
 @interface SWToolbox : NSObject 
 {
-	NSMutableDictionary *toolList;
-	SWToolboxController *sharedController;
-	
-	// The currently-selected tool
-	SWTool *currentTool;
+    NSMutableDictionary *toolList;
+    SWToolboxController *sharedController;
+    
+    // The currently-selected tool
+    SWTool *currentTool;
 }
 
 @property (retain,nonatomic) SWTool *currentTool;

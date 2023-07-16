@@ -22,8 +22,8 @@
 @class SWButtonCell;
 
 @interface SWMatrix : NSMatrix {
-	SWButtonCell *hoveredCell;
-	NSPoint hoveredPoint;
+    SWButtonCell *hoveredCell;
+    NSPoint hoveredPoint;
 }
 
 @end

@@ -24,8 +24,8 @@
 
 - (void)setAlternateImage:(NSImage *)image
 {
-	// We never want an alternate image other than ours to be set
-	return;
+    // We never want an alternate image other than ours to be set
+    return;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -38,90 +38,90 @@
         [self generateHovImage];
     }
 
-	return self;
+    return self;
 }
 
 - (void)generateAltImage
 {
-	if (!altImage) 
-	{
-		NSImage *normal = self.image;
-		NSImage *highlight;
-		NSSize size = normal.size;
-		
-		if (NSEqualSizes(size, NSMakeSize(32, 32)))
-			highlight = [NSImage imageNamed:@"pressedsmall.png"];			
-		else if (NSEqualSizes(size, NSMakeSize(64, 32)))
-			highlight = [NSImage imageNamed:@"pressedwide.png"];
-		else if (NSEqualSizes(size, NSMakeSize(64, 48)))
-			highlight = [NSImage imageNamed:@"pressedwidetall.png"];
-		else
-			return;
-		
-		altImage = [[NSImage alloc] initWithSize:size];
-		[altImage lockFocus];
-		[highlight drawAtPoint:NSZeroPoint
-					  fromRect:NSZeroRect
+    if (!altImage) 
+    {
+        NSImage *normal = self.image;
+        NSImage *highlight;
+        NSSize size = normal.size;
+        
+        if (NSEqualSizes(size, NSMakeSize(32, 32)))
+            highlight = [NSImage imageNamed:@"pressedsmall.png"];            
+        else if (NSEqualSizes(size, NSMakeSize(64, 32)))
+            highlight = [NSImage imageNamed:@"pressedwide.png"];
+        else if (NSEqualSizes(size, NSMakeSize(64, 48)))
+            highlight = [NSImage imageNamed:@"pressedwidetall.png"];
+        else
+            return;
+        
+        altImage = [[NSImage alloc] initWithSize:size];
+        [altImage lockFocus];
+        [highlight drawAtPoint:NSZeroPoint
+                      fromRect:NSZeroRect
                      operation:NSCompositingOperationSourceOver
-					  fraction:1.0];
-		NSShadow *shadow = [[NSShadow alloc] init];
-		shadow.shadowBlurRadius = 4.0;
-		shadow.shadowColor = [NSColor whiteColor];
-		[shadow set];
-		[normal drawAtPoint:NSZeroPoint
-				   fromRect:NSZeroRect
+                      fraction:1.0];
+        NSShadow *shadow = [[NSShadow alloc] init];
+        shadow.shadowBlurRadius = 4.0;
+        shadow.shadowColor = [NSColor whiteColor];
+        [shadow set];
+        [normal drawAtPoint:NSZeroPoint
+                   fromRect:NSZeroRect
                   operation:NSCompositingOperationSourceOver
-				   fraction:1.0];
-		[altImage unlockFocus];
-	}
+                   fraction:1.0];
+        [altImage unlockFocus];
+    }
 }
 
 - (void)generateHovImage
 {
-	if (!hovImage)
-	{
-		NSImage *normal = self.image;
-		NSImage *highlight;
-		NSSize size = normal.size;
-		
-		if (NSEqualSizes(size, NSMakeSize(32, 32)))
-			highlight = [NSImage imageNamed:@"hoveredsmall.png"];			
-		else if (NSEqualSizes(size, NSMakeSize(64, 32)))
-			highlight = [NSImage imageNamed:@"hoveredwide.png"];
-		else if (NSEqualSizes(size, NSMakeSize(64, 48)))
-			highlight = [NSImage imageNamed:@"hoveredwidetall.png"];
-		else
-			return;
-		
-		hovImage = [[NSImage alloc] initWithSize:size];
-		[hovImage lockFocus];
-		[highlight drawAtPoint:NSZeroPoint
-					  fromRect:NSZeroRect
+    if (!hovImage)
+    {
+        NSImage *normal = self.image;
+        NSImage *highlight;
+        NSSize size = normal.size;
+        
+        if (NSEqualSizes(size, NSMakeSize(32, 32)))
+            highlight = [NSImage imageNamed:@"hoveredsmall.png"];            
+        else if (NSEqualSizes(size, NSMakeSize(64, 32)))
+            highlight = [NSImage imageNamed:@"hoveredwide.png"];
+        else if (NSEqualSizes(size, NSMakeSize(64, 48)))
+            highlight = [NSImage imageNamed:@"hoveredwidetall.png"];
+        else
+            return;
+        
+        hovImage = [[NSImage alloc] initWithSize:size];
+        [hovImage lockFocus];
+        [highlight drawAtPoint:NSZeroPoint
+                      fromRect:NSZeroRect
                      operation:NSCompositingOperationSourceOver
-					  fraction:1.0];
-		
-		[normal drawAtPoint:NSZeroPoint
-				   fromRect:NSZeroRect
+                      fraction:1.0];
+        
+        [normal drawAtPoint:NSZeroPoint
+                   fromRect:NSZeroRect
                   operation:NSCompositingOperationSourceOver
-				   fraction:1.0];
-		[hovImage unlockFocus];
-	}
+                   fraction:1.0];
+        [hovImage unlockFocus];
+    }
 }
 
 - (void)setIsHovered:(BOOL)flag;
 {
-	if (flag)
-		self.image = hovImage;
-	else
-		self.image = backupImage;
+    if (flag)
+        self.image = hovImage;
+    else
+        self.image = backupImage;
 }
 
 - (NSImage *)alternateImage
 {
-	if (!altImage) {
-		[self generateAltImage];
-	}
-	return altImage;
+    if (!altImage) {
+        [self generateAltImage];
+    }
+    return altImage;
 }
 
 @end

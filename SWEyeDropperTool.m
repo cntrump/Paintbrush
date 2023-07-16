@@ -24,37 +24,37 @@
 @implementation SWEyeDropperTool
 
 - (NSBezierPath *)performDrawAtPoint:(NSPoint)point 
-					   withMainImage:(NSBitmapImageRep *)mainImage 
-						 bufferImage:(NSBitmapImageRep *)bufferImage 
-						  mouseEvent:(SWMouseEvent)event
+                       withMainImage:(NSBitmapImageRep *)mainImage 
+                         bufferImage:(NSBitmapImageRep *)bufferImage 
+                          mouseEvent:(SWMouseEvent)event
 {
-	// This should happen regardless of the type of click
-	NSColor *colorClicked = [mainImage colorAtX:point.x y:(mainImage.pixelsHigh - point.y - 1)];
-	
-	if (colorClicked != nil) {
-		NSColor *colorClickedConverted = [colorClicked colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
+    // This should happen regardless of the type of click
+    NSColor *colorClicked = [mainImage colorAtX:point.x y:(mainImage.pixelsHigh - point.y - 1)];
+    
+    if (colorClicked != nil) {
+        NSColor *colorClickedConverted = [colorClicked colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
         if (flags & NSEventModifierFlagOption) {
-			[[SWToolboxController sharedToolboxPanelController] setBackgroundColor:colorClickedConverted];
-		} else {
-			[[SWToolboxController sharedToolboxPanelController] setForegroundColor:colorClickedConverted];
-		}
-	}
+            [[SWToolboxController sharedToolboxPanelController] setBackgroundColor:colorClickedConverted];
+        } else {
+            [[SWToolboxController sharedToolboxPanelController] setForegroundColor:colorClickedConverted];
+        }
+    }
 
-	return nil;
+    return nil;
 }
 
 - (NSCursor *)cursor
 {
-	if (!customCursor) {
-		NSImage *customImage = [NSImage imageNamed:@"eyedrop-cursor.png"];
-		customCursor = [[NSCursor alloc] initWithImage:customImage hotSpot:NSMakePoint(1,15)];
-	}
-	return customCursor;
+    if (!customCursor) {
+        NSImage *customImage = [NSImage imageNamed:@"eyedrop-cursor.png"];
+        customCursor = [[NSCursor alloc] initWithImage:customImage hotSpot:NSMakePoint(1,15)];
+    }
+    return customCursor;
 }
 
 - (NSString *)description
 {
-	return @"Eyedropper";
+    return @"Eyedropper";
 }
 
 

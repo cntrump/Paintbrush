@@ -21,10 +21,10 @@
 
 
 @interface SWSlider : NSSlider {
-	
-	// This value stores the sum of the user's scrolling. If it passes a threshold 
-	// value (probably 1.0), it is reset and the scroller incrememts
-	CGFloat savedScroll;
+    
+    // This value stores the sum of the user's scrolling. If it passes a threshold 
+    // value (probably 1.0), it is reset and the scroller incrememts
+    CGFloat savedScroll;
 }
 
 @end
